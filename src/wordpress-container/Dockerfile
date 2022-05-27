@@ -1,9 +1,10 @@
 ARG BASE_WORDPRESS_IMAGE
 ARG PHP_INI
+ARG PHP_VERSION
 
 # This stage is used to install plugin dependencies using composer. We use a docker multi-stage build to ensure all
 # these extra dependencies do not end up in the final layer.
-FROM php:7.4 as compile
+FROM php:$PHP_VERSION as compile
 
 ARG wp2static_version
 ARG wp2static_s3_addon_version
