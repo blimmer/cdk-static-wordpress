@@ -4,7 +4,7 @@ ARG PHP_VERSION
 
 # This stage is used to install plugin dependencies using composer. We use a docker multi-stage build to ensure all
 # these extra dependencies do not end up in the final layer.
-FROM php:$PHP_VERSION as compile
+FROM --platform=linux/amd64 php:$PHP_VERSION as compile
 
 ARG wp2static_version
 ARG wp2static_s3_addon_version
@@ -38,7 +38,7 @@ RUN curl -Lf https://github.com/leonstafford/wp2static-addon-s3/archive/refs/tag
 
 # Start over with a fresh wordpress layer
 ARG BASE_WORDPRESS_IMAGE
-FROM $BASE_WORDPRESS_IMAGE as wordpress
+FROM --platform=linux/amd64 $BASE_WORDPRESS_IMAGE as wordpress
 
 ARG PHP_INI
 
