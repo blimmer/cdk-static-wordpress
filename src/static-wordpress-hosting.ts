@@ -5,12 +5,12 @@ import {
   Distribution,
   DistributionProps,
   Function,
+  FunctionCode,
   FunctionEventType,
   PriceClass,
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
-import { Code } from "aws-cdk-lib/aws-lambda";
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
@@ -18,7 +18,7 @@ import { Construct } from "constructs";
 export interface IStaticWordpressHostingProps {
   fullyQualifiedSiteName: string;
   hostedZone: IHostedZone;
-  redirects: ISiteRedirects;
+  redirects?: ISiteRedirects;
 
   bucketOverrides?: BucketProps;
   distributionOverrides?: DistributionProps;
@@ -65,7 +65,7 @@ export class StaticWordpressHosting extends Construct {
         functionAssociations: [
           {
             function: new Function(this, "ViewerRequestFunction", {
-              code: Code.fromInline(`
+              code: FunctionCode.fromInline(`
 function handler(event) {
   var request = event.request;
   var uri = request.uri;
@@ -116,5 +116,15 @@ function permanentRedirect(uri, match, target) {
     this.distribution = distribution;
   }
 
-  private generateRedirectStatements(redirects: ISiteRedirects) {}
+  private generateRedirectStatements(redirects: ISiteRedirects): string {
+    let code = "";
+    for (const redirect in redirects) {
+      code += `
+    if (/${redirect}/.test(uri)) {
+      return permanentRedirect(uri, /${redirect}/, '${redirects[redirect]}');
+    }
+`;
+    }
+    return code;
+  }
 }
