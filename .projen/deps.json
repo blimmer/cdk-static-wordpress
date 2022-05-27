@@ -94,6 +94,10 @@
       "type": "build"
     },
     {
+      "name": "prettier-plugin-organize-imports",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "type": "build"
     },

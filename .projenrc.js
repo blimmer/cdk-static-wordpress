@@ -16,9 +16,15 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
 
+  tsconfigDev: {
+    compilerOptions: {
+      noUnusedLocals: false, // This is annoying in dev
+    },
+  },
+
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
+  devDeps: ["prettier-plugin-organize-imports"],
   // packageName: undefined,  /* The "name" in package.json. */
 });
 project.synth();
