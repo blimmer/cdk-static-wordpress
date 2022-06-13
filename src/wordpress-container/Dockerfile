@@ -4,6 +4,7 @@ ARG PHP_VERSION
 
 # This stage is used to install plugin dependencies using composer. We use a docker multi-stage build to ensure all
 # these extra dependencies do not end up in the final layer.
+# TODO: support gravitron
 FROM --platform=linux/amd64 php:$PHP_VERSION as compile
 
 ARG wp2static_version
