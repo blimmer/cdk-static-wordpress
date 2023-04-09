@@ -29,6 +29,14 @@ export class WordpressServerless extends Construct {
       hostedZone,
     });
     const wordpressContainer = new WordpressContainer(this, "WordpressContainer", wordpressContainerProps);
-    new WordpressEcsTask(this, "WordpressEcsTask", { siteId, ecsCluster, vpc, wordpressContainer, runWpAdmin });
+    new WordpressEcsTask(this, "WordpressEcsTask", {
+      siteId,
+      fullyQualifiedSiteName,
+      ecsCluster,
+      vpc,
+      staticWordpressHosting,
+      wordpressContainer,
+      runWpAdmin,
+    });
   }
 }
