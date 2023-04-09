@@ -48,6 +48,7 @@ export class StaticWordpressHosting extends Construct {
       bucketName: fullyQualifiedSiteName,
       encryption: BucketEncryption.S3_MANAGED,
       removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       ...bucketOverrides,
     });

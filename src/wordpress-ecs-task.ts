@@ -1,6 +1,7 @@
 import { Duration } from "aws-cdk-lib";
 import { IVpc, SecurityGroup, Vpc } from "aws-cdk-lib/aws-ec2";
 import {
+  CfnService,
   Cluster,
   FargatePlatformVersion,
   FargateService,
@@ -11,13 +12,7 @@ import {
   TaskDefinitionProps,
 } from "aws-cdk-lib/aws-ecs";
 import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-efs";
-import {
-  DatabaseCluster,
-  DatabaseClusterEngine,
-  DatabaseClusterProps,
-  ServerlessCluster,
-  ServerlessClusterProps,
-} from "aws-cdk-lib/aws-rds";
+import { DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
 import { Construct } from "constructs";
 import { WordpressContainer } from "./wordpress-container";
 
@@ -29,7 +24,7 @@ export interface IWordpressEcsTaskProps {
   vpc?: IVpc;
   ecsCluster?: ICluster;
 
-  databaseClusterPropsOverrides: Partial<ServerlessClusterProps>;
+  databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
   efsOverrides?: Partial<FileSystemProps>;
   fargateServiceOverrides?: Partial<FargateServiceProps>;
   taskDefinitionOverrides?: Partial<TaskDefinitionProps>;
@@ -96,11 +91,17 @@ export class WordpressEcsTask extends Construct {
         ...taskDefinitionOverrides,
       }),
       assignPublicIp: true,
-      desiredCount: runWpAdmin ? 1 : 0,
+      desiredCount: 1,
       capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT" }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
       ...fargateServiceOverrides,
     });
+
+    // https://github.com/aws/aws-cdk/issues/16562
+    if (!runWpAdmin) {
+      const cfnEcsService = service.node.defaultChild as CfnService;
+      cfnEcsService.desiredCount = 0;
+    }
   }
 }
