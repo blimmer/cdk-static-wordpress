@@ -19,6 +19,7 @@ import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessCluste
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
 import { WordpressContainer } from "./wordpress-container";
+import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 export interface IWordpressEcsTaskProps {
   siteId: string;
@@ -70,6 +71,15 @@ export class WordpressEcsTask extends Construct {
       ...efsOverrides,
     });
 
+    // This is harder than it should be
+    // https://github.com/aws/aws-cdk/issues/13442#issuecomment-1321150902
+    const fileSystemAccessPoint = fileSystem.addAccessPoint("AccessPoint");
+    fileSystemAccessPoint.node.addDependency(fileSystem);
+    const fileSystemMountPolicy = new PolicyStatement({
+      actions: ["elasticfilesystem:ClientMount", "elasticfilesystem:ClientWrite", "elasticfilesystem:ClientRootAccess"],
+      resources: [fileSystemAccessPoint.accessPointArn, fileSystem.fileSystemArn],
+    });
+
     const databaseCredentials = Credentials.fromGeneratedSecret("wp_master");
     const database = new ServerlessCluster(this, "Database", {
       clusterIdentifier: `${siteId}`,
@@ -91,10 +101,22 @@ export class WordpressEcsTask extends Construct {
       family: `${siteId}_wordpress`,
       cpu: 256,
       memoryLimitMiB: 512,
+      volumes: [
+        {
+          name: "wordpress_persistent",
+          efsVolumeConfiguration: {
+            fileSystemId: fileSystem.fileSystemId,
+            transitEncryption: "ENABLED",
+            authorizationConfig: {
+              accessPointId: fileSystemAccessPoint.accessPointId,
+            },
+          },
+        },
+      ],
       // TODO
       ...taskDefinitionOverrides,
     });
-    taskDefinition.addContainer("wordpress", {
+    const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
       image: ContainerImage.fromDockerImageAsset(wordpressContainer.dockerImageAsset),
       secrets: {
@@ -128,6 +150,13 @@ export class WordpressEcsTask extends Construct {
         logRetention: RetentionDays.ONE_MONTH,
       }),
     });
+    taskContainer.addMountPoints({
+      sourceVolume: "wordpress_persistent",
+      containerPath: "/var/www/html",
+      readOnly: false,
+    });
+    taskDefinition.addToTaskRolePolicy(fileSystemMountPolicy);
+    taskDefinition.addToExecutionRolePolicy(fileSystemMountPolicy);
 
     const service = new FargateService(this, "Service", {
       cluster: ecsCluster,
@@ -139,5 +168,6 @@ export class WordpressEcsTask extends Construct {
       platformVersion: FargatePlatformVersion.LATEST,
       ...fargateServiceOverrides,
     });
+    service.connections.allowToDefaultPort(database);
   }
 }
