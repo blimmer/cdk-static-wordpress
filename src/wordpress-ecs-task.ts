@@ -1,5 +1,5 @@
-import { Duration, Stack } from "aws-cdk-lib";
-import { IVpc, Vpc } from "aws-cdk-lib/aws-ec2";
+import { Duration, SecretValue, Stack } from "aws-cdk-lib";
+import { IVpc, SubnetType, Vpc } from "aws-cdk-lib/aws-ec2";
 import {
   Cluster,
   ContainerImage,
@@ -11,7 +11,6 @@ import {
   ICluster,
   LogDriver,
   PropagatedTagSource,
-  Secret,
 } from "aws-cdk-lib/aws-ecs";
 import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-efs";
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
@@ -20,7 +19,7 @@ import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessCluste
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
-import { WordpressAdminProps } from "./types";
+import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
 import { WordpressContainer } from "./wordpress-container";
 
 export interface IWordpressEcsTaskProps {
@@ -30,6 +29,7 @@ export interface IWordpressEcsTaskProps {
   staticWordpressHosting: StaticWordpressHosting;
   wordpressContainer: WordpressContainer;
   wordpressAdminProps: WordpressAdminProps;
+  wordpressDatabaseProps?: WordpressDatabaseProps;
   runWpAdmin: boolean;
 
   vpc?: IVpc;
@@ -62,6 +62,7 @@ export class WordpressEcsTask extends Construct {
       staticWordpressHosting,
       wordpressContainer,
       wordpressAdminProps,
+      wordpressDatabaseProps = {},
       efsOverrides,
       runWpAdmin,
       fargateServiceOverrides,
@@ -74,6 +75,8 @@ export class WordpressEcsTask extends Construct {
       username: adminUsername = "supervisor",
       password: adminPassword = "changeme",
     } = wordpressAdminProps;
+    const { username: databaseUsername = "wp_master", password: databasePassword = "changeme" } =
+      wordpressDatabaseProps;
 
     const fileSystem = new FileSystem(this, "FileSystem", {
       fileSystemName: `${siteId}-fs`,
@@ -93,7 +96,7 @@ export class WordpressEcsTask extends Construct {
       resources: [fileSystemAccessPoint.accessPointArn, fileSystem.fileSystemArn],
     });
 
-    const databaseCredentials = Credentials.fromGeneratedSecret("wp_master");
+    const databaseCredentials = Credentials.fromPassword(databaseUsername, SecretValue.plainText(databasePassword));
     const database = new ServerlessCluster(this, "Database", {
       clusterIdentifier: `${siteId}`,
       engine: DatabaseClusterEngine.AURORA_MYSQL,
@@ -107,6 +110,7 @@ export class WordpressEcsTask extends Construct {
         maxCapacity: 1,
       },
       vpc,
+      vpcSubnets: { subnetType: SubnetType.PRIVATE_ISOLATED },
       ...databaseClusterPropsOverrides,
     });
 
@@ -132,9 +136,6 @@ export class WordpressEcsTask extends Construct {
     const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
       image: ContainerImage.fromDockerImageAsset(dockerImageAsset),
-      secrets: {
-        WORDPRESS_DB_PASSWORD: Secret.fromSecretsManager(databaseCredentials.secret!),
-      },
       environment: {
         ECS_ENABLE_CONTAINER_METADATA: "true",
         WORDPRESS_DB_HOST: database.clusterEndpoint.hostname,
@@ -148,6 +149,7 @@ export class WordpressEcsTask extends Construct {
         WORDPRESS_ADMIN_USER: adminUsername,
         WORDPRESS_ADMIN_PASSWORD: adminPassword,
         WORDPRESS_ADMIN_EMAIL: adminEmail,
+        WORDPRESS_DB_PASSWORD: (databaseCredentials.password as SecretValue).toString(),
         WP_MEMORY_LIMIT: wordpressMemoryLimit,
       },
       portMappings: [{ containerPort: 80, hostPort: 80 }],
