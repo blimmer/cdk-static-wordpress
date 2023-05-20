@@ -96,7 +96,10 @@ export class WordpressEcsTask extends Construct {
       resources: [fileSystemAccessPoint.accessPointArn, fileSystem.fileSystemArn],
     });
 
-    const databaseCredentials = Credentials.fromPassword(databaseUsername, SecretValue.plainText(databasePassword));
+    const databaseCredentials = Credentials.fromPassword(
+      databaseUsername,
+      SecretValue.unsafePlainText(databasePassword)
+    );
     const database = new ServerlessCluster(this, "Database", {
       clusterIdentifier: `${siteId}`,
       engine: DatabaseClusterEngine.AURORA_MYSQL,
