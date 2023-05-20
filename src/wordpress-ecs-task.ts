@@ -46,6 +46,7 @@ export class WordpressEcsTask extends Construct {
     const {
       siteId,
       fullyQualifiedSiteName,
+      hostedZone,
       vpc = new Vpc(this, "Vpc", {
         maxAzs: 2, // 2 AZs are required for Aurora
         natGateways: 0, // NAT Gateways are ~$1/day
@@ -133,8 +134,8 @@ export class WordpressEcsTask extends Construct {
         WPSTATIC_DEST: fullyQualifiedSiteName,
         WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
-        CONTAINER_DNS: "${container_dns}",
-        CONTAINER_DNS_ZONE: "${container_dns_zone}",
+        CONTAINER_DNS: fullyQualifiedSiteName,
+        CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
         WORDPRESS_ADMIN_USER: "${wordpress_admin_user}",
         WORDPRESS_ADMIN_PASSWORD: "${wordpress_admin_password}",
         WORDPRESS_ADMIN_EMAIL: "${wordpress_admin_email}",
