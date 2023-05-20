@@ -31,6 +31,7 @@ export class WordpressServerless extends Construct {
     const wordpressContainer = new WordpressContainer(this, "WordpressContainer", wordpressContainerProps);
     new WordpressEcsTask(this, "WordpressEcsTask", {
       siteId,
+      hostedZone,
       fullyQualifiedSiteName,
       ecsCluster,
       vpc,

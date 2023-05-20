@@ -14,15 +14,17 @@ import {
   Secret,
 } from "aws-cdk-lib/aws-ecs";
 import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-efs";
+import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
+import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
 import { WordpressContainer } from "./wordpress-container";
-import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 export interface IWordpressEcsTaskProps {
   siteId: string;
+  hostedZone: IHostedZone;
   fullyQualifiedSiteName: string;
   staticWordpressHosting: StaticWordpressHosting;
   wordpressContainer: WordpressContainer;
