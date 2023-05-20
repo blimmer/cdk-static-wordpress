@@ -20,6 +20,7 @@ import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessCluste
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
+import { WordpressAdminProps } from "./types";
 import { WordpressContainer } from "./wordpress-container";
 
 export interface IWordpressEcsTaskProps {
@@ -28,6 +29,7 @@ export interface IWordpressEcsTaskProps {
   fullyQualifiedSiteName: string;
   staticWordpressHosting: StaticWordpressHosting;
   wordpressContainer: WordpressContainer;
+  wordpressAdminProps: WordpressAdminProps;
   runWpAdmin: boolean;
 
   vpc?: IVpc;
@@ -59,13 +61,19 @@ export class WordpressEcsTask extends Construct {
       databaseClusterPropsOverrides,
       staticWordpressHosting,
       wordpressContainer,
+      wordpressAdminProps,
       efsOverrides,
       runWpAdmin,
       fargateServiceOverrides,
       taskDefinitionOverrides,
     } = props;
     const { bucket } = staticWordpressHosting;
-    const { dockerImageAsset, containerCpu, containerMemory } = wordpressContainer;
+    const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressContainer;
+    const {
+      email: adminEmail,
+      username: adminUsername = "supervisor",
+      password: adminPassword = "changeme",
+    } = wordpressAdminProps;
 
     const fileSystem = new FileSystem(this, "FileSystem", {
       fileSystemName: `${siteId}-fs`,
@@ -137,10 +145,10 @@ export class WordpressEcsTask extends Construct {
         WPSTATIC_BUCKET: bucket.bucketName,
         CONTAINER_DNS: fullyQualifiedSiteName,
         CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
-        WORDPRESS_ADMIN_USER: "${wordpress_admin_user}",
-        WORDPRESS_ADMIN_PASSWORD: "${wordpress_admin_password}",
-        WORDPRESS_ADMIN_EMAIL: "${wordpress_admin_email}",
-        WP_MEMORY_LIMIT: "${wordpress_memory_limit}",
+        WORDPRESS_ADMIN_USER: adminUsername,
+        WORDPRESS_ADMIN_PASSWORD: adminPassword,
+        WORDPRESS_ADMIN_EMAIL: adminEmail,
+        WP_MEMORY_LIMIT: wordpressMemoryLimit,
       },
       portMappings: [{ containerPort: 80, hostPort: 80 }],
       healthCheck: {

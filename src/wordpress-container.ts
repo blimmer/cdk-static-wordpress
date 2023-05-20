@@ -38,6 +38,7 @@ export class WordpressContainer extends Construct {
   readonly dockerImageAsset: DockerImageAsset;
   readonly containerCpu: number;
   readonly containerMemory: number;
+  readonly wordpressMemoryLimit: string;
 
   constructor(scope: Construct, id: string, props: IWordpressContainerProps = {}) {
     super(scope, id);
@@ -68,6 +69,7 @@ memory_limit=${wordpressMemoryLimit}`,
 
     this.containerCpu = containerCpu;
     this.containerMemory = containerMemory;
+    this.wordpressMemoryLimit = wordpressMemoryLimit;
   }
 
   private getPhpVersionFromWordpressImage(wordpressDockerImageBase: string): string {
