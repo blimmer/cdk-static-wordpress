@@ -152,7 +152,7 @@ export class WordpressEcsTask extends Construct {
         WORDPRESS_ADMIN_USER: adminUsername,
         WORDPRESS_ADMIN_PASSWORD: adminPassword,
         WORDPRESS_ADMIN_EMAIL: adminEmail,
-        WORDPRESS_DB_PASSWORD: (databaseCredentials.password as SecretValue).toString(),
+        WORDPRESS_DB_PASSWORD: databaseCredentials.password!.unsafeUnwrap(),
         WP_MEMORY_LIMIT: wordpressMemoryLimit,
       },
       portMappings: [{ containerPort: 80, hostPort: 80 }],
