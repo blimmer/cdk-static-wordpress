@@ -50,6 +50,7 @@ export class WordpressEcsTask extends Construct {
       fullyQualifiedSiteName,
       hostedZone,
       vpc = new Vpc(this, "Vpc", {
+        vpcName: `${siteId}-vpc`,
         maxAzs: 2, // 2 AZs are required for Aurora
         natGateways: 0, // NAT Gateways are ~$1/day
       }),
