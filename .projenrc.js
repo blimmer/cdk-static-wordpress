@@ -3,7 +3,7 @@ const { ProseWrap } = require("projen/lib/javascript");
 const project = new awscdk.AwsCdkConstructLibrary({
   author: "Ben Limmer",
   authorAddress: "hello@benlimmer.com",
-  cdkVersion: "2.1.0",
+  cdkVersion: "2.59.0", // First release of 2023
   defaultReleaseBranch: "main",
   name: "cdk-wordpress-serverless",
   repositoryUrl: "https://github.com/blimmer/cdk-wordpress-serverless.git",
