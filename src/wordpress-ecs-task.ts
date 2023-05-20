@@ -65,6 +65,7 @@ export class WordpressEcsTask extends Construct {
       taskDefinitionOverrides,
     } = props;
     const { bucket } = staticWordpressHosting;
+    const { dockerImageAsset, containerCpu, containerMemory } = wordpressContainer;
 
     const fileSystem = new FileSystem(this, "FileSystem", {
       fileSystemName: `${siteId}-fs`,
@@ -103,8 +104,8 @@ export class WordpressEcsTask extends Construct {
 
     const taskDefinition = new FargateTaskDefinition(this, "TaskDefinition", {
       family: `${siteId}_wordpress`,
-      cpu: 256,
-      memoryLimitMiB: 512,
+      cpu: containerCpu,
+      memoryLimitMiB: containerMemory,
       volumes: [
         {
           name: "wordpress_persistent",
@@ -122,7 +123,7 @@ export class WordpressEcsTask extends Construct {
     });
     const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
-      image: ContainerImage.fromDockerImageAsset(wordpressContainer.dockerImageAsset),
+      image: ContainerImage.fromDockerImageAsset(dockerImageAsset),
       secrets: {
         WORDPRESS_DB_PASSWORD: Secret.fromSecretsManager(databaseCredentials.secret!),
       },

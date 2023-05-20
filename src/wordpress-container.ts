@@ -11,7 +11,17 @@ export interface IWordpressContainerProps {
   /**
    * @default - 256M
    */
-  containerMemory?: string;
+  wordpressMemoryLimit?: string;
+
+  /**
+   * @default - 512
+   */
+  containerMemory?: number;
+
+  /**
+   * @default - 256
+   */
+  containerCpu?: number;
 
   /**
    * @default - 7.1.7
@@ -26,12 +36,16 @@ export interface IWordpressContainerProps {
 
 export class WordpressContainer extends Construct {
   readonly dockerImageAsset: DockerImageAsset;
+  readonly containerCpu: number;
+  readonly containerMemory: number;
 
   constructor(scope: Construct, id: string, props: IWordpressContainerProps = {}) {
     super(scope, id);
 
     const {
-      containerMemory = "256M",
+      wordpressMemoryLimit = "256M",
+      containerCpu = 256,
+      containerMemory = 512,
       wordpressDockerImageBase = "wordpress:php7.4-apache",
       wp2StaticVersion = "7.1.7",
       wp2StaticS3AddonVersion = "1.0",
@@ -46,11 +60,14 @@ export class WordpressContainer extends Construct {
 post_max_size=64M
 max_execution_time=0
 max_input_vars=2000
-memory_limit=${containerMemory}`,
+memory_limit=${wordpressMemoryLimit}`,
         wp2static_version: wp2StaticVersion,
         wp2static_s3_addon_version: wp2StaticS3AddonVersion,
       },
     });
+
+    this.containerCpu = containerCpu;
+    this.containerMemory = containerMemory;
   }
 
   private getPhpVersionFromWordpressImage(wordpressDockerImageBase: string): string {
