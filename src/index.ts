@@ -53,3 +53,6 @@ export class WordpressServerless extends Construct {
     });
   }
 }
+
+export * from "./types";
+export { IWordpressContainerProps } from "./wordpress-container";
