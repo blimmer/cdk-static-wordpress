@@ -12,6 +12,10 @@ ARG wp2static_s3_addon_version
 
 WORKDIR /deps
 
+# TODO: see if we can disable this by using a non-root user
+# See https://getcomposer.org/doc/faqs/how-to-install-untrusted-packages-safely.md
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Install system dependencies
 RUN apt-get update && \
     apt-get install --no-install-recommends -y wget zip unzip && \

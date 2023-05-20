@@ -1,4 +1,4 @@
-import { Duration, SecretValue, Stack } from "aws-cdk-lib";
+import { Duration, RemovalPolicy, SecretValue, Stack } from "aws-cdk-lib";
 import { IVpc, SubnetType, Vpc } from "aws-cdk-lib/aws-ec2";
 import {
   Cluster,
@@ -84,6 +84,7 @@ export class WordpressEcsTask extends Construct {
       encrypted: true,
       enableAutomaticBackups: true,
       lifecyclePolicy: LifecyclePolicy.AFTER_7_DAYS,
+      removalPolicy: RemovalPolicy.DESTROY,
       ...efsOverrides,
     });
 
