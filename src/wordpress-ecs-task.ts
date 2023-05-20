@@ -169,5 +169,6 @@ export class WordpressEcsTask extends Construct {
       ...fargateServiceOverrides,
     });
     service.connections.allowToDefaultPort(database);
+    bucket.grantReadWrite(service.taskDefinition.taskRole);
   }
 }
