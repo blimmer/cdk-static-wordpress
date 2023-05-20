@@ -1,4 +1,4 @@
-import { Duration } from "aws-cdk-lib";
+import { Duration, Stack } from "aws-cdk-lib";
 import { IVpc, Vpc } from "aws-cdk-lib/aws-ec2";
 import {
   Cluster,
@@ -54,13 +54,14 @@ export class WordpressEcsTask extends Construct {
         enableFargateCapacityProviders: true,
       }),
       databaseClusterPropsOverrides,
-      staticWordpressHosting: { bucket },
+      staticWordpressHosting,
       wordpressContainer,
       efsOverrides,
       runWpAdmin,
       fargateServiceOverrides,
       taskDefinitionOverrides,
     } = props;
+    const { bucket } = staticWordpressHosting;
 
     const fileSystem = new FileSystem(this, "FileSystem", {
       fileSystemName: `${siteId}-fs`,
@@ -128,7 +129,7 @@ export class WordpressEcsTask extends Construct {
         WORDPRESS_DB_USER: databaseCredentials.username,
         WORDPRESS_DB_NAME: "wordpress",
         WPSTATIC_DEST: fullyQualifiedSiteName,
-        WPSTATIC_REGION: "${region}",
+        WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
         CONTAINER_DNS: "${container_dns}",
         CONTAINER_DNS_ZONE: "${container_dns_zone}",
