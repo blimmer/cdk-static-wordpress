@@ -338,5 +338,8 @@ fi
 if [ "${WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID-}" ]; then
 		sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = '$WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID' WHERE name = 'cfDistributionID';"
 fi
+if [ "${WPSTATIC_CLOUDFRONT_DISTRIBUTION_REGION-}" ]; then
+		sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = '$WPSTATIC_CLOUDFRONT_DISTRIBUTION_REGION' WHERE name = 'cfRegion';"
+fi
 
 exec "$@"

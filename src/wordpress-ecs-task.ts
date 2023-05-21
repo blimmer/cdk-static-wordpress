@@ -152,6 +152,7 @@ export class WordpressEcsTask extends Construct {
         WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
         WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID: distribution.distributionId,
+        WPSTATIC_CLOUDFRONT_DISTRIBUTION_REGION: Stack.of(staticWordpressHosting).region,
         CONTAINER_DNS: wordpressDomain,
         CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
         WORDPRESS_ADMIN_USER: adminUsername,
