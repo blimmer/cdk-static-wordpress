@@ -179,6 +179,7 @@ export class WordpressEcsTask extends Construct {
     taskDefinition.addToExecutionRolePolicy(fileSystemMountPolicy);
 
     const service = new FargateService(this, "Service", {
+      serviceName: siteId,
       cluster: ecsCluster,
       taskDefinition,
       assignPublicIp: true,
