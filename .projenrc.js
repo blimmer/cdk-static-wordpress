@@ -5,7 +5,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: "hello@benlimmer.com",
   cdkVersion: "2.59.0", // First release of 2023
   defaultReleaseBranch: "main",
-  name: "cdk-wordpress-serverless",
+  name: "@blimmer/cdk-wordpress-serverless",
   repositoryUrl: "https://github.com/blimmer/cdk-wordpress-serverless.git",
 
   prettier: true,

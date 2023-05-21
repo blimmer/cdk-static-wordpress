@@ -1,5 +1,5 @@
 {
-  "name": "cdk-wordpress-serverless",
+  "name": "@blimmer/cdk-wordpress-serverless",
   "repository": {
     "type": "git",
     "url": "https://github.com/blimmer/cdk-wordpress-serverless.git"
