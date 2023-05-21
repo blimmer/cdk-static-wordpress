@@ -183,7 +183,7 @@ export class WordpressEcsTask extends Construct {
       taskDefinition,
       assignPublicIp: true,
       desiredCount: runWpAdmin ? 1 : 0,
-      capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT" }],
+      capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT", base: 1, weight: 100 }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
       ...fargateServiceOverrides,
