@@ -175,6 +175,19 @@ export class WordpressEcsTask extends Construct {
       containerPath: "/var/www/html",
       readOnly: false,
     });
+    taskDefinition.addToTaskRolePolicy(
+      new PolicyStatement({
+        sid: "AllowRoute53Updates",
+        actions: ["route53:ChangeResourceRecordSets"],
+        resources: [`arn:aws:route53:::hostedzone/${hostedZone.hostedZoneId}`],
+      })
+    );
+    taskDefinition.addToTaskRolePolicy(
+      new PolicyStatement({
+        actions: ["ec2:DescribeNetworkInterfaces"],
+        resources: ["*"],
+      })
+    );
     taskDefinition.addToTaskRolePolicy(fileSystemMountPolicy);
     taskDefinition.addToExecutionRolePolicy(fileSystemMountPolicy);
 
@@ -189,6 +202,7 @@ export class WordpressEcsTask extends Construct {
       platformVersion: FargatePlatformVersion.LATEST,
       ...fargateServiceOverrides,
     });
+
     service.connections.allowToDefaultPort(database);
     bucket.grantReadWrite(service.taskDefinition.taskRole);
     fileSystem.connections.allowDefaultPortFrom(service);
