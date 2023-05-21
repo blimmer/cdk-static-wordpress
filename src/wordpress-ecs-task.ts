@@ -191,5 +191,6 @@ export class WordpressEcsTask extends Construct {
     });
     service.connections.allowToDefaultPort(database);
     bucket.grantReadWrite(service.taskDefinition.taskRole);
+    fileSystem.connections.allowDefaultPortFrom(service);
   }
 }
