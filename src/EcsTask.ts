@@ -23,22 +23,22 @@ import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
 import { WordpressDockerImage } from "./WordpressDockerImage";
 
 export interface EcsTaskProps {
-  siteId: string;
-  hostedZone: IHostedZone;
-  fullyQualifiedSiteName: string;
-  staticHosting: StaticHosting;
-  wordpressDockerImage: WordpressDockerImage;
-  wordpressAdminProps: WordpressAdminProps;
-  wordpressDatabaseProps?: WordpressDatabaseProps;
-  runWpAdmin: boolean;
+  readonly siteId: string;
+  readonly hostedZone: IHostedZone;
+  readonly fullyQualifiedSiteName: string;
+  readonly staticHosting: StaticHosting;
+  readonly wordpressDockerImage: WordpressDockerImage;
+  readonly wordpressAdminProps: WordpressAdminProps;
+  readonly wordpressDatabaseProps?: WordpressDatabaseProps;
+  readonly runWpAdmin: boolean;
 
-  vpc?: IVpc;
-  ecsCluster?: ICluster;
+  readonly vpc?: IVpc;
+  readonly ecsCluster?: ICluster;
 
-  databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
-  efsOverrides?: Partial<FileSystemProps>;
-  fargateServiceOverrides?: Partial<FargateServiceProps>;
-  taskDefinitionOverrides?: Partial<FargateTaskDefinitionProps>;
+  readonly databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
+  readonly efsOverrides?: Partial<FileSystemProps>;
+  readonly fargateServiceOverrides?: Partial<FargateServiceProps>;
+  readonly taskDefinitionOverrides?: Partial<FargateTaskDefinitionProps>;
 }
 
 export class EcsTask extends Construct {

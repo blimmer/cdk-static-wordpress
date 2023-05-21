@@ -6,32 +6,32 @@ export interface WordpressDockerImageProps {
   /**
    * @default - wordpress:php7.4-apache
    */
-  wordpressDockerImageBase?: string;
+  readonly wordpressDockerImageBase?: string;
 
   /**
    * @default - 256M
    */
-  wordpressMemoryLimit?: string;
+  readonly wordpressMemoryLimit?: string;
 
   /**
    * @default - 512
    */
-  containerMemory?: number;
+  readonly containerMemory?: number;
 
   /**
    * @default - 256
    */
-  containerCpu?: number;
+  readonly containerCpu?: number;
 
   /**
    * @default - 7.1.7
    */
-  wp2StaticVersion?: string;
+  readonly wp2StaticVersion?: string;
 
   /**
    * @default - 1.0
    */
-  wp2StaticS3AddonVersion?: string;
+  readonly wp2StaticS3AddonVersion?: string;
 }
 
 export class WordpressDockerImage extends Construct {

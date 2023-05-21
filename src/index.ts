@@ -8,16 +8,16 @@ import { WordpressAdminProps } from "./types";
 import { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
 
 export interface WordpressServerlessProps {
-  fullyQualifiedSiteName: string;
-  hostedZone: IHostedZone;
-  runWpAdmin?: boolean;
+  readonly fullyQualifiedSiteName: string;
+  readonly hostedZone: IHostedZone;
+  readonly runWpAdmin?: boolean;
 
-  vpc?: IVpc;
-  ecsCluster?: ICluster;
+  readonly vpc?: IVpc;
+  readonly ecsCluster?: ICluster;
 
-  wordpressDockerImageProps?: WordpressDockerImageProps;
+  readonly wordpressDockerImageProps?: WordpressDockerImageProps;
 
-  wordpressAdminProps: WordpressAdminProps;
+  readonly wordpressAdminProps: WordpressAdminProps;
   // TODO: expose all override params from sub-constructs
 }
 

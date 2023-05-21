@@ -17,14 +17,14 @@ import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnersh
 import { Construct } from "constructs";
 
 export interface StaticHostingProps {
-  siteId: string;
-  fullyQualifiedSiteName: string;
-  hostedZone: IHostedZone;
-  redirects?: SiteRedirects;
+  readonly siteId: string;
+  readonly fullyQualifiedSiteName: string;
+  readonly hostedZone: IHostedZone;
+  readonly redirects?: SiteRedirects;
 
-  bucketOverrides?: BucketProps;
-  distributionOverrides?: DistributionProps;
-  s3OriginBehaviorOverrides?: BehaviorOptions;
+  readonly bucketOverrides?: BucketProps;
+  readonly distributionOverrides?: DistributionProps;
+  readonly s3OriginBehaviorOverrides?: BehaviorOptions;
 }
 
 export type SiteRedirects = Record<string, string>;
