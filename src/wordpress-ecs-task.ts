@@ -16,7 +16,7 @@ import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-ef
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
-import { IHostedZone } from "aws-cdk-lib/aws-route53";
+import { ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
 import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
@@ -206,5 +206,13 @@ export class WordpressEcsTask extends Construct {
     service.connections.allowToDefaultPort(database);
     bucket.grantReadWrite(service.taskDefinition.taskRole);
     fileSystem.connections.allowDefaultPortFrom(service);
+
+    if (runWpAdmin) {
+      new ARecord(this, "DnsRecord", {
+        recordName: fullyQualifiedSiteName,
+        zone: hostedZone,
+        target: RecordTarget.fromIpAddresses("8.8.8.8"), // will be updated by the service
+      });
+    }
   }
 }
