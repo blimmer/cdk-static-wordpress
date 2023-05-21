@@ -148,7 +148,7 @@ export class WordpressEcsTask extends Construct {
         WORDPRESS_DB_HOST: database.clusterEndpoint.hostname,
         WORDPRESS_DB_USER: databaseCredentials.username,
         WORDPRESS_DB_NAME: "wordpress",
-        WPSTATIC_DEST: fullyQualifiedSiteName,
+        WPSTATIC_DEST: `https://${fullyQualifiedSiteName}`,
         WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
         WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID: distribution.distributionId,
