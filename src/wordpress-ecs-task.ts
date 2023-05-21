@@ -209,6 +209,7 @@ export class WordpressEcsTask extends Construct {
     service.connections.allowToDefaultPort(database, "Allow connecting to the database");
     service.connections.allowFromAnyIpv4(Port.tcp(80), "Allow any IP to access the site");
     bucket.grantReadWrite(service.taskDefinition.taskRole);
+    distribution.grantCreateInvalidation(service.taskDefinition.taskRole);
     fileSystem.connections.allowDefaultPortFrom(service);
   }
 }
