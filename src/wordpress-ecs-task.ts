@@ -69,7 +69,7 @@ export class WordpressEcsTask extends Construct {
       fargateServiceOverrides,
       taskDefinitionOverrides,
     } = props;
-    const { bucket } = staticWordpressHosting;
+    const { bucket, distribution } = staticWordpressHosting;
     const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressContainer;
     const {
       email: adminEmail,
@@ -151,6 +151,7 @@ export class WordpressEcsTask extends Construct {
         WPSTATIC_DEST: fullyQualifiedSiteName,
         WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
+        WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID: distribution.distributionId,
         CONTAINER_DNS: wordpressDomain,
         CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
         WORDPRESS_ADMIN_USER: adminUsername,

@@ -333,6 +333,10 @@ if [ "${WPSTATIC_REGION-}" ]; then
 fi
 if [ "${WPSTATIC_BUCKET-}" ]; then
 	  sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = '$WPSTATIC_BUCKET' WHERE name = 's3Bucket';"
+		sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = 'private' WHERE name = 's3ObjectACL';"
+fi
+if [ "${WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID-}" ]; then
+		sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = '$WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID' WHERE name = 'cfDistributionID';"
 fi
 
 exec "$@"
