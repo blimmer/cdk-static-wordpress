@@ -12,7 +12,7 @@ import {
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
-import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps } from "aws-cdk-lib/aws-s3";
+import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export interface IStaticWordpressHostingProps {
@@ -50,6 +50,7 @@ export class StaticWordpressHosting extends Construct {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
+      objectOwnership: ObjectOwnership.OBJECT_WRITER,
       ...bucketOverrides,
     });
 
