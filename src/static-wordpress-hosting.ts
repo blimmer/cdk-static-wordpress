@@ -11,7 +11,7 @@ import {
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
-import { ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
+import { AaaaRecord, ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
@@ -123,7 +123,7 @@ function permanentRedirect(uri, match, target) {
       zone: hostedZone,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
     });
-    new ARecord(this, "AaaaRecord", {
+    new AaaaRecord(this, "AaaaRecord", {
       recordName: fullyQualifiedSiteName,
       zone: hostedZone,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
