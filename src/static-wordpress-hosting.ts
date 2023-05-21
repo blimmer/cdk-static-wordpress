@@ -11,11 +11,13 @@ import {
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
-import { IHostedZone } from "aws-cdk-lib/aws-route53";
+import { ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
+import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export interface IStaticWordpressHostingProps {
+  siteId: string;
   fullyQualifiedSiteName: string;
   hostedZone: IHostedZone;
   redirects?: ISiteRedirects;
@@ -34,6 +36,7 @@ export class StaticWordpressHosting extends Construct {
   constructor(scope: Construct, id: string, props: IStaticWordpressHostingProps) {
     super(scope, id);
     const {
+      siteId,
       fullyQualifiedSiteName,
       hostedZone,
       redirects = {
@@ -67,6 +70,7 @@ export class StaticWordpressHosting extends Construct {
         functionAssociations: [
           {
             function: new Function(this, "ViewerRequestFunction", {
+              functionName: `${siteId}-redirect`,
               code: FunctionCode.fromInline(`
 function handler(event) {
   var request = event.request;
@@ -112,6 +116,17 @@ function permanentRedirect(uri, match, target) {
       priceClass: PriceClass.PRICE_CLASS_ALL,
       // TODO: waf support
       ...distributionOverrides,
+    });
+
+    new ARecord(this, "ARecord", {
+      recordName: fullyQualifiedSiteName,
+      zone: hostedZone,
+      target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
+    });
+    new ARecord(this, "AaaaRecord", {
+      recordName: fullyQualifiedSiteName,
+      zone: hostedZone,
+      target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
     });
 
     this.bucket = bucket;

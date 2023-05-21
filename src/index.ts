@@ -36,6 +36,7 @@ export class WordpressServerless extends Construct {
     const siteId = fullyQualifiedSiteName.replace(/[\W_]+/g, "-");
 
     const staticWordpressHosting = new StaticWordpressHosting(this, "StaticWordpressHosting", {
+      siteId,
       fullyQualifiedSiteName,
       hostedZone,
     });

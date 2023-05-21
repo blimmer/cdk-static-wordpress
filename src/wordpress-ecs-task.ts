@@ -16,7 +16,7 @@ import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-ef
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
-import { ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
+import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticWordpressHosting } from "./static-wordpress-hosting";
 import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
@@ -138,6 +138,8 @@ export class WordpressEcsTask extends Construct {
       // TODO
       ...taskDefinitionOverrides,
     });
+
+    const wordpressDomain = `wp-${fullyQualifiedSiteName}`;
     const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
       image: ContainerImage.fromDockerImageAsset(dockerImageAsset),
@@ -149,7 +151,7 @@ export class WordpressEcsTask extends Construct {
         WPSTATIC_DEST: fullyQualifiedSiteName,
         WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
-        CONTAINER_DNS: fullyQualifiedSiteName,
+        CONTAINER_DNS: wordpressDomain,
         CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
         WORDPRESS_ADMIN_USER: adminUsername,
         WORDPRESS_ADMIN_PASSWORD: adminPassword,
@@ -207,13 +209,5 @@ export class WordpressEcsTask extends Construct {
     service.connections.allowFromAnyIpv4(Port.tcp(80), "Allow any IP to access the site");
     bucket.grantReadWrite(service.taskDefinition.taskRole);
     fileSystem.connections.allowDefaultPortFrom(service);
-
-    if (runWpAdmin) {
-      new ARecord(this, "DnsRecord", {
-        recordName: fullyQualifiedSiteName,
-        zone: hostedZone,
-        target: RecordTarget.fromIpAddresses("8.8.8.8"), // will be updated by the service
-      });
-    }
   }
 }
