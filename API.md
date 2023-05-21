@@ -10,14 +10,14 @@
 ```typescript
 import { WordpressServerless } from 'cdk-wordpress-serverless'
 
-new WordpressServerless(scope: Construct, id: string, props: IWordpressServerlessProps)
+new WordpressServerless(scope: Construct, id: string, props: WordpressServerlessProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#cdk-wordpress-serverless.WordpressServerless.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#cdk-wordpress-serverless.WordpressServerless.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.WordpressServerless.Initializer.parameter.props">props</a></code> | <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps">IWordpressServerlessProps</a></code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerless.Initializer.parameter.props">props</a></code> | <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps">WordpressServerlessProps</a></code> | *No description.* |
 
 ---
 
@@ -35,7 +35,7 @@ new WordpressServerless(scope: Construct, id: string, props: IWordpressServerles
 
 ##### `props`<sup>Required</sup> <a name="props" id="cdk-wordpress-serverless.WordpressServerless.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#cdk-wordpress-serverless.IWordpressServerlessProps">IWordpressServerlessProps</a>
+- *Type:* <a href="#cdk-wordpress-serverless.WordpressServerlessProps">WordpressServerlessProps</a>
 
 ---
 
@@ -193,28 +193,30 @@ public readonly username: string;
 
 ---
 
+### WordpressDockerImageProps <a name="WordpressDockerImageProps" id="cdk-wordpress-serverless.WordpressDockerImageProps"></a>
 
-## Protocols <a name="Protocols" id="Protocols"></a>
+#### Initializer <a name="Initializer" id="cdk-wordpress-serverless.WordpressDockerImageProps.Initializer"></a>
 
-### IWordpressContainerProps <a name="IWordpressContainerProps" id="cdk-wordpress-serverless.IWordpressContainerProps"></a>
+```typescript
+import { WordpressDockerImageProps } from 'cdk-wordpress-serverless'
 
-- *Implemented By:* <a href="#cdk-wordpress-serverless.IWordpressContainerProps">IWordpressContainerProps</a>
-
+const wordpressDockerImageProps: WordpressDockerImageProps = { ... }
+```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.containerCpu">containerCpu</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.containerMemory">containerMemory</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.wordpressDockerImageBase">wordpressDockerImageBase</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.wp2StaticS3AddonVersion">wp2StaticS3AddonVersion</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps.property.wp2StaticVersion">wp2StaticVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.containerCpu">containerCpu</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.containerMemory">containerMemory</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.wordpressDockerImageBase">wordpressDockerImageBase</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.wp2StaticS3AddonVersion">wp2StaticS3AddonVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps.property.wp2StaticVersion">wp2StaticVersion</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `containerCpu`<sup>Optional</sup> <a name="containerCpu" id="cdk-wordpress-serverless.IWordpressContainerProps.property.containerCpu"></a>
+##### `containerCpu`<sup>Optional</sup> <a name="containerCpu" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.containerCpu"></a>
 
 ```typescript
 public readonly containerCpu: number;
@@ -225,7 +227,7 @@ public readonly containerCpu: number;
 
 ---
 
-##### `containerMemory`<sup>Optional</sup> <a name="containerMemory" id="cdk-wordpress-serverless.IWordpressContainerProps.property.containerMemory"></a>
+##### `containerMemory`<sup>Optional</sup> <a name="containerMemory" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.containerMemory"></a>
 
 ```typescript
 public readonly containerMemory: number;
@@ -236,7 +238,7 @@ public readonly containerMemory: number;
 
 ---
 
-##### `wordpressDockerImageBase`<sup>Optional</sup> <a name="wordpressDockerImageBase" id="cdk-wordpress-serverless.IWordpressContainerProps.property.wordpressDockerImageBase"></a>
+##### `wordpressDockerImageBase`<sup>Optional</sup> <a name="wordpressDockerImageBase" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.wordpressDockerImageBase"></a>
 
 ```typescript
 public readonly wordpressDockerImageBase: string;
@@ -247,7 +249,7 @@ public readonly wordpressDockerImageBase: string;
 
 ---
 
-##### `wordpressMemoryLimit`<sup>Optional</sup> <a name="wordpressMemoryLimit" id="cdk-wordpress-serverless.IWordpressContainerProps.property.wordpressMemoryLimit"></a>
+##### `wordpressMemoryLimit`<sup>Optional</sup> <a name="wordpressMemoryLimit" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.wordpressMemoryLimit"></a>
 
 ```typescript
 public readonly wordpressMemoryLimit: string;
@@ -258,7 +260,7 @@ public readonly wordpressMemoryLimit: string;
 
 ---
 
-##### `wp2StaticS3AddonVersion`<sup>Optional</sup> <a name="wp2StaticS3AddonVersion" id="cdk-wordpress-serverless.IWordpressContainerProps.property.wp2StaticS3AddonVersion"></a>
+##### `wp2StaticS3AddonVersion`<sup>Optional</sup> <a name="wp2StaticS3AddonVersion" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.wp2StaticS3AddonVersion"></a>
 
 ```typescript
 public readonly wp2StaticS3AddonVersion: string;
@@ -269,7 +271,7 @@ public readonly wp2StaticS3AddonVersion: string;
 
 ---
 
-##### `wp2StaticVersion`<sup>Optional</sup> <a name="wp2StaticVersion" id="cdk-wordpress-serverless.IWordpressContainerProps.property.wp2StaticVersion"></a>
+##### `wp2StaticVersion`<sup>Optional</sup> <a name="wp2StaticVersion" id="cdk-wordpress-serverless.WordpressDockerImageProps.property.wp2StaticVersion"></a>
 
 ```typescript
 public readonly wp2StaticVersion: string;
@@ -280,26 +282,31 @@ public readonly wp2StaticVersion: string;
 
 ---
 
-### IWordpressServerlessProps <a name="IWordpressServerlessProps" id="cdk-wordpress-serverless.IWordpressServerlessProps"></a>
+### WordpressServerlessProps <a name="WordpressServerlessProps" id="cdk-wordpress-serverless.WordpressServerlessProps"></a>
 
-- *Implemented By:* <a href="#cdk-wordpress-serverless.IWordpressServerlessProps">IWordpressServerlessProps</a>
+#### Initializer <a name="Initializer" id="cdk-wordpress-serverless.WordpressServerlessProps.Initializer"></a>
 
+```typescript
+import { WordpressServerlessProps } from 'cdk-wordpress-serverless'
+
+const wordpressServerlessProps: WordpressServerlessProps = { ... }
+```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#cdk-wordpress-serverless.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
-| <code><a href="#cdk-wordpress-serverless.IWordpressServerlessProps.property.wordpressContainerProps">wordpressContainerProps</a></code> | <code><a href="#cdk-wordpress-serverless.IWordpressContainerProps">IWordpressContainerProps</a></code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#cdk-wordpress-serverless.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
+| <code><a href="#cdk-wordpress-serverless.WordpressServerlessProps.property.wordpressDockerImageProps">wordpressDockerImageProps</a></code> | <code><a href="#cdk-wordpress-serverless.WordpressDockerImageProps">WordpressDockerImageProps</a></code> | *No description.* |
 
 ---
 
-##### `fullyQualifiedSiteName`<sup>Required</sup> <a name="fullyQualifiedSiteName" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.fullyQualifiedSiteName"></a>
+##### `fullyQualifiedSiteName`<sup>Required</sup> <a name="fullyQualifiedSiteName" id="cdk-wordpress-serverless.WordpressServerlessProps.property.fullyQualifiedSiteName"></a>
 
 ```typescript
 public readonly fullyQualifiedSiteName: string;
@@ -309,7 +316,7 @@ public readonly fullyQualifiedSiteName: string;
 
 ---
 
-##### `hostedZone`<sup>Required</sup> <a name="hostedZone" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.hostedZone"></a>
+##### `hostedZone`<sup>Required</sup> <a name="hostedZone" id="cdk-wordpress-serverless.WordpressServerlessProps.property.hostedZone"></a>
 
 ```typescript
 public readonly hostedZone: IHostedZone;
@@ -319,7 +326,7 @@ public readonly hostedZone: IHostedZone;
 
 ---
 
-##### `wordpressAdminProps`<sup>Required</sup> <a name="wordpressAdminProps" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.wordpressAdminProps"></a>
+##### `wordpressAdminProps`<sup>Required</sup> <a name="wordpressAdminProps" id="cdk-wordpress-serverless.WordpressServerlessProps.property.wordpressAdminProps"></a>
 
 ```typescript
 public readonly wordpressAdminProps: WordpressAdminProps;
@@ -329,7 +336,7 @@ public readonly wordpressAdminProps: WordpressAdminProps;
 
 ---
 
-##### `ecsCluster`<sup>Optional</sup> <a name="ecsCluster" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.ecsCluster"></a>
+##### `ecsCluster`<sup>Optional</sup> <a name="ecsCluster" id="cdk-wordpress-serverless.WordpressServerlessProps.property.ecsCluster"></a>
 
 ```typescript
 public readonly ecsCluster: ICluster;
@@ -339,7 +346,7 @@ public readonly ecsCluster: ICluster;
 
 ---
 
-##### `runWpAdmin`<sup>Optional</sup> <a name="runWpAdmin" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.runWpAdmin"></a>
+##### `runWpAdmin`<sup>Optional</sup> <a name="runWpAdmin" id="cdk-wordpress-serverless.WordpressServerlessProps.property.runWpAdmin"></a>
 
 ```typescript
 public readonly runWpAdmin: boolean;
@@ -349,7 +356,7 @@ public readonly runWpAdmin: boolean;
 
 ---
 
-##### `vpc`<sup>Optional</sup> <a name="vpc" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.vpc"></a>
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="cdk-wordpress-serverless.WordpressServerlessProps.property.vpc"></a>
 
 ```typescript
 public readonly vpc: IVpc;
@@ -359,13 +366,15 @@ public readonly vpc: IVpc;
 
 ---
 
-##### `wordpressContainerProps`<sup>Optional</sup> <a name="wordpressContainerProps" id="cdk-wordpress-serverless.IWordpressServerlessProps.property.wordpressContainerProps"></a>
+##### `wordpressDockerImageProps`<sup>Optional</sup> <a name="wordpressDockerImageProps" id="cdk-wordpress-serverless.WordpressServerlessProps.property.wordpressDockerImageProps"></a>
 
 ```typescript
-public readonly wordpressContainerProps: IWordpressContainerProps;
+public readonly wordpressDockerImageProps: WordpressDockerImageProps;
 ```
 
-- *Type:* <a href="#cdk-wordpress-serverless.IWordpressContainerProps">IWordpressContainerProps</a>
+- *Type:* <a href="#cdk-wordpress-serverless.WordpressDockerImageProps">WordpressDockerImageProps</a>
 
 ---
+
+
 

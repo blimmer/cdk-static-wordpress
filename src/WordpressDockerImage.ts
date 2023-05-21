@@ -2,45 +2,45 @@ import { DockerImageAsset } from "aws-cdk-lib/aws-ecr-assets";
 import { Construct } from "constructs";
 import { join } from "path";
 
-export interface IWordpressContainerProps {
+export interface WordpressDockerImageProps {
   /**
    * @default - wordpress:php7.4-apache
    */
-  wordpressDockerImageBase?: string;
+  readonly wordpressDockerImageBase?: string;
 
   /**
    * @default - 256M
    */
-  wordpressMemoryLimit?: string;
+  readonly wordpressMemoryLimit?: string;
 
   /**
    * @default - 512
    */
-  containerMemory?: number;
+  readonly containerMemory?: number;
 
   /**
    * @default - 256
    */
-  containerCpu?: number;
+  readonly containerCpu?: number;
 
   /**
    * @default - 7.1.7
    */
-  wp2StaticVersion?: string;
+  readonly wp2StaticVersion?: string;
 
   /**
    * @default - 1.0
    */
-  wp2StaticS3AddonVersion?: string;
+  readonly wp2StaticS3AddonVersion?: string;
 }
 
-export class WordpressContainer extends Construct {
+export class WordpressDockerImage extends Construct {
   readonly dockerImageAsset: DockerImageAsset;
   readonly containerCpu: number;
   readonly containerMemory: number;
   readonly wordpressMemoryLimit: string;
 
-  constructor(scope: Construct, id: string, props: IWordpressContainerProps = {}) {
+  constructor(scope: Construct, id: string, props: WordpressDockerImageProps = {}) {
     super(scope, id);
 
     const {
@@ -53,7 +53,7 @@ export class WordpressContainer extends Construct {
     } = props;
 
     this.dockerImageAsset = new DockerImageAsset(this, "DockerAsset", {
-      directory: join(__dirname, "wordpress-container"),
+      directory: join(__dirname, "WordpressDockerImage"),
       buildArgs: {
         PHP_VERSION: this.getPhpVersionFromWordpressImage(wordpressDockerImageBase),
         BASE_WORDPRESS_IMAGE: wordpressDockerImageBase,

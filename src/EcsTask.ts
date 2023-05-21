@@ -18,31 +18,31 @@ import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
-import { StaticWordpressHosting } from "./static-wordpress-hosting";
+import { StaticHosting } from "./StaticHosting";
 import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
-import { WordpressContainer } from "./wordpress-container";
+import { WordpressDockerImage } from "./WordpressDockerImage";
 
-export interface IWordpressEcsTaskProps {
-  siteId: string;
-  hostedZone: IHostedZone;
-  fullyQualifiedSiteName: string;
-  staticWordpressHosting: StaticWordpressHosting;
-  wordpressContainer: WordpressContainer;
-  wordpressAdminProps: WordpressAdminProps;
-  wordpressDatabaseProps?: WordpressDatabaseProps;
-  runWpAdmin: boolean;
+export interface EcsTaskProps {
+  readonly siteId: string;
+  readonly hostedZone: IHostedZone;
+  readonly fullyQualifiedSiteName: string;
+  readonly staticHosting: StaticHosting;
+  readonly wordpressDockerImage: WordpressDockerImage;
+  readonly wordpressAdminProps: WordpressAdminProps;
+  readonly wordpressDatabaseProps?: WordpressDatabaseProps;
+  readonly runWpAdmin: boolean;
 
-  vpc?: IVpc;
-  ecsCluster?: ICluster;
+  readonly vpc?: IVpc;
+  readonly ecsCluster?: ICluster;
 
-  databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
-  efsOverrides?: Partial<FileSystemProps>;
-  fargateServiceOverrides?: Partial<FargateServiceProps>;
-  taskDefinitionOverrides?: Partial<FargateTaskDefinitionProps>;
+  readonly databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
+  readonly efsOverrides?: Partial<FileSystemProps>;
+  readonly fargateServiceOverrides?: Partial<FargateServiceProps>;
+  readonly taskDefinitionOverrides?: Partial<FargateTaskDefinitionProps>;
 }
 
-export class WordpressEcsTask extends Construct {
-  constructor(scope: Construct, id: string, props: IWordpressEcsTaskProps) {
+export class EcsTask extends Construct {
+  constructor(scope: Construct, id: string, props: EcsTaskProps) {
     super(scope, id);
 
     const {
@@ -60,8 +60,8 @@ export class WordpressEcsTask extends Construct {
         enableFargateCapacityProviders: true,
       }),
       databaseClusterPropsOverrides,
-      staticWordpressHosting,
-      wordpressContainer,
+      staticHosting,
+      wordpressDockerImage,
       wordpressAdminProps,
       wordpressDatabaseProps = {},
       efsOverrides,
@@ -69,8 +69,8 @@ export class WordpressEcsTask extends Construct {
       fargateServiceOverrides,
       taskDefinitionOverrides,
     } = props;
-    const { bucket, distribution } = staticWordpressHosting;
-    const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressContainer;
+    const { bucket, distribution } = staticHosting;
+    const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressDockerImage;
     const {
       email: adminEmail,
       username: adminUsername = "supervisor",
@@ -149,10 +149,10 @@ export class WordpressEcsTask extends Construct {
         WORDPRESS_DB_USER: databaseCredentials.username,
         WORDPRESS_DB_NAME: "wordpress",
         WPSTATIC_DEST: `https://${fullyQualifiedSiteName}`,
-        WPSTATIC_REGION: Stack.of(staticWordpressHosting).region,
+        WPSTATIC_REGION: Stack.of(staticHosting).region,
         WPSTATIC_BUCKET: bucket.bucketName,
         WPSTATIC_CLOUDFRONT_DISTRIBUTION_ID: distribution.distributionId,
-        WPSTATIC_CLOUDFRONT_DISTRIBUTION_REGION: Stack.of(staticWordpressHosting).region,
+        WPSTATIC_CLOUDFRONT_DISTRIBUTION_REGION: Stack.of(staticHosting).region,
         CONTAINER_DNS: wordpressDomain,
         CONTAINER_DNS_ZONE: hostedZone.hostedZoneId,
         WORDPRESS_ADMIN_USER: adminUsername,

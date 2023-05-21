@@ -16,24 +16,24 @@ import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
-export interface IStaticWordpressHostingProps {
-  siteId: string;
-  fullyQualifiedSiteName: string;
-  hostedZone: IHostedZone;
-  redirects?: ISiteRedirects;
+export interface StaticHostingProps {
+  readonly siteId: string;
+  readonly fullyQualifiedSiteName: string;
+  readonly hostedZone: IHostedZone;
+  readonly redirects?: SiteRedirects;
 
-  bucketOverrides?: BucketProps;
-  distributionOverrides?: DistributionProps;
-  s3OriginBehaviorOverrides?: BehaviorOptions;
+  readonly bucketOverrides?: BucketProps;
+  readonly distributionOverrides?: DistributionProps;
+  readonly s3OriginBehaviorOverrides?: BehaviorOptions;
 }
 
-export type ISiteRedirects = Record<string, string>;
+export type SiteRedirects = Record<string, string>;
 
-export class StaticWordpressHosting extends Construct {
+export class StaticHosting extends Construct {
   readonly bucket: Bucket;
   readonly distribution: Distribution;
 
-  constructor(scope: Construct, id: string, props: IStaticWordpressHostingProps) {
+  constructor(scope: Construct, id: string, props: StaticHostingProps) {
     super(scope, id);
     const {
       siteId,
@@ -133,7 +133,7 @@ function permanentRedirect(uri, match, target) {
     this.distribution = distribution;
   }
 
-  private generateRedirectStatements(redirects: ISiteRedirects): string {
+  private generateRedirectStatements(redirects: SiteRedirects): string {
     let code = "";
     for (const redirect in redirects) {
       code += `
