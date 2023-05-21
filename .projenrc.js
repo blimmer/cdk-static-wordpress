@@ -8,6 +8,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: "cdk-wordpress-serverless",
   repositoryUrl: "https://github.com/blimmer/cdk-wordpress-serverless.git",
 
+  prerelease: "alpha",
+
   prettier: true,
   prettierOptions: {
     settings: {
