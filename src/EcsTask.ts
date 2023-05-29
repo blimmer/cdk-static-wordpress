@@ -69,6 +69,7 @@ export class EcsTask extends Construct {
       email: adminEmail,
       username: adminUsername = "supervisor",
       password: adminPassword = "changeme",
+      enableEcsExec = false,
     } = wordpressAdminProps;
     const { username: databaseUsername = "wp_master", password: databasePassword = "changeme" } =
       wordpressDatabaseProps;
@@ -194,6 +195,7 @@ export class EcsTask extends Construct {
       capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT", base: 1, weight: 100 }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
+      enableExecuteCommand: enableEcsExec,
     });
 
     service.connections.allowToDefaultPort(database, "Allow connecting to the database");

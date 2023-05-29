@@ -4,7 +4,7 @@ import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { EcsTask } from "./EcsTask";
 import { StaticHosting } from "./StaticHosting";
-import { WordpressAdminProps } from "./types";
+import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
 import { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
 
 export interface StaticWordpressProps {
@@ -36,9 +36,9 @@ export interface StaticWordpressProps {
    */
   readonly ecsCluster?: ICluster;
 
+  readonly wordpressDatabaseProps?: WordpressDatabaseProps;
   readonly wordpressDockerImageProps?: WordpressDockerImageProps;
   readonly wordpressAdminProps: WordpressAdminProps;
-  // TODO: expose all override params from sub-constructs
 }
 
 export class StaticWordpress extends Construct {
@@ -54,6 +54,7 @@ export class StaticWordpress extends Construct {
       vpc,
       ecsCluster,
       wordpressAdminProps,
+      wordpressDatabaseProps,
       wordpressDockerImageProps,
       runWpAdmin = true,
     } = props;
@@ -72,7 +73,8 @@ export class StaticWordpress extends Construct {
       ecsCluster,
       vpc,
       staticHosting,
-      wordpressDockerImage: wordpressDockerImage,
+      wordpressDatabaseProps,
+      wordpressDockerImage,
       wordpressAdminProps,
       runWpAdmin,
     });
