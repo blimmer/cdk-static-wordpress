@@ -327,6 +327,7 @@ sudo -u www-data wp option update home "http://${CONTAINER_DNS}" || true
 # If environment variables for S3 static output is set, populate it in the plugin
 if [ "${WPSTATIC_DEST-}" ]; then
     sudo -u www-data wp wp2static options set deploymentURL $WPSTATIC_DEST || true
+	sudo -u www-data wp db query "UPDATE wp_wp2static_addons SET enabled = 1 WHERE slug = 'wp2static-addon-s3';"
 fi
 if [ "${WPSTATIC_REGION-}" ]; then
 	  sudo -u www-data wp db query "UPDATE wp_wp2static_addon_s3_options SET value = '$WPSTATIC_REGION' WHERE name = 's3Region';"
