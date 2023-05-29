@@ -5,17 +5,15 @@ import {
   ContainerImage,
   FargatePlatformVersion,
   FargateService,
-  FargateServiceProps,
   FargateTaskDefinition,
-  FargateTaskDefinitionProps,
   ICluster,
   LogDriver,
   PropagatedTagSource,
 } from "aws-cdk-lib/aws-ecs";
-import { FileSystem, FileSystemProps, LifecyclePolicy } from "aws-cdk-lib/aws-efs";
+import { FileSystem, LifecyclePolicy } from "aws-cdk-lib/aws-efs";
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
-import { Credentials, DatabaseClusterEngine, ServerlessCluster, ServerlessClusterProps } from "aws-cdk-lib/aws-rds";
+import { Credentials, DatabaseClusterEngine, ServerlessCluster } from "aws-cdk-lib/aws-rds";
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { StaticHosting } from "./StaticHosting";
@@ -34,14 +32,14 @@ export interface EcsTaskProps {
 
   readonly vpc?: IVpc;
   readonly ecsCluster?: ICluster;
-
-  readonly databaseClusterPropsOverrides?: Partial<ServerlessClusterProps>;
-  readonly efsOverrides?: Partial<FileSystemProps>;
-  readonly fargateServiceOverrides?: Partial<FargateServiceProps>;
-  readonly taskDefinitionOverrides?: Partial<FargateTaskDefinitionProps>;
 }
 
 export class EcsTask extends Construct {
+  public readonly fileSystem: FileSystem;
+  public readonly databaseCluster: ServerlessCluster;
+  public readonly taskDefinition: FargateTaskDefinition;
+  public readonly fargateService: FargateService;
+
   constructor(scope: Construct, id: string, props: EcsTaskProps) {
     super(scope, id);
 
@@ -59,15 +57,11 @@ export class EcsTask extends Construct {
         vpc,
         enableFargateCapacityProviders: true,
       }),
-      databaseClusterPropsOverrides,
       staticHosting,
       wordpressDockerImage,
       wordpressAdminProps,
       wordpressDatabaseProps = {},
-      efsOverrides,
       runWpAdmin,
-      fargateServiceOverrides,
-      taskDefinitionOverrides,
     } = props;
     const { bucket, distribution } = staticHosting;
     const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressDockerImage;
@@ -86,7 +80,6 @@ export class EcsTask extends Construct {
       enableAutomaticBackups: true,
       lifecyclePolicy: LifecyclePolicy.AFTER_7_DAYS,
       removalPolicy: RemovalPolicy.DESTROY,
-      ...efsOverrides,
     });
 
     // This is harder than it should be
@@ -116,7 +109,6 @@ export class EcsTask extends Construct {
       },
       vpc,
       vpcSubnets: { subnetType: SubnetType.PRIVATE_ISOLATED },
-      ...databaseClusterPropsOverrides,
     });
 
     const taskDefinition = new FargateTaskDefinition(this, "TaskDefinition", {
@@ -135,8 +127,6 @@ export class EcsTask extends Construct {
           },
         },
       ],
-      // TODO
-      ...taskDefinitionOverrides,
     });
 
     const wordpressDomain = `wp-${fullyQualifiedSiteName}`;
@@ -204,7 +194,6 @@ export class EcsTask extends Construct {
       capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT", base: 1, weight: 100 }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
-      ...fargateServiceOverrides,
     });
 
     service.connections.allowToDefaultPort(database, "Allow connecting to the database");
@@ -212,5 +201,10 @@ export class EcsTask extends Construct {
     bucket.grantReadWrite(service.taskDefinition.taskRole);
     distribution.grantCreateInvalidation(service.taskDefinition.taskRole);
     fileSystem.connections.allowDefaultPortFrom(service);
+
+    this.fileSystem = fileSystem;
+    this.databaseCluster = database;
+    this.taskDefinition = taskDefinition;
+    this.fargateService = service;
   }
 }

@@ -8,20 +8,44 @@ import { WordpressAdminProps } from "./types";
 import { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
 
 export interface StaticWordpressProps {
+  /** The fully qualified site name (e.g., myblog.com or subdomain.myblog.com) */
   readonly fullyQualifiedSiteName: string;
+
+  /** The HostedZone to use to create DNS entries for the site */
   readonly hostedZone: IHostedZone;
+
+  /**
+   * Should we run the Wordpress admin console? Set this to `false` to save money when you're not actively editing
+   * the site.
+   *
+   * @default true
+   */
   readonly runWpAdmin?: boolean;
 
+  /**
+   * The VPC assigned to the `ecsCluster`.
+   *
+   * @default - a new VPC will be created
+   */
   readonly vpc?: IVpc;
+
+  /**
+   * The ECS cluster for the Wordpress admin site.
+   *
+   * @default - a new ECS cluster will be created
+   */
   readonly ecsCluster?: ICluster;
 
   readonly wordpressDockerImageProps?: WordpressDockerImageProps;
-
   readonly wordpressAdminProps: WordpressAdminProps;
   // TODO: expose all override params from sub-constructs
 }
 
 export class StaticWordpress extends Construct {
+  public readonly staticHosting: StaticHosting;
+  public readonly wordpressDockerImage: WordpressDockerImage;
+  public readonly ecsTask: EcsTask;
+
   constructor(scope: Construct, id: string, props: StaticWordpressProps) {
     super(scope, id);
     const {
@@ -41,7 +65,7 @@ export class StaticWordpress extends Construct {
       hostedZone,
     });
     const wordpressDockerImage = new WordpressDockerImage(this, "WordpressDockerImage", wordpressDockerImageProps);
-    new EcsTask(this, "EcsTask", {
+    const ecsTask = new EcsTask(this, "EcsTask", {
       siteId,
       hostedZone,
       fullyQualifiedSiteName,
@@ -52,8 +76,14 @@ export class StaticWordpress extends Construct {
       wordpressAdminProps,
       runWpAdmin,
     });
+
+    this.staticHosting = staticHosting;
+    this.wordpressDockerImage = wordpressDockerImage;
+    this.ecsTask = ecsTask;
   }
 }
 
+export { EcsTask, EcsTaskProps } from "./EcsTask";
+export { StaticHosting, StaticHostingProps } from "./StaticHosting";
 export * from "./types";
-export { WordpressDockerImageProps } from "./WordpressDockerImage";
+export { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";

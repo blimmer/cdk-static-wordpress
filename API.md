@@ -4,6 +4,270 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
+### EcsTask <a name="EcsTask" id="@blimmer/cdk-static-wordpress.EcsTask"></a>
+
+#### Initializers <a name="Initializers" id="@blimmer/cdk-static-wordpress.EcsTask.Initializer"></a>
+
+```typescript
+import { EcsTask } from '@blimmer/cdk-static-wordpress'
+
+new EcsTask(scope: Construct, id: string, props: EcsTaskProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.props">props</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps">EcsTaskProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@blimmer/cdk-static-wordpress.EcsTask.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.EcsTaskProps">EcsTaskProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@blimmer/cdk-static-wordpress.EcsTask.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@blimmer/cdk-static-wordpress.EcsTask.isConstruct"></a>
+
+```typescript
+import { EcsTask } from '@blimmer/cdk-static-wordpress'
+
+EcsTask.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@blimmer/cdk-static-wordpress.EcsTask.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.property.databaseCluster">databaseCluster</a></code> | <code>aws-cdk-lib.aws_rds.ServerlessCluster</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.property.fargateService">fargateService</a></code> | <code>aws-cdk-lib.aws_ecs.FargateService</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.property.fileSystem">fileSystem</a></code> | <code>aws-cdk-lib.aws_efs.FileSystem</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTask.property.taskDefinition">taskDefinition</a></code> | <code>aws-cdk-lib.aws_ecs.FargateTaskDefinition</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@blimmer/cdk-static-wordpress.EcsTask.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `databaseCluster`<sup>Required</sup> <a name="databaseCluster" id="@blimmer/cdk-static-wordpress.EcsTask.property.databaseCluster"></a>
+
+```typescript
+public readonly databaseCluster: ServerlessCluster;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.ServerlessCluster
+
+---
+
+##### `fargateService`<sup>Required</sup> <a name="fargateService" id="@blimmer/cdk-static-wordpress.EcsTask.property.fargateService"></a>
+
+```typescript
+public readonly fargateService: FargateService;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.FargateService
+
+---
+
+##### `fileSystem`<sup>Required</sup> <a name="fileSystem" id="@blimmer/cdk-static-wordpress.EcsTask.property.fileSystem"></a>
+
+```typescript
+public readonly fileSystem: FileSystem;
+```
+
+- *Type:* aws-cdk-lib.aws_efs.FileSystem
+
+---
+
+##### `taskDefinition`<sup>Required</sup> <a name="taskDefinition" id="@blimmer/cdk-static-wordpress.EcsTask.property.taskDefinition"></a>
+
+```typescript
+public readonly taskDefinition: FargateTaskDefinition;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.FargateTaskDefinition
+
+---
+
+
+### StaticHosting <a name="StaticHosting" id="@blimmer/cdk-static-wordpress.StaticHosting"></a>
+
+#### Initializers <a name="Initializers" id="@blimmer/cdk-static-wordpress.StaticHosting.Initializer"></a>
+
+```typescript
+import { StaticHosting } from '@blimmer/cdk-static-wordpress'
+
+new StaticHosting(scope: Construct, id: string, props: StaticHostingProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.props">props</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps">StaticHostingProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@blimmer/cdk-static-wordpress.StaticHosting.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.StaticHostingProps">StaticHostingProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@blimmer/cdk-static-wordpress.StaticHosting.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@blimmer/cdk-static-wordpress.StaticHosting.isConstruct"></a>
+
+```typescript
+import { StaticHosting } from '@blimmer/cdk-static-wordpress'
+
+StaticHosting.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@blimmer/cdk-static-wordpress.StaticHosting.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.property.bucket">bucket</a></code> | <code>aws-cdk-lib.aws_s3.Bucket</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting.property.distribution">distribution</a></code> | <code>aws-cdk-lib.aws_cloudfront.Distribution</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@blimmer/cdk-static-wordpress.StaticHosting.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `bucket`<sup>Required</sup> <a name="bucket" id="@blimmer/cdk-static-wordpress.StaticHosting.property.bucket"></a>
+
+```typescript
+public readonly bucket: Bucket;
+```
+
+- *Type:* aws-cdk-lib.aws_s3.Bucket
+
+---
+
+##### `distribution`<sup>Required</sup> <a name="distribution" id="@blimmer/cdk-static-wordpress.StaticHosting.property.distribution"></a>
+
+```typescript
+public readonly distribution: Distribution;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.Distribution
+
+---
+
+
 ### StaticWordpress <a name="StaticWordpress" id="@blimmer/cdk-static-wordpress.StaticWordpress"></a>
 
 #### Initializers <a name="Initializers" id="@blimmer/cdk-static-wordpress.StaticWordpress.Initializer"></a>
@@ -87,6 +351,9 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpress.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpress.property.ecsTask">ecsTask</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.EcsTask">EcsTask</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpress.property.staticHosting">staticHosting</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting">StaticHosting</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpress.property.wordpressDockerImage">wordpressDockerImage</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage">WordpressDockerImage</a></code> | *No description.* |
 
 ---
 
@@ -102,8 +369,369 @@ The tree node.
 
 ---
 
+##### `ecsTask`<sup>Required</sup> <a name="ecsTask" id="@blimmer/cdk-static-wordpress.StaticWordpress.property.ecsTask"></a>
+
+```typescript
+public readonly ecsTask: EcsTask;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.EcsTask">EcsTask</a>
+
+---
+
+##### `staticHosting`<sup>Required</sup> <a name="staticHosting" id="@blimmer/cdk-static-wordpress.StaticWordpress.property.staticHosting"></a>
+
+```typescript
+public readonly staticHosting: StaticHosting;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.StaticHosting">StaticHosting</a>
+
+---
+
+##### `wordpressDockerImage`<sup>Required</sup> <a name="wordpressDockerImage" id="@blimmer/cdk-static-wordpress.StaticWordpress.property.wordpressDockerImage"></a>
+
+```typescript
+public readonly wordpressDockerImage: WordpressDockerImage;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage">WordpressDockerImage</a>
+
+---
+
+
+### WordpressDockerImage <a name="WordpressDockerImage" id="@blimmer/cdk-static-wordpress.WordpressDockerImage"></a>
+
+#### Initializers <a name="Initializers" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer"></a>
+
+```typescript
+import { WordpressDockerImage } from '@blimmer/cdk-static-wordpress'
+
+new WordpressDockerImage(scope: Construct, id: string, props?: WordpressDockerImageProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.props">props</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps">WordpressDockerImageProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Optional</sup> <a name="props" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps">WordpressDockerImageProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.isConstruct"></a>
+
+```typescript
+import { WordpressDockerImage } from '@blimmer/cdk-static-wordpress'
+
+WordpressDockerImage.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.property.containerCpu">containerCpu</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.property.containerMemory">containerMemory</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.property.dockerImageAsset">dockerImageAsset</a></code> | <code>aws-cdk-lib.aws_ecr_assets.DockerImageAsset</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `containerCpu`<sup>Required</sup> <a name="containerCpu" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.property.containerCpu"></a>
+
+```typescript
+public readonly containerCpu: number;
+```
+
+- *Type:* number
+
+---
+
+##### `containerMemory`<sup>Required</sup> <a name="containerMemory" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.property.containerMemory"></a>
+
+```typescript
+public readonly containerMemory: number;
+```
+
+- *Type:* number
+
+---
+
+##### `dockerImageAsset`<sup>Required</sup> <a name="dockerImageAsset" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.property.dockerImageAsset"></a>
+
+```typescript
+public readonly dockerImageAsset: DockerImageAsset;
+```
+
+- *Type:* aws-cdk-lib.aws_ecr_assets.DockerImageAsset
+
+---
+
+##### `wordpressMemoryLimit`<sup>Required</sup> <a name="wordpressMemoryLimit" id="@blimmer/cdk-static-wordpress.WordpressDockerImage.property.wordpressMemoryLimit"></a>
+
+```typescript
+public readonly wordpressMemoryLimit: string;
+```
+
+- *Type:* string
+
+---
+
 
 ## Structs <a name="Structs" id="Structs"></a>
+
+### EcsTaskProps <a name="EcsTaskProps" id="@blimmer/cdk-static-wordpress.EcsTaskProps"></a>
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.EcsTaskProps.Initializer"></a>
+
+```typescript
+import { EcsTaskProps } from '@blimmer/cdk-static-wordpress'
+
+const ecsTaskProps: EcsTaskProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.siteId">siteId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.staticHosting">staticHosting</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting">StaticHosting</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressDockerImage">wordpressDockerImage</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage">WordpressDockerImage</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressDatabaseProps">wordpressDatabaseProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a></code> | *No description.* |
+
+---
+
+##### `fullyQualifiedSiteName`<sup>Required</sup> <a name="fullyQualifiedSiteName" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.fullyQualifiedSiteName"></a>
+
+```typescript
+public readonly fullyQualifiedSiteName: string;
+```
+
+- *Type:* string
+
+---
+
+##### `hostedZone`<sup>Required</sup> <a name="hostedZone" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.hostedZone"></a>
+
+```typescript
+public readonly hostedZone: IHostedZone;
+```
+
+- *Type:* aws-cdk-lib.aws_route53.IHostedZone
+
+---
+
+##### `runWpAdmin`<sup>Required</sup> <a name="runWpAdmin" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.runWpAdmin"></a>
+
+```typescript
+public readonly runWpAdmin: boolean;
+```
+
+- *Type:* boolean
+
+---
+
+##### `siteId`<sup>Required</sup> <a name="siteId" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.siteId"></a>
+
+```typescript
+public readonly siteId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `staticHosting`<sup>Required</sup> <a name="staticHosting" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.staticHosting"></a>
+
+```typescript
+public readonly staticHosting: StaticHosting;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.StaticHosting">StaticHosting</a>
+
+---
+
+##### `wordpressAdminProps`<sup>Required</sup> <a name="wordpressAdminProps" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressAdminProps"></a>
+
+```typescript
+public readonly wordpressAdminProps: WordpressAdminProps;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a>
+
+---
+
+##### `wordpressDockerImage`<sup>Required</sup> <a name="wordpressDockerImage" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressDockerImage"></a>
+
+```typescript
+public readonly wordpressDockerImage: WordpressDockerImage;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDockerImage">WordpressDockerImage</a>
+
+---
+
+##### `ecsCluster`<sup>Optional</sup> <a name="ecsCluster" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.ecsCluster"></a>
+
+```typescript
+public readonly ecsCluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ICluster
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+
+---
+
+##### `wordpressDatabaseProps`<sup>Optional</sup> <a name="wordpressDatabaseProps" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressDatabaseProps"></a>
+
+```typescript
+public readonly wordpressDatabaseProps: WordpressDatabaseProps;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a>
+
+---
+
+### StaticHostingProps <a name="StaticHostingProps" id="@blimmer/cdk-static-wordpress.StaticHostingProps"></a>
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.StaticHostingProps.Initializer"></a>
+
+```typescript
+import { StaticHostingProps } from '@blimmer/cdk-static-wordpress'
+
+const staticHostingProps: StaticHostingProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.siteId">siteId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.redirects">redirects</a></code> | <code>{[ key: string ]: string}</code> | *No description.* |
+
+---
+
+##### `fullyQualifiedSiteName`<sup>Required</sup> <a name="fullyQualifiedSiteName" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.fullyQualifiedSiteName"></a>
+
+```typescript
+public readonly fullyQualifiedSiteName: string;
+```
+
+- *Type:* string
+
+---
+
+##### `hostedZone`<sup>Required</sup> <a name="hostedZone" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.hostedZone"></a>
+
+```typescript
+public readonly hostedZone: IHostedZone;
+```
+
+- *Type:* aws-cdk-lib.aws_route53.IHostedZone
+
+---
+
+##### `siteId`<sup>Required</sup> <a name="siteId" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.siteId"></a>
+
+```typescript
+public readonly siteId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `redirects`<sup>Optional</sup> <a name="redirects" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.redirects"></a>
+
+```typescript
+public readonly redirects: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+
+---
 
 ### StaticWordpressProps <a name="StaticWordpressProps" id="@blimmer/cdk-static-wordpress.StaticWordpressProps"></a>
 
@@ -119,12 +747,12 @@ const staticWordpressProps: StaticWordpressProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | The fully qualified site name (e.g., myblog.com or subdomain.myblog.com). |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | The HostedZone to use to create DNS entries for the site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The ECS cluster for the Wordpress admin site. |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC assigned to the `ecsCluster`. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDockerImageProps">wordpressDockerImageProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps">WordpressDockerImageProps</a></code> | *No description.* |
 
 ---
@@ -137,6 +765,8 @@ public readonly fullyQualifiedSiteName: string;
 
 - *Type:* string
 
+The fully qualified site name (e.g., myblog.com or subdomain.myblog.com).
+
 ---
 
 ##### `hostedZone`<sup>Required</sup> <a name="hostedZone" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.hostedZone"></a>
@@ -146,6 +776,8 @@ public readonly hostedZone: IHostedZone;
 ```
 
 - *Type:* aws-cdk-lib.aws_route53.IHostedZone
+
+The HostedZone to use to create DNS entries for the site.
 
 ---
 
@@ -166,6 +798,9 @@ public readonly ecsCluster: ICluster;
 ```
 
 - *Type:* aws-cdk-lib.aws_ecs.ICluster
+- *Default:* a new ECS cluster will be created
+
+The ECS cluster for the Wordpress admin site.
 
 ---
 
@@ -176,6 +811,12 @@ public readonly runWpAdmin: boolean;
 ```
 
 - *Type:* boolean
+- *Default:* true
+
+Should we run the Wordpress admin console?
+
+Set this to `false` to save money when you're not actively editing
+the site.
 
 ---
 
@@ -186,6 +827,9 @@ public readonly vpc: IVpc;
 ```
 
 - *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* a new VPC will be created
+
+The VPC assigned to the `ecsCluster`.
 
 ---
 

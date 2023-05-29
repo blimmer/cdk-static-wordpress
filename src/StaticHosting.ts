@@ -1,9 +1,7 @@
 import { RemovalPolicy } from "aws-cdk-lib";
 import { DnsValidatedCertificate } from "aws-cdk-lib/aws-certificatemanager";
 import {
-  BehaviorOptions,
   Distribution,
-  DistributionProps,
   Function,
   FunctionCode,
   FunctionEventType,
@@ -13,7 +11,7 @@ import {
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { AaaaRecord, ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
-import { BlockPublicAccess, Bucket, BucketEncryption, BucketProps, ObjectOwnership } from "aws-cdk-lib/aws-s3";
+import { BlockPublicAccess, Bucket, BucketEncryption, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export interface StaticHostingProps {
@@ -21,10 +19,6 @@ export interface StaticHostingProps {
   readonly fullyQualifiedSiteName: string;
   readonly hostedZone: IHostedZone;
   readonly redirects?: SiteRedirects;
-
-  readonly bucketOverrides?: BucketProps;
-  readonly distributionOverrides?: DistributionProps;
-  readonly s3OriginBehaviorOverrides?: BehaviorOptions;
 }
 
 export type SiteRedirects = Record<string, string>;
@@ -42,9 +36,6 @@ export class StaticHosting extends Construct {
       redirects = {
         "^(.*)index.php$": "$1",
       },
-      bucketOverrides,
-      distributionOverrides,
-      s3OriginBehaviorOverrides,
     } = props;
 
     const bucket = new Bucket(this, "Bucket", {
@@ -54,7 +45,6 @@ export class StaticHosting extends Construct {
       autoDeleteObjects: true,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       objectOwnership: ObjectOwnership.OBJECT_WRITER,
-      ...bucketOverrides,
     });
 
     const sslCert = new DnsValidatedCertificate(this, "SslCertificate", {
@@ -107,7 +97,6 @@ function permanentRedirect(uri, match, target) {
             eventType: FunctionEventType.VIEWER_REQUEST,
           },
         ],
-        ...s3OriginBehaviorOverrides,
       },
       comment: `Serves ${fullyQualifiedSiteName}`,
       certificate: sslCert,
@@ -115,7 +104,6 @@ function permanentRedirect(uri, match, target) {
       defaultRootObject: "index.html",
       priceClass: PriceClass.PRICE_CLASS_ALL,
       // TODO: waf support
-      ...distributionOverrides,
     });
 
     new ARecord(this, "ARecord", {
