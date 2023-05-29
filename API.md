@@ -753,6 +753,7 @@ const staticWordpressProps: StaticWordpressProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The ECS cluster for the Wordpress admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC assigned to the `ecsCluster`. |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDatabaseProps">wordpressDatabaseProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDockerImageProps">wordpressDockerImageProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps">WordpressDockerImageProps</a></code> | *No description.* |
 
 ---
@@ -833,6 +834,16 @@ The VPC assigned to the `ecsCluster`.
 
 ---
 
+##### `wordpressDatabaseProps`<sup>Optional</sup> <a name="wordpressDatabaseProps" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDatabaseProps"></a>
+
+```typescript
+public readonly wordpressDatabaseProps: WordpressDatabaseProps;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a>
+
+---
+
 ##### `wordpressDockerImageProps`<sup>Optional</sup> <a name="wordpressDockerImageProps" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDockerImageProps"></a>
 
 ```typescript
@@ -858,6 +869,7 @@ const wordpressAdminProps: WordpressAdminProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.email">email</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec">enableEcsExec</a></code> | <code>boolean</code> | Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.username">username</a></code> | <code>string</code> | *No description.* |
 
@@ -870,6 +882,23 @@ public readonly email: string;
 ```
 
 - *Type:* string
+
+---
+
+##### `enableEcsExec`<sup>Optional</sup> <a name="enableEcsExec" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec"></a>
+
+```typescript
+public readonly enableEcsExec: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console.
+
+NOTE: If you enable toggle this flag for an already-running WP Admin site, you'll need to manually stop the
+existing task. The ECS service will replace the task with a new one that has ECS Exec enabled. This is a
+CloudFormation limitation.
 
 ---
 
