@@ -53,7 +53,7 @@ export class WordpressDockerImage extends Construct {
     } = props;
 
     this.dockerImageAsset = new DockerImageAsset(this, "DockerAsset", {
-      directory: join(__dirname, "WordpressDockerImage"),
+      directory: join(__dirname, "..", "assets", "WordpressDockerImage"),
       buildArgs: {
         PHP_VERSION: this.getPhpVersionFromWordpressImage(wordpressDockerImageBase),
         BASE_WORDPRESS_IMAGE: wordpressDockerImageBase,
