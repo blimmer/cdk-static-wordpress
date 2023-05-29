@@ -7,7 +7,7 @@ import { StaticHosting } from "./StaticHosting";
 import { WordpressAdminProps } from "./types";
 import { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
 
-export interface WordpressServerlessProps {
+export interface StaticWordpressProps {
   readonly fullyQualifiedSiteName: string;
   readonly hostedZone: IHostedZone;
   readonly runWpAdmin?: boolean;
@@ -21,8 +21,8 @@ export interface WordpressServerlessProps {
   // TODO: expose all override params from sub-constructs
 }
 
-export class WordpressServerless extends Construct {
-  constructor(scope: Construct, id: string, props: WordpressServerlessProps) {
+export class StaticWordpress extends Construct {
+  constructor(scope: Construct, id: string, props: StaticWordpressProps) {
     super(scope, id);
     const {
       fullyQualifiedSiteName,
