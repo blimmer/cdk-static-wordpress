@@ -1,11 +1,12 @@
 const { awscdk } = require("projen");
-const { ProseWrap } = require("projen/lib/javascript");
+const { ProseWrap, NpmAccess } = require("projen/lib/javascript");
 const project = new awscdk.AwsCdkConstructLibrary({
   author: "Ben Limmer",
   authorAddress: "hello@benlimmer.com",
   cdkVersion: "2.59.0", // First release of 2023
   defaultReleaseBranch: "main",
   name: "@blimmer/cdk-wordpress-serverless",
+  npmAccess: NpmAccess.PUBLIC,
   repositoryUrl: "https://github.com/blimmer/cdk-wordpress-serverless.git",
 
   prettier: true,
