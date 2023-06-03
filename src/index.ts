@@ -4,7 +4,7 @@ import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
 import { EcsTask } from "./EcsTask";
 import { StaticHosting } from "./StaticHosting";
-import { WordpressAdminProps, WordpressDatabaseProps } from "./types";
+import { CloudFrontDistributionConfig, WordpressAdminProps, WordpressDatabaseProps } from "./types";
 import { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
 
 export interface StaticWordpressProps {
@@ -42,6 +42,7 @@ export interface StaticWordpressProps {
   readonly wordpressDatabaseProps?: WordpressDatabaseProps;
   readonly wordpressDockerImageProps?: WordpressDockerImageProps;
   readonly wordpressAdminProps: WordpressAdminProps;
+  readonly cloudFrontDistributionConfig?: CloudFrontDistributionConfig;
 }
 
 export class StaticWordpress extends Construct {
@@ -59,6 +60,7 @@ export class StaticWordpress extends Construct {
       wordpressAdminProps,
       wordpressDatabaseProps,
       wordpressDockerImageProps,
+      cloudFrontDistributionConfig,
     } = props;
     const siteId = (props.siteId || fullyQualifiedSiteName).replace(/[\W_]+/g, "-");
 
@@ -66,6 +68,7 @@ export class StaticWordpress extends Construct {
       siteId,
       fullyQualifiedSiteName,
       hostedZone,
+      cloudFrontDistributionConfig,
     });
     const wordpressDockerImage = new WordpressDockerImage(this, "WordpressDockerImage", wordpressDockerImageProps);
     const ecsTask = new EcsTask(this, "EcsTask", {

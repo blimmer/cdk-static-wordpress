@@ -545,6 +545,56 @@ public readonly wordpressMemoryLimit: string;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
+### CloudFrontDistributionConfig <a name="CloudFrontDistributionConfig" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig"></a>
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.Initializer"></a>
+
+```typescript
+import { CloudFrontDistributionConfig } from '@blimmer/cdk-static-wordpress'
+
+const cloudFrontDistributionConfig: CloudFrontDistributionConfig = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.functionAssociations">functionAssociations</a></code> | <code>aws-cdk-lib.aws_cloudfront.FunctionAssociation[]</code> | WARNING: you should not probably not use this property. |
+| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.priceClass">priceClass</a></code> | <code>aws-cdk-lib.aws_cloudfront.PriceClass</code> | The PriceClass to use for the CloudFront distribution. |
+
+---
+
+##### `functionAssociations`<sup>Optional</sup> <a name="functionAssociations" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.functionAssociations"></a>
+
+```typescript
+public readonly functionAssociations: FunctionAssociation[];
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.FunctionAssociation[]
+
+WARNING: you should not probably not use this property.
+
+The author is using this for an advanced workaround
+on one of his sites.
+
+---
+
+##### `priceClass`<sup>Optional</sup> <a name="priceClass" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.priceClass"></a>
+
+```typescript
+public readonly priceClass: PriceClass;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.PriceClass
+- *Default:* PriceClass.PRICE_CLASS_ALL
+
+The PriceClass to use for the CloudFront distribution.
+
+See
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html
+
+---
+
 ### EcsTaskProps <a name="EcsTaskProps" id="@blimmer/cdk-static-wordpress.EcsTaskProps"></a>
 
 #### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.EcsTaskProps.Initializer"></a>
@@ -678,6 +728,7 @@ const staticHostingProps: StaticHostingProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.siteId">siteId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.cloudFrontDistributionConfig">cloudFrontDistributionConfig</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig">CloudFrontDistributionConfig</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticHostingProps.property.redirects">redirects</a></code> | <code>{[ key: string ]: string}</code> | *No description.* |
 
 ---
@@ -712,6 +763,16 @@ public readonly siteId: string;
 
 ---
 
+##### `cloudFrontDistributionConfig`<sup>Optional</sup> <a name="cloudFrontDistributionConfig" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.cloudFrontDistributionConfig"></a>
+
+```typescript
+public readonly cloudFrontDistributionConfig: CloudFrontDistributionConfig;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig">CloudFrontDistributionConfig</a>
+
+---
+
 ##### `redirects`<sup>Optional</sup> <a name="redirects" id="@blimmer/cdk-static-wordpress.StaticHostingProps.property.redirects"></a>
 
 ```typescript
@@ -739,6 +800,7 @@ const staticWordpressProps: StaticWordpressProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | The fully qualified site name (e.g., myblog.com or subdomain.myblog.com). |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | The HostedZone to use to create DNS entries for the site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.cloudFrontDistributionConfig">cloudFrontDistributionConfig</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig">CloudFrontDistributionConfig</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The ECS cluster for the Wordpress admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.siteId">siteId</a></code> | <code>string</code> | An ID to use throughout this construct to identify resources. Any non-word characters will be replaced with dashes. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC assigned to the `ecsCluster`. |
@@ -778,6 +840,16 @@ public readonly wordpressAdminProps: WordpressAdminProps;
 ```
 
 - *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a>
+
+---
+
+##### `cloudFrontDistributionConfig`<sup>Optional</sup> <a name="cloudFrontDistributionConfig" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.cloudFrontDistributionConfig"></a>
+
+```typescript
+public readonly cloudFrontDistributionConfig: CloudFrontDistributionConfig;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig">CloudFrontDistributionConfig</a>
 
 ---
 
