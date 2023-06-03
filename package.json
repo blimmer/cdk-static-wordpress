@@ -69,7 +69,12 @@
     "@types/prettier": "2.6.0"
   },
   "keywords": [
-    "cdk"
+    "aws-cdk",
+    "aws-cdk-construct",
+    "cdk",
+    "projen",
+    "static-site",
+    "wordpress"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",

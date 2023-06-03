@@ -1,5 +1,6 @@
 const { awscdk } = require("projen");
 const { ProseWrap, NpmAccess } = require("projen/lib/javascript");
+
 const project = new awscdk.AwsCdkConstructLibrary({
   author: "Ben Limmer",
   authorAddress: "hello@benlimmer.com",
@@ -8,6 +9,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: "@blimmer/cdk-static-wordpress",
   npmAccess: NpmAccess.PUBLIC,
   repositoryUrl: "https://github.com/blimmer/cdk-static-wordpress.git",
+  keywords: ["cdk", "aws-cdk", "aws-cdk-construct", "projen", "wordpress", "static-site"],
+
+  docgen: true,
+
+  autoApproveUpgrades: true,
+  autoApproveOptions: { allowedUsernames: ["blimmer-bot"] },
 
   prettier: true,
   prettierOptions: {
