@@ -175,6 +175,12 @@ export class EcsTask extends Construct {
         sid: "AllowRoute53Updates",
         actions: ["route53:ChangeResourceRecordSets"],
         resources: [`arn:aws:route53:::hostedzone/${hostedZone.hostedZoneId}`],
+        conditions: {
+          StringEquals: {
+            "route53:ChangeResourceRecordSetsActions": ["UPSERT"],
+            "route53:ChangeResourceRecordSetsNormalizedRecordNames": [wordpressDomain],
+          },
+        },
       })
     );
     taskDefinition.addToTaskRolePolicy(
