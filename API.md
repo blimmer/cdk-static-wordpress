@@ -752,6 +752,7 @@ const staticWordpressProps: StaticWordpressProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The ECS cluster for the Wordpress admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
+| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.siteId">siteId</a></code> | <code>string</code> | An ID to use throughout this construct to identify resources. Any non-word characters will be replaced with dashes. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC assigned to the `ecsCluster`. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDatabaseProps">wordpressDatabaseProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDockerImageProps">wordpressDockerImageProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps">WordpressDockerImageProps</a></code> | *No description.* |
@@ -818,6 +819,22 @@ Should we run the Wordpress admin console?
 
 Set this to `false` to save money when you're not actively editing
 the site.
+
+---
+
+##### `siteId`<sup>Optional</sup> <a name="siteId" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.siteId"></a>
+
+```typescript
+public readonly siteId: string;
+```
+
+- *Type:* string
+- *Default:* the `fullyQualifiedSiteName` will be sanitized and used
+
+An ID to use throughout this construct to identify resources. Any non-word characters will be replaced with dashes.
+
+NOTE: if you intend to change the domain name (via `fullyQualifiedSiteName`), you should set this `siteId` to
+a static value. Otherwise, the `siteId` will change when you change the site name.
 
 ---
 

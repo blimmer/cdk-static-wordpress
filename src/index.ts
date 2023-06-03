@@ -11,6 +11,17 @@ export interface StaticWordpressProps {
   /** The fully qualified site name (e.g., myblog.com or subdomain.myblog.com) */
   readonly fullyQualifiedSiteName: string;
 
+  /**
+   * An ID to use throughout this construct to identify resources. Any non-word characters will be replaced with
+   * dashes.
+   *
+   * NOTE: if you intend to change the domain name (via `fullyQualifiedSiteName`), you should set this `siteId` to
+   * a static value. Otherwise, the `siteId` will change when you change the site name.
+   *
+   * @default - the `fullyQualifiedSiteName` will be sanitized and used
+   */
+  readonly siteId?: string;
+
   /** The HostedZone to use to create DNS entries for the site */
   readonly hostedZone: IHostedZone;
 
@@ -58,7 +69,7 @@ export class StaticWordpress extends Construct {
       wordpressDockerImageProps,
       runWpAdmin = true,
     } = props;
-    const siteId = fullyQualifiedSiteName.replace(/[\W_]+/g, "-");
+    const siteId = (props.siteId || fullyQualifiedSiteName).replace(/[\W_]+/g, "-");
 
     const staticHosting = new StaticHosting(this, "StaticHosting", {
       siteId,
