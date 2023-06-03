@@ -13,12 +13,14 @@ import { AaaaRecord, ARecord, IHostedZone, RecordTarget } from "aws-cdk-lib/aws-
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { BlockPublicAccess, Bucket, BucketEncryption, ObjectOwnership } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
+import { CloudFrontDistributionConfig } from "./types";
 
 export interface StaticHostingProps {
   readonly siteId: string;
   readonly fullyQualifiedSiteName: string;
   readonly hostedZone: IHostedZone;
   readonly redirects?: SiteRedirects;
+  readonly cloudFrontDistributionConfig?: CloudFrontDistributionConfig;
 }
 
 export type SiteRedirects = Record<string, string>;
@@ -36,7 +38,9 @@ export class StaticHosting extends Construct {
       redirects = {
         "^(.*)index.php$": "$1",
       },
+      cloudFrontDistributionConfig = {},
     } = props;
+    const { functionAssociations, priceClass = PriceClass.PRICE_CLASS_ALL } = cloudFrontDistributionConfig;
 
     const bucket = new Bucket(this, "Bucket", {
       bucketName: fullyQualifiedSiteName,
@@ -57,7 +61,7 @@ export class StaticHosting extends Construct {
       defaultBehavior: {
         origin: new S3Origin(bucket),
         viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        functionAssociations: [
+        functionAssociations: functionAssociations || [
           {
             function: new Function(this, "ViewerRequestFunction", {
               functionName: `${siteId}-redirect`,
@@ -102,7 +106,7 @@ function permanentRedirect(uri, match, target) {
       certificate: sslCert,
       domainNames: [fullyQualifiedSiteName],
       defaultRootObject: "index.html",
-      priceClass: PriceClass.PRICE_CLASS_ALL,
+      priceClass,
       // TODO: waf support
     });
 
