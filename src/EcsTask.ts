@@ -67,7 +67,7 @@ export class EcsTask extends Construct {
       email: adminEmail,
       username: adminUsername = "supervisor",
       password: adminPassword = "changeme",
-      domainSuffix = "-admin",
+      domainPrefix = "admin-",
       run: runWpAdmin = true,
       enableEcsExec = false,
     } = wordpressAdminProps;
@@ -130,7 +130,7 @@ export class EcsTask extends Construct {
       ],
     });
 
-    const wordpressDomain = `${fullyQualifiedSiteName}${domainSuffix}`;
+    const wordpressDomain = `${domainPrefix}${fullyQualifiedSiteName}`;
     const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
       image: ContainerImage.fromDockerImageAsset(dockerImageAsset),

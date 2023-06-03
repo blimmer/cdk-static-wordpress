@@ -6,12 +6,12 @@ export interface WordpressAdminProps {
   readonly password?: string; // TODO: or secretsmanager secret
 
   /**
-   * The suffix to use for the non-static admin site. For example, if your static site is
-   * foo.example.com and you pass `-admin` here, the admin site will be served at foo-admin.example.com.
+   * The prefix to use for the non-static admin site. For example, if your static site is
+   * foo.example.com and you pass `-admin` here, the admin site will be served at admin-foo.example.com.
    *
-   * @default - "-admin"
+   * @default - "admin-"
    */
-  readonly domainSuffix?: string;
+  readonly domainPrefix?: string;
 
   /**
    * Should we run the Wordpress admin console? Set this to `false` to save money when you're not actively editing

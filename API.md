@@ -930,7 +930,7 @@ const wordpressAdminProps: WordpressAdminProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.email">email</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainSuffix">domainSuffix</a></code> | <code>string</code> | The suffix to use for the non-static admin site. |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainPrefix">domainPrefix</a></code> | <code>string</code> | The prefix to use for the non-static admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec">enableEcsExec</a></code> | <code>boolean</code> | Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.run">run</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
@@ -948,19 +948,19 @@ public readonly email: string;
 
 ---
 
-##### `domainSuffix`<sup>Optional</sup> <a name="domainSuffix" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainSuffix"></a>
+##### `domainPrefix`<sup>Optional</sup> <a name="domainPrefix" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainPrefix"></a>
 
 ```typescript
-public readonly domainSuffix: string;
+public readonly domainPrefix: string;
 ```
 
 - *Type:* string
-- *Default:* "-admin"
+- *Default:* "admin-"
 
-The suffix to use for the non-static admin site.
+The prefix to use for the non-static admin site.
 
 For example, if your static site is
-foo.example.com and you pass `-admin` here, the admin site will be served at foo-admin.example.com.
+foo.example.com and you pass `-admin` here, the admin site will be served at admin-foo.example.com.
 
 ---
 
