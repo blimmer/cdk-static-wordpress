@@ -561,7 +561,6 @@ const ecsTaskProps: EcsTaskProps = { ... }
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.fullyQualifiedSiteName">fullyQualifiedSiteName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.siteId">siteId</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.staticHosting">staticHosting</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.StaticHosting">StaticHosting</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.EcsTaskProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
@@ -589,16 +588,6 @@ public readonly hostedZone: IHostedZone;
 ```
 
 - *Type:* aws-cdk-lib.aws_route53.IHostedZone
-
----
-
-##### `runWpAdmin`<sup>Required</sup> <a name="runWpAdmin" id="@blimmer/cdk-static-wordpress.EcsTaskProps.property.runWpAdmin"></a>
-
-```typescript
-public readonly runWpAdmin: boolean;
-```
-
-- *Type:* boolean
 
 ---
 
@@ -751,7 +740,6 @@ const staticWordpressProps: StaticWordpressProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.hostedZone">hostedZone</a></code> | <code>aws-cdk-lib.aws_route53.IHostedZone</code> | The HostedZone to use to create DNS entries for the site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressAdminProps">wordpressAdminProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps">WordpressAdminProps</a></code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.ecsCluster">ecsCluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The ECS cluster for the Wordpress admin site. |
-| <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin">runWpAdmin</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.siteId">siteId</a></code> | <code>string</code> | An ID to use throughout this construct to identify resources. Any non-word characters will be replaced with dashes. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC assigned to the `ecsCluster`. |
 | <code><a href="#@blimmer/cdk-static-wordpress.StaticWordpressProps.property.wordpressDatabaseProps">wordpressDatabaseProps</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a></code> | *No description.* |
@@ -803,22 +791,6 @@ public readonly ecsCluster: ICluster;
 - *Default:* a new ECS cluster will be created
 
 The ECS cluster for the Wordpress admin site.
-
----
-
-##### `runWpAdmin`<sup>Optional</sup> <a name="runWpAdmin" id="@blimmer/cdk-static-wordpress.StaticWordpressProps.property.runWpAdmin"></a>
-
-```typescript
-public readonly runWpAdmin: boolean;
-```
-
-- *Type:* boolean
-- *Default:* true
-
-Should we run the Wordpress admin console?
-
-Set this to `false` to save money when you're not actively editing
-the site.
 
 ---
 
@@ -886,8 +858,10 @@ const wordpressAdminProps: WordpressAdminProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.email">email</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainSuffix">domainSuffix</a></code> | <code>string</code> | The suffix to use for the non-static admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec">enableEcsExec</a></code> | <code>boolean</code> | Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.run">run</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.username">username</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -899,6 +873,22 @@ public readonly email: string;
 ```
 
 - *Type:* string
+
+---
+
+##### `domainSuffix`<sup>Optional</sup> <a name="domainSuffix" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainSuffix"></a>
+
+```typescript
+public readonly domainSuffix: string;
+```
+
+- *Type:* string
+- *Default:* "-admin"
+
+The suffix to use for the non-static admin site.
+
+For example, if your static site is
+foo.example.com and you pass `-admin` here, the admin site will be served at foo-admin.example.com.
 
 ---
 
@@ -926,6 +916,22 @@ public readonly password: string;
 ```
 
 - *Type:* string
+
+---
+
+##### `run`<sup>Optional</sup> <a name="run" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.run"></a>
+
+```typescript
+public readonly run: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Should we run the Wordpress admin console?
+
+Set this to `false` to save money when you're not actively editing
+the site.
 
 ---
 

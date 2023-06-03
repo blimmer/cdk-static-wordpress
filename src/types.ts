@@ -4,6 +4,22 @@ export interface WordpressAdminProps {
   readonly password?: string; // TODO: or secretsmanager secret
 
   /**
+   * The suffix to use for the non-static admin site. For example, if your static site is
+   * foo.example.com and you pass `-admin` here, the admin site will be served at foo-admin.example.com.
+   *
+   * @default - "-admin"
+   */
+  readonly domainSuffix?: string;
+
+  /**
+   * Should we run the Wordpress admin console? Set this to `false` to save money when you're not actively editing
+   * the site.
+   *
+   * @default true
+   */
+  readonly run?: boolean;
+
+  /**
    * Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use
    * this to access the container running the Wordpress admin console.
    *

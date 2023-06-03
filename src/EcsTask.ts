@@ -28,7 +28,6 @@ export interface EcsTaskProps {
   readonly wordpressDockerImage: WordpressDockerImage;
   readonly wordpressAdminProps: WordpressAdminProps;
   readonly wordpressDatabaseProps?: WordpressDatabaseProps;
-  readonly runWpAdmin: boolean;
 
   readonly vpc?: IVpc;
   readonly ecsCluster?: ICluster;
@@ -61,7 +60,6 @@ export class EcsTask extends Construct {
       wordpressDockerImage,
       wordpressAdminProps,
       wordpressDatabaseProps = {},
-      runWpAdmin,
     } = props;
     const { bucket, distribution } = staticHosting;
     const { dockerImageAsset, containerCpu, containerMemory, wordpressMemoryLimit } = wordpressDockerImage;
@@ -69,6 +67,8 @@ export class EcsTask extends Construct {
       email: adminEmail,
       username: adminUsername = "supervisor",
       password: adminPassword = "changeme",
+      domainSuffix = "-admin",
+      run: runWpAdmin = true,
       enableEcsExec = false,
     } = wordpressAdminProps;
     const { username: databaseUsername = "wp_master", password: databasePassword = "changeme" } =
@@ -130,7 +130,7 @@ export class EcsTask extends Construct {
       ],
     });
 
-    const wordpressDomain = `wp-${fullyQualifiedSiteName}`;
+    const wordpressDomain = `${fullyQualifiedSiteName}${domainSuffix}`;
     const taskContainer = taskDefinition.addContainer("wordpress", {
       containerName: "wordpress",
       image: ContainerImage.fromDockerImageAsset(dockerImageAsset),

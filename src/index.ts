@@ -26,14 +26,6 @@ export interface StaticWordpressProps {
   readonly hostedZone: IHostedZone;
 
   /**
-   * Should we run the Wordpress admin console? Set this to `false` to save money when you're not actively editing
-   * the site.
-   *
-   * @default true
-   */
-  readonly runWpAdmin?: boolean;
-
-  /**
    * The VPC assigned to the `ecsCluster`.
    *
    * @default - a new VPC will be created
@@ -67,7 +59,6 @@ export class StaticWordpress extends Construct {
       wordpressAdminProps,
       wordpressDatabaseProps,
       wordpressDockerImageProps,
-      runWpAdmin = true,
     } = props;
     const siteId = (props.siteId || fullyQualifiedSiteName).replace(/[\W_]+/g, "-");
 
@@ -87,7 +78,6 @@ export class StaticWordpress extends Construct {
       wordpressDatabaseProps,
       wordpressDockerImage,
       wordpressAdminProps,
-      runWpAdmin,
     });
 
     this.staticHosting = staticHosting;
