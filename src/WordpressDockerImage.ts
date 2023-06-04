@@ -64,7 +64,7 @@ export class WordpressDockerImage extends Construct {
       containerCpu = 256,
       containerMemory = 512,
       wordpressDockerImageBase = "wordpress:php7.4-apache",
-      wp2StaticVersion = "7.2.0",
+      wp2StaticVersion = "7.2",
       wp2StaticS3AddonVersion = "1.0",
     } = props;
 
