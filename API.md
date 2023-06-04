@@ -1075,7 +1075,7 @@ const wordpressDockerImageProps: WordpressDockerImageProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wordpressDockerImageBase">wordpressDockerImageBase</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | This configures how much memory is given to Wordpress. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wp2StaticS3AddonVersion">wp2StaticS3AddonVersion</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wp2StaticVersion">wp2StaticVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wp2StaticVersion">wp2StaticVersion</a></code> | <code>string</code> | The version of wp2static to install. |
 
 ---
 
@@ -1160,7 +1160,12 @@ public readonly wp2StaticVersion: string;
 ```
 
 - *Type:* string
-- *Default:* 7.1.7
+- *Default:* 7.2
+
+The version of wp2static to install.
+
+See
+https://github.com/WP2Static/wp2static/releases for available version
 
 ---
 

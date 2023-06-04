@@ -37,7 +37,10 @@ export interface WordpressDockerImageProps {
   readonly containerCpu?: number;
 
   /**
-   * @default - 7.1.7
+   * The version of wp2static to install. See
+   * https://github.com/WP2Static/wp2static/releases for available version
+   *
+   * @default - 7.2
    */
   readonly wp2StaticVersion?: string;
 
@@ -61,7 +64,7 @@ export class WordpressDockerImage extends Construct {
       containerCpu = 256,
       containerMemory = 512,
       wordpressDockerImageBase = "wordpress:php7.4-apache",
-      wp2StaticVersion = "7.1.7",
+      wp2StaticVersion = "7.2.0",
       wp2StaticS3AddonVersion = "1.0",
     } = props;
 
