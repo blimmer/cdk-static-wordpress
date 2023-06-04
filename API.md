@@ -1070,10 +1070,10 @@ const wordpressDockerImageProps: WordpressDockerImageProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.containerCpu">containerCpu</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.containerMemory">containerMemory</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.containerCpu">containerCpu</a></code> | <code>number</code> | The number of vCPU units to give the ECS container at runtime. |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.containerMemory">containerMemory</a></code> | <code>number</code> | Memory to give the ECS container at runtime. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wordpressDockerImageBase">wordpressDockerImageBase</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wordpressMemoryLimit">wordpressMemoryLimit</a></code> | <code>string</code> | This configures how much memory is given to Wordpress. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wp2StaticS3AddonVersion">wp2StaticS3AddonVersion</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDockerImageProps.property.wp2StaticVersion">wp2StaticVersion</a></code> | <code>string</code> | *No description.* |
 
@@ -1086,7 +1086,13 @@ public readonly containerCpu: number;
 ```
 
 - *Type:* number
-- *Default:* 256
+- *Default:* 256 (0.25 vCPU)
+
+The number of vCPU units to give the ECS container at runtime.
+
+See
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-cpu
+for details on available configurations
 
 ---
 
@@ -1097,7 +1103,13 @@ public readonly containerMemory: number;
 ```
 
 - *Type:* number
-- *Default:* 512
+- *Default:* 512 (MB)
+
+Memory to give the ECS container at runtime.
+
+See
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-memory
+for details on available configurations
 
 ---
 
@@ -1120,6 +1132,13 @@ public readonly wordpressMemoryLimit: string;
 
 - *Type:* string
 - *Default:* 256M
+
+This configures how much memory is given to Wordpress.
+
+It's different than container memory,
+which is configured by `containerMemory`. See
+https://developer.wordpress.org/apis/wp-config-php/#increasing-memory-allocated-to-php
+for details on this setting.
 
 ---
 

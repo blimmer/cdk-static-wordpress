@@ -9,17 +9,30 @@ export interface WordpressDockerImageProps {
   readonly wordpressDockerImageBase?: string;
 
   /**
+   * This configures how much memory is given to Wordpress. It's different than container memory,
+   * which is configured by `containerMemory`. See
+   * https://developer.wordpress.org/apis/wp-config-php/#increasing-memory-allocated-to-php
+   * for details on this setting.
+   *
    * @default - 256M
    */
   readonly wordpressMemoryLimit?: string;
 
   /**
-   * @default - 512
+   * Memory to give the ECS container at runtime. See
+   * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-memory
+   * for details on available configurations
+   *
+   * @default - 512 (MB)
    */
   readonly containerMemory?: number;
 
   /**
-   * @default - 256
+   * The number of vCPU units to give the ECS container at runtime. See
+   * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html#cfn-ecs-taskdefinition-cpu
+   * for details on available configurations
+   *
+   * @default - 256 (0.25 vCPU)
    */
   readonly containerCpu?: number;
 
