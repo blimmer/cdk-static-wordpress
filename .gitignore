@@ -54,3 +54,9 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+!/src/generated/DistributionOverrides.ts
+!/src/generated/BehaviorOverrides.ts
+!/src/generated/DatabaseOverrides.ts
+!/src/generated/TaskDefinitionOverrides.ts
+!/src/generated/ContainerOverrides.ts
+!/src/generated/ServiceOverrides.ts

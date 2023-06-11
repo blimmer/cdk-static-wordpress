@@ -1,4 +1,9 @@
-import { FunctionAssociation, PriceClass } from "aws-cdk-lib/aws-cloudfront";
+import { ContainerOverrides } from "aws-cdk-lib/aws-stepfunctions-tasks";
+import { BehaviorOverrides } from "./generated/BehaviorOverrides";
+import { DatabaseOverrides } from "./generated/DatabaseOverrides";
+import { DistributionOverrides } from "./generated/DistributionOverrides";
+import { ServiceOverrides } from "./generated/ServiceOverrides";
+import { TaskDefinitionOverrides } from "./generated/TaskDefinitionOverrides";
 
 export interface WordpressAdminProps {
   readonly email: string;
@@ -21,37 +26,30 @@ export interface WordpressAdminProps {
    */
   readonly run?: boolean;
 
-  /**
-   * Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use
-   * this to access the container running the Wordpress admin console.
-   *
-   * NOTE: If you enable toggle this flag for an already-running WP Admin site, you'll need to manually stop the
-   * existing task. The ECS service will replace the task with a new one that has ECS Exec enabled. This is a
-   * CloudFormation limitation.
-   *
-   * @default false
-   */
-  readonly enableEcsExec?: boolean;
+  /** [ADVANCED] Override various aspects of the ECS infrastructure */
+  readonly ecsOverrides?: EcsOverrides;
 }
 
 export interface WordpressDatabaseProps {
   readonly username?: string;
   readonly password?: string; // TODO: or secretsmanager secret
+
+  /** [ADVANCED] Override properties on the Serverless Database Cluster */
+  readonly databaseOverrides?: DatabaseOverrides;
 }
 
-// TODO: use https://github.com/mrgrain/jsii-struct-builder to allow overriding arbitrary properties
 export interface CloudFrontDistributionConfig {
-  /**
-   * The PriceClass to use for the CloudFront distribution. See
-   * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html
-   *
-   * @default - PriceClass.PRICE_CLASS_ALL
-   */
-  readonly priceClass?: PriceClass;
+  /** [ADVANCED] Override properties on the CloudFront distribution (e.g., add a WAF) */
+  readonly distributionOverrides?: DistributionOverrides;
+  /** [ADVANCED] Override the S3 origin behaviors */
+  readonly behaviorOverrides?: BehaviorOverrides;
+}
 
-  /**
-   * WARNING: you should not probably not use this property. The author is using this for an advanced workaround
-   * on one of his sites.
-   */
-  readonly functionAssociations?: FunctionAssociation[];
+export interface EcsOverrides {
+  /** [ADVANCED] Override properties on the Fargate Task Definition */
+  readonly taskDefinitionOverrides?: TaskDefinitionOverrides;
+  /** [ADVANCED] Override properties on the Fargate Container */
+  readonly containerOverrides?: ContainerOverrides;
+  /** [ADVANCED] Override properties on the Fargate Service */
+  readonly serviceOverrides?: ServiceOverrides;
 }

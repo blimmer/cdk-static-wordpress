@@ -1,3 +1,4 @@
+const { ProjenStruct, Struct } = require("@mrgrain/jsii-struct-builder");
 const { awscdk } = require("projen");
 const { ProseWrap, NpmAccess } = require("projen/lib/javascript");
 
@@ -45,6 +46,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
 
+  eslintOptions: {
+    ignorePatterns: ["src/generated/*.ts"],
+  },
+
   tsconfigDev: {
     compilerOptions: {
       noUnusedLocals: false, // This is annoying in dev
@@ -52,6 +57,35 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   // deps: [],                /* Runtime dependencies of this module. */
-  devDeps: ["prettier-plugin-organize-imports"],
+  devDeps: ["prettier-plugin-organize-imports", "@mrgrain/jsii-struct-builder"],
 });
+
+// CloudFront/Static Hosting Overrides
+new ProjenStruct(project, { name: "DistributionOverrides", filePath: "src/generated/DistributionOverrides.ts" }).mixin(
+  Struct.fromFqn("aws-cdk-lib.aws_cloudfront.DistributionProps")
+    .allOptional()
+    .omit("defaultBehavior")
+    .withoutDeprecated()
+);
+new ProjenStruct(project, { name: "BehaviorOverrides", filePath: "src/generated/BehaviorOverrides.ts" }).mixin(
+  Struct.fromFqn("aws-cdk-lib.aws_cloudfront.BehaviorOptions").allOptional().omit("origin").withoutDeprecated()
+);
+
+// Database Overrides
+new ProjenStruct(project, { name: "DatabaseOverrides", filePath: "src/generated/DatabaseOverrides.ts" }).mixin(
+  Struct.fromFqn("aws-cdk-lib.aws_rds.ServerlessClusterProps").allOptional().withoutDeprecated()
+);
+
+// ECS-related Overrides
+new ProjenStruct(project, {
+  name: "TaskDefinitionOverrides",
+  filePath: "src/generated/TaskDefinitionOverrides.ts",
+}).mixin(Struct.fromFqn("aws-cdk-lib.aws_ecs.FargateTaskDefinitionProps").allOptional().withoutDeprecated());
+new ProjenStruct(project, { name: "ContainerOverrides", filePath: "src/generated/ContainerOverrides.ts" }).mixin(
+  Struct.fromFqn("aws-cdk-lib.aws_ecs.ContainerDefinitionOptions").allOptional().withoutDeprecated()
+);
+new ProjenStruct(project, { name: "ServiceOverrides", filePath: "src/generated/ServiceOverrides.ts" }).mixin(
+  Struct.fromFqn("aws-cdk-lib.aws_ecs.FargateServiceProps").allOptional().withoutDeprecated()
+);
+
 project.synth();

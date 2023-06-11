@@ -90,6 +90,12 @@ export class StaticWordpress extends Construct {
 }
 
 export { EcsTask, EcsTaskProps } from "./EcsTask";
+export * from "./generated/BehaviorOverrides";
+export * from "./generated/ContainerOverrides";
+export * from "./generated/DatabaseOverrides";
+export * from "./generated/DistributionOverrides";
+export * from "./generated/ServiceOverrides";
+export * from "./generated/TaskDefinitionOverrides";
 export { StaticHosting, StaticHostingProps } from "./StaticHosting";
 export * from "./types";
 export { WordpressDockerImage, WordpressDockerImageProps } from "./WordpressDockerImage";
