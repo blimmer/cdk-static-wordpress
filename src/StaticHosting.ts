@@ -61,7 +61,7 @@ export class StaticHosting extends Construct {
       defaultBehavior: {
         origin: new S3Origin(bucket),
         viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        functionAssociations: [
+        functionAssociations: behaviorOverrides.functionAssociations || [
           {
             function: new Function(this, "ViewerRequestFunction", {
               functionName: `${siteId}-redirect`,
