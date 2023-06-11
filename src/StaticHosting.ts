@@ -5,7 +5,6 @@ import {
   Function,
   FunctionCode,
   FunctionEventType,
-  PriceClass,
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront";
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins";
@@ -20,6 +19,7 @@ export interface StaticHostingProps {
   readonly fullyQualifiedSiteName: string;
   readonly hostedZone: IHostedZone;
   readonly redirects?: SiteRedirects;
+
   readonly cloudFrontDistributionConfig?: CloudFrontDistributionConfig;
 }
 
@@ -40,7 +40,7 @@ export class StaticHosting extends Construct {
       },
       cloudFrontDistributionConfig = {},
     } = props;
-    const { functionAssociations, priceClass = PriceClass.PRICE_CLASS_ALL } = cloudFrontDistributionConfig;
+    const { distributionOverrides = {}, behaviorOverrides = {} } = cloudFrontDistributionConfig;
 
     const bucket = new Bucket(this, "Bucket", {
       bucketName: fullyQualifiedSiteName,
@@ -61,7 +61,7 @@ export class StaticHosting extends Construct {
       defaultBehavior: {
         origin: new S3Origin(bucket),
         viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        functionAssociations: functionAssociations || [
+        functionAssociations: [
           {
             function: new Function(this, "ViewerRequestFunction", {
               functionName: `${siteId}-redirect`,
@@ -101,13 +101,13 @@ function permanentRedirect(uri, match, target) {
             eventType: FunctionEventType.VIEWER_REQUEST,
           },
         ],
+        ...behaviorOverrides,
       },
       comment: `Serves ${fullyQualifiedSiteName}`,
       certificate: sslCert,
       domainNames: [fullyQualifiedSiteName],
       defaultRootObject: "index.html",
-      priceClass,
-      // TODO: waf support
+      ...distributionOverrides,
     });
 
     new ARecord(this, "ARecord", {
