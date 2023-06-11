@@ -23,6 +23,10 @@
 /LICENSE linguist-generated
 /package.json linguist-generated
 /src/generated/BehaviorOverrides.ts linguist-generated
+/src/generated/ContainerOverrides.ts linguist-generated
+/src/generated/DatabaseOverrides.ts linguist-generated
 /src/generated/DistributionOverrides.ts linguist-generated
+/src/generated/ServiceOverrides.ts linguist-generated
+/src/generated/TaskDefinitionOverrides.ts linguist-generated
 /tsconfig.dev.json linguist-generated
 /yarn.lock linguist-generated

@@ -624,6 +624,190 @@ public readonly wordpressMemoryLimit: string;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
+### BehaviorOverrides <a name="BehaviorOverrides" id="@blimmer/cdk-static-wordpress.BehaviorOverrides"></a>
+
+BehaviorOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.Initializer"></a>
+
+```typescript
+import { BehaviorOverrides } from '@blimmer/cdk-static-wordpress'
+
+const behaviorOverrides: BehaviorOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.allowedMethods">allowedMethods</a></code> | <code>aws-cdk-lib.aws_cloudfront.AllowedMethods</code> | HTTP methods to allow for this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.cachedMethods">cachedMethods</a></code> | <code>aws-cdk-lib.aws_cloudfront.CachedMethods</code> | HTTP methods to cache for this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.cachePolicy">cachePolicy</a></code> | <code>aws-cdk-lib.aws_cloudfront.ICachePolicy</code> | The cache policy for this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.compress">compress</a></code> | <code>boolean</code> | Whether you want CloudFront to automatically compress certain files for this cache behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.edgeLambdas">edgeLambdas</a></code> | <code>aws-cdk-lib.aws_cloudfront.EdgeLambda[]</code> | The Lambda@Edge functions to invoke before serving the contents. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.functionAssociations">functionAssociations</a></code> | <code>aws-cdk-lib.aws_cloudfront.FunctionAssociation[]</code> | The CloudFront functions to invoke before serving the contents. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.originRequestPolicy">originRequestPolicy</a></code> | <code>aws-cdk-lib.aws_cloudfront.IOriginRequestPolicy</code> | The origin request policy for this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.responseHeadersPolicy">responseHeadersPolicy</a></code> | <code>aws-cdk-lib.aws_cloudfront.IResponseHeadersPolicy</code> | The response headers policy for this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.smoothStreaming">smoothStreaming</a></code> | <code>boolean</code> | Set this to true to indicate you want to distribute media files in the Microsoft Smooth Streaming format using this behavior. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.trustedKeyGroups">trustedKeyGroups</a></code> | <code>aws-cdk-lib.aws_cloudfront.IKeyGroup[]</code> | A list of Key Groups that CloudFront can use to validate signed URLs or signed cookies. |
+| <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides.property.viewerProtocolPolicy">viewerProtocolPolicy</a></code> | <code>aws-cdk-lib.aws_cloudfront.ViewerProtocolPolicy</code> | The protocol that viewers can use to access the files controlled by this behavior. |
+
+---
+
+##### `allowedMethods`<sup>Optional</sup> <a name="allowedMethods" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.allowedMethods"></a>
+
+```typescript
+public readonly allowedMethods: AllowedMethods;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.AllowedMethods
+- *Default:* AllowedMethods.ALLOW_GET_HEAD
+
+HTTP methods to allow for this behavior.
+
+---
+
+##### `cachedMethods`<sup>Optional</sup> <a name="cachedMethods" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.cachedMethods"></a>
+
+```typescript
+public readonly cachedMethods: CachedMethods;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.CachedMethods
+- *Default:* CachedMethods.CACHE_GET_HEAD
+
+HTTP methods to cache for this behavior.
+
+---
+
+##### `cachePolicy`<sup>Optional</sup> <a name="cachePolicy" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.cachePolicy"></a>
+
+```typescript
+public readonly cachePolicy: ICachePolicy;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.ICachePolicy
+- *Default:* CachePolicy.CACHING_OPTIMIZED
+
+The cache policy for this behavior.
+
+The cache policy determines what values are included in the cache key,
+and the time-to-live (TTL) values for the cache.
+
+---
+
+##### `compress`<sup>Optional</sup> <a name="compress" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.compress"></a>
+
+```typescript
+public readonly compress: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Whether you want CloudFront to automatically compress certain files for this cache behavior.
+
+See https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html#compressed-content-cloudfront-file-types
+for file types CloudFront will compress.
+
+---
+
+##### `edgeLambdas`<sup>Optional</sup> <a name="edgeLambdas" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.edgeLambdas"></a>
+
+```typescript
+public readonly edgeLambdas: EdgeLambda[];
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.EdgeLambda[]
+- *Default:* no Lambda functions will be invoked
+
+The Lambda@Edge functions to invoke before serving the contents.
+
+---
+
+##### `functionAssociations`<sup>Optional</sup> <a name="functionAssociations" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.functionAssociations"></a>
+
+```typescript
+public readonly functionAssociations: FunctionAssociation[];
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.FunctionAssociation[]
+- *Default:* no functions will be invoked
+
+The CloudFront functions to invoke before serving the contents.
+
+---
+
+##### `originRequestPolicy`<sup>Optional</sup> <a name="originRequestPolicy" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.originRequestPolicy"></a>
+
+```typescript
+public readonly originRequestPolicy: IOriginRequestPolicy;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.IOriginRequestPolicy
+- *Default:* none
+
+The origin request policy for this behavior.
+
+The origin request policy determines which values (e.g., headers, cookies)
+are included in requests that CloudFront sends to the origin.
+
+---
+
+##### `responseHeadersPolicy`<sup>Optional</sup> <a name="responseHeadersPolicy" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.responseHeadersPolicy"></a>
+
+```typescript
+public readonly responseHeadersPolicy: IResponseHeadersPolicy;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.IResponseHeadersPolicy
+- *Default:* none
+
+The response headers policy for this behavior.
+
+The response headers policy determines which headers are included in responses
+
+---
+
+##### `smoothStreaming`<sup>Optional</sup> <a name="smoothStreaming" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.smoothStreaming"></a>
+
+```typescript
+public readonly smoothStreaming: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Set this to true to indicate you want to distribute media files in the Microsoft Smooth Streaming format using this behavior.
+
+---
+
+##### `trustedKeyGroups`<sup>Optional</sup> <a name="trustedKeyGroups" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.trustedKeyGroups"></a>
+
+```typescript
+public readonly trustedKeyGroups: IKeyGroup[];
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.IKeyGroup[]
+- *Default:* no KeyGroups are associated with cache behavior
+
+A list of Key Groups that CloudFront can use to validate signed URLs or signed cookies.
+
+---
+
+##### `viewerProtocolPolicy`<sup>Optional</sup> <a name="viewerProtocolPolicy" id="@blimmer/cdk-static-wordpress.BehaviorOverrides.property.viewerProtocolPolicy"></a>
+
+```typescript
+public readonly viewerProtocolPolicy: ViewerProtocolPolicy;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.ViewerProtocolPolicy
+- *Default:* ViewerProtocolPolicy.ALLOW_ALL
+
+The protocol that viewers can use to access the files controlled by this behavior.
+
+---
+
 ### CloudFrontDistributionConfig <a name="CloudFrontDistributionConfig" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig"></a>
 
 #### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.Initializer"></a>
@@ -638,27 +822,1014 @@ const cloudFrontDistributionConfig: CloudFrontDistributionConfig = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.functionAssociations">functionAssociations</a></code> | <code>aws-cdk-lib.aws_cloudfront.FunctionAssociation[]</code> | WARNING: you should not probably not use this property. |
-| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.priceClass">priceClass</a></code> | <code>aws-cdk-lib.aws_cloudfront.PriceClass</code> | The PriceClass to use for the CloudFront distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.behaviorOverrides">behaviorOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides">BehaviorOverrides</a></code> | [ADVANCED] Override the S3 origin behaviors. |
+| <code><a href="#@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.distributionOverrides">distributionOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides">DistributionOverrides</a></code> | [ADVANCED] Override properties on the CloudFront distribution (e.g., add a WAF). |
 
 ---
 
-##### `functionAssociations`<sup>Optional</sup> <a name="functionAssociations" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.functionAssociations"></a>
+##### `behaviorOverrides`<sup>Optional</sup> <a name="behaviorOverrides" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.behaviorOverrides"></a>
 
 ```typescript
-public readonly functionAssociations: FunctionAssociation[];
+public readonly behaviorOverrides: BehaviorOverrides;
 ```
 
-- *Type:* aws-cdk-lib.aws_cloudfront.FunctionAssociation[]
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.BehaviorOverrides">BehaviorOverrides</a>
 
-WARNING: you should not probably not use this property.
-
-The author is using this for an advanced workaround
-on one of his sites.
+[ADVANCED] Override the S3 origin behaviors.
 
 ---
 
-##### `priceClass`<sup>Optional</sup> <a name="priceClass" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.priceClass"></a>
+##### `distributionOverrides`<sup>Optional</sup> <a name="distributionOverrides" id="@blimmer/cdk-static-wordpress.CloudFrontDistributionConfig.property.distributionOverrides"></a>
+
+```typescript
+public readonly distributionOverrides: DistributionOverrides;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.DistributionOverrides">DistributionOverrides</a>
+
+[ADVANCED] Override properties on the CloudFront distribution (e.g., add a WAF).
+
+---
+
+### ContainerOverrides <a name="ContainerOverrides" id="@blimmer/cdk-static-wordpress.ContainerOverrides"></a>
+
+ContainerOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.ContainerOverrides.Initializer"></a>
+
+```typescript
+import { ContainerOverrides } from '@blimmer/cdk-static-wordpress'
+
+const containerOverrides: ContainerOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.command">command</a></code> | <code>string[]</code> | The command that is passed to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.containerName">containerName</a></code> | <code>string</code> | The name of the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.cpu">cpu</a></code> | <code>number</code> | The minimum number of CPU units to reserve for the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.disableNetworking">disableNetworking</a></code> | <code>boolean</code> | Specifies whether networking is disabled within the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.dnsSearchDomains">dnsSearchDomains</a></code> | <code>string[]</code> | A list of DNS search domains that are presented to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.dnsServers">dnsServers</a></code> | <code>string[]</code> | A list of DNS servers that are presented to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.dockerLabels">dockerLabels</a></code> | <code>{[ key: string ]: string}</code> | A key/value map of labels to add to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.dockerSecurityOptions">dockerSecurityOptions</a></code> | <code>string[]</code> | A list of strings to provide custom labels for SELinux and AppArmor multi-level security systems. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.entryPoint">entryPoint</a></code> | <code>string[]</code> | The ENTRYPOINT value to pass to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.environment">environment</a></code> | <code>{[ key: string ]: string}</code> | The environment variables to pass to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.environmentFiles">environmentFiles</a></code> | <code>aws-cdk-lib.aws_ecs.EnvironmentFile[]</code> | The environment files to pass to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.essential">essential</a></code> | <code>boolean</code> | Specifies whether the container is marked essential. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.extraHosts">extraHosts</a></code> | <code>{[ key: string ]: string}</code> | A list of hostnames and IP address mappings to append to the /etc/hosts file on the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.gpuCount">gpuCount</a></code> | <code>number</code> | The number of GPUs assigned to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.healthCheck">healthCheck</a></code> | <code>aws-cdk-lib.aws_ecs.HealthCheck</code> | The health check command and associated configuration parameters for the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.hostname">hostname</a></code> | <code>string</code> | The hostname to use for your container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.image">image</a></code> | <code>aws-cdk-lib.aws_ecs.ContainerImage</code> | The image used to start a container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.inferenceAcceleratorResources">inferenceAcceleratorResources</a></code> | <code>string[]</code> | The inference accelerators referenced by the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.linuxParameters">linuxParameters</a></code> | <code>aws-cdk-lib.aws_ecs.LinuxParameters</code> | Linux-specific modifications that are applied to the container, such as Linux kernel capabilities. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.logging">logging</a></code> | <code>aws-cdk-lib.aws_ecs.LogDriver</code> | The log configuration specification for the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.memoryLimitMiB">memoryLimitMiB</a></code> | <code>number</code> | The amount (in MiB) of memory to present to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.memoryReservationMiB">memoryReservationMiB</a></code> | <code>number</code> | The soft limit (in MiB) of memory to reserve for the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.portMappings">portMappings</a></code> | <code>aws-cdk-lib.aws_ecs.PortMapping[]</code> | The port mappings to add to the container definition. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.privileged">privileged</a></code> | <code>boolean</code> | Specifies whether the container is marked as privileged. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.readonlyRootFilesystem">readonlyRootFilesystem</a></code> | <code>boolean</code> | When this parameter is true, the container is given read-only access to its root file system. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.secrets">secrets</a></code> | <code>{[ key: string ]: aws-cdk-lib.aws_ecs.Secret}</code> | The secret environment variables to pass to the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.startTimeout">startTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | Time duration (in seconds) to wait before giving up on resolving dependencies for a container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.stopTimeout">stopTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | Time duration (in seconds) to wait before the container is forcefully killed if it doesn't exit normally on its own. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.systemControls">systemControls</a></code> | <code>aws-cdk-lib.aws_ecs.SystemControl[]</code> | A list of namespaced kernel parameters to set in the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.user">user</a></code> | <code>string</code> | The user name to use inside the container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ContainerOverrides.property.workingDirectory">workingDirectory</a></code> | <code>string</code> | The working directory in which to run commands inside the container. |
+
+---
+
+##### `command`<sup>Optional</sup> <a name="command" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.command"></a>
+
+```typescript
+public readonly command: string[];
+```
+
+- *Type:* string[]
+- *Default:* CMD value built into container image.
+
+The command that is passed to the container.
+
+If you provide a shell command as a single string, you have to quote command-line arguments.
+
+---
+
+##### `containerName`<sup>Optional</sup> <a name="containerName" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.containerName"></a>
+
+```typescript
+public readonly containerName: string;
+```
+
+- *Type:* string
+- *Default:* id of node associated with ContainerDefinition.
+
+The name of the container.
+
+---
+
+##### `cpu`<sup>Optional</sup> <a name="cpu" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.cpu"></a>
+
+```typescript
+public readonly cpu: number;
+```
+
+- *Type:* number
+- *Default:* No minimum CPU units reserved.
+
+The minimum number of CPU units to reserve for the container.
+
+---
+
+##### `disableNetworking`<sup>Optional</sup> <a name="disableNetworking" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.disableNetworking"></a>
+
+```typescript
+public readonly disableNetworking: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Specifies whether networking is disabled within the container.
+
+When this parameter is true, networking is disabled within the container.
+
+---
+
+##### `dnsSearchDomains`<sup>Optional</sup> <a name="dnsSearchDomains" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.dnsSearchDomains"></a>
+
+```typescript
+public readonly dnsSearchDomains: string[];
+```
+
+- *Type:* string[]
+- *Default:* No search domains.
+
+A list of DNS search domains that are presented to the container.
+
+---
+
+##### `dnsServers`<sup>Optional</sup> <a name="dnsServers" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.dnsServers"></a>
+
+```typescript
+public readonly dnsServers: string[];
+```
+
+- *Type:* string[]
+- *Default:* Default DNS servers.
+
+A list of DNS servers that are presented to the container.
+
+---
+
+##### `dockerLabels`<sup>Optional</sup> <a name="dockerLabels" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.dockerLabels"></a>
+
+```typescript
+public readonly dockerLabels: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* No labels.
+
+A key/value map of labels to add to the container.
+
+---
+
+##### `dockerSecurityOptions`<sup>Optional</sup> <a name="dockerSecurityOptions" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.dockerSecurityOptions"></a>
+
+```typescript
+public readonly dockerSecurityOptions: string[];
+```
+
+- *Type:* string[]
+- *Default:* No security labels.
+
+A list of strings to provide custom labels for SELinux and AppArmor multi-level security systems.
+
+---
+
+##### `entryPoint`<sup>Optional</sup> <a name="entryPoint" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.entryPoint"></a>
+
+```typescript
+public readonly entryPoint: string[];
+```
+
+- *Type:* string[]
+- *Default:* Entry point configured in container.
+
+The ENTRYPOINT value to pass to the container.
+
+---
+
+##### `environment`<sup>Optional</sup> <a name="environment" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.environment"></a>
+
+```typescript
+public readonly environment: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* No environment variables.
+
+The environment variables to pass to the container.
+
+---
+
+##### `environmentFiles`<sup>Optional</sup> <a name="environmentFiles" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.environmentFiles"></a>
+
+```typescript
+public readonly environmentFiles: EnvironmentFile[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.EnvironmentFile[]
+- *Default:* No environment files.
+
+The environment files to pass to the container.
+
+---
+
+##### `essential`<sup>Optional</sup> <a name="essential" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.essential"></a>
+
+```typescript
+public readonly essential: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Specifies whether the container is marked essential.
+
+If the essential parameter of a container is marked as true, and that container fails
+or stops for any reason, all other containers that are part of the task are stopped.
+If the essential parameter of a container is marked as false, then its failure does not
+affect the rest of the containers in a task. All tasks must have at least one essential container.
+
+If this parameter is omitted, a container is assumed to be essential.
+
+---
+
+##### `extraHosts`<sup>Optional</sup> <a name="extraHosts" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.extraHosts"></a>
+
+```typescript
+public readonly extraHosts: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* No extra hosts.
+
+A list of hostnames and IP address mappings to append to the /etc/hosts file on the container.
+
+---
+
+##### `gpuCount`<sup>Optional</sup> <a name="gpuCount" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.gpuCount"></a>
+
+```typescript
+public readonly gpuCount: number;
+```
+
+- *Type:* number
+- *Default:* No GPUs assigned.
+
+The number of GPUs assigned to the container.
+
+---
+
+##### `healthCheck`<sup>Optional</sup> <a name="healthCheck" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.healthCheck"></a>
+
+```typescript
+public readonly healthCheck: HealthCheck;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.HealthCheck
+- *Default:* Health check configuration from container.
+
+The health check command and associated configuration parameters for the container.
+
+---
+
+##### `hostname`<sup>Optional</sup> <a name="hostname" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.hostname"></a>
+
+```typescript
+public readonly hostname: string;
+```
+
+- *Type:* string
+- *Default:* Automatic hostname.
+
+The hostname to use for your container.
+
+---
+
+##### `image`<sup>Optional</sup> <a name="image" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.image"></a>
+
+```typescript
+public readonly image: ContainerImage;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ContainerImage
+
+The image used to start a container.
+
+This string is passed directly to the Docker daemon.
+Images in the Docker Hub registry are available by default.
+Other repositories are specified with either repository-url/image:tag or repository-url/image@digest.
+TODO: Update these to specify using classes of IContainerImage
+
+---
+
+##### `inferenceAcceleratorResources`<sup>Optional</sup> <a name="inferenceAcceleratorResources" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.inferenceAcceleratorResources"></a>
+
+```typescript
+public readonly inferenceAcceleratorResources: string[];
+```
+
+- *Type:* string[]
+- *Default:* No inference accelerators assigned.
+
+The inference accelerators referenced by the container.
+
+---
+
+##### `linuxParameters`<sup>Optional</sup> <a name="linuxParameters" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.linuxParameters"></a>
+
+```typescript
+public readonly linuxParameters: LinuxParameters;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.LinuxParameters
+- *Default:* No Linux parameters.
+
+Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.
+
+For more information see [KernelCapabilities](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html).
+
+---
+
+##### `logging`<sup>Optional</sup> <a name="logging" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.logging"></a>
+
+```typescript
+public readonly logging: LogDriver;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.LogDriver
+- *Default:* Containers use the same logging driver that the Docker daemon uses.
+
+The log configuration specification for the container.
+
+---
+
+##### `memoryLimitMiB`<sup>Optional</sup> <a name="memoryLimitMiB" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.memoryLimitMiB"></a>
+
+```typescript
+public readonly memoryLimitMiB: number;
+```
+
+- *Type:* number
+- *Default:* No memory limit.
+
+The amount (in MiB) of memory to present to the container.
+
+If your container attempts to exceed the allocated memory, the container
+is terminated.
+
+At least one of memoryLimitMiB and memoryReservationMiB is required for non-Fargate services.
+
+---
+
+##### `memoryReservationMiB`<sup>Optional</sup> <a name="memoryReservationMiB" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.memoryReservationMiB"></a>
+
+```typescript
+public readonly memoryReservationMiB: number;
+```
+
+- *Type:* number
+- *Default:* No memory reserved.
+
+The soft limit (in MiB) of memory to reserve for the container.
+
+When system memory is under heavy contention, Docker attempts to keep the
+container memory to this soft limit. However, your container can consume more
+memory when it needs to, up to either the hard limit specified with the memory
+parameter (if applicable), or all of the available memory on the container
+instance, whichever comes first.
+
+At least one of memoryLimitMiB and memoryReservationMiB is required for non-Fargate services.
+
+---
+
+##### `portMappings`<sup>Optional</sup> <a name="portMappings" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.portMappings"></a>
+
+```typescript
+public readonly portMappings: PortMapping[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.PortMapping[]
+- *Default:* No ports are mapped.
+
+The port mappings to add to the container definition.
+
+---
+
+##### `privileged`<sup>Optional</sup> <a name="privileged" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.privileged"></a>
+
+```typescript
+public readonly privileged: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Specifies whether the container is marked as privileged.
+
+When this parameter is true, the container is given elevated privileges on the host container instance (similar to the root user).
+
+---
+
+##### `readonlyRootFilesystem`<sup>Optional</sup> <a name="readonlyRootFilesystem" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.readonlyRootFilesystem"></a>
+
+```typescript
+public readonly readonlyRootFilesystem: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+When this parameter is true, the container is given read-only access to its root file system.
+
+---
+
+##### `secrets`<sup>Optional</sup> <a name="secrets" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.secrets"></a>
+
+```typescript
+public readonly secrets: {[ key: string ]: Secret};
+```
+
+- *Type:* {[ key: string ]: aws-cdk-lib.aws_ecs.Secret}
+- *Default:* No secret environment variables.
+
+The secret environment variables to pass to the container.
+
+---
+
+##### `startTimeout`<sup>Optional</sup> <a name="startTimeout" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.startTimeout"></a>
+
+```typescript
+public readonly startTimeout: Duration;
+```
+
+- *Type:* aws-cdk-lib.Duration
+- *Default:* none
+
+Time duration (in seconds) to wait before giving up on resolving dependencies for a container.
+
+---
+
+##### `stopTimeout`<sup>Optional</sup> <a name="stopTimeout" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.stopTimeout"></a>
+
+```typescript
+public readonly stopTimeout: Duration;
+```
+
+- *Type:* aws-cdk-lib.Duration
+- *Default:* none
+
+Time duration (in seconds) to wait before the container is forcefully killed if it doesn't exit normally on its own.
+
+---
+
+##### `systemControls`<sup>Optional</sup> <a name="systemControls" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.systemControls"></a>
+
+```typescript
+public readonly systemControls: SystemControl[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.SystemControl[]
+- *Default:* No system controls are set.
+
+A list of namespaced kernel parameters to set in the container.
+
+---
+
+##### `user`<sup>Optional</sup> <a name="user" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.user"></a>
+
+```typescript
+public readonly user: string;
+```
+
+- *Type:* string
+- *Default:* root
+
+The user name to use inside the container.
+
+---
+
+##### `workingDirectory`<sup>Optional</sup> <a name="workingDirectory" id="@blimmer/cdk-static-wordpress.ContainerOverrides.property.workingDirectory"></a>
+
+```typescript
+public readonly workingDirectory: string;
+```
+
+- *Type:* string
+- *Default:* /
+
+The working directory in which to run commands inside the container.
+
+---
+
+### DatabaseOverrides <a name="DatabaseOverrides" id="@blimmer/cdk-static-wordpress.DatabaseOverrides"></a>
+
+DatabaseOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.Initializer"></a>
+
+```typescript
+import { DatabaseOverrides } from '@blimmer/cdk-static-wordpress'
+
+const databaseOverrides: DatabaseOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.backupRetention">backupRetention</a></code> | <code>aws-cdk-lib.Duration</code> | The number of days during which automatic DB snapshots are retained. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.clusterIdentifier">clusterIdentifier</a></code> | <code>string</code> | An optional identifier for the cluster. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.copyTagsToSnapshot">copyTagsToSnapshot</a></code> | <code>boolean</code> | Whether to copy tags to the snapshot when a snapshot is created. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_rds.Credentials</code> | Credentials for the administrative user. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.defaultDatabaseName">defaultDatabaseName</a></code> | <code>string</code> | Name of a database which is automatically created inside the cluster. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.deletionProtection">deletionProtection</a></code> | <code>boolean</code> | Indicates whether the DB cluster should have deletion protection enabled. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.enableDataApi">enableDataApi</a></code> | <code>boolean</code> | Whether to enable the Data API. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.engine">engine</a></code> | <code>aws-cdk-lib.aws_rds.IClusterEngine</code> | What kind of database to start. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.parameterGroup">parameterGroup</a></code> | <code>aws-cdk-lib.aws_rds.IParameterGroup</code> | Additional parameters to pass to the database engine. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.removalPolicy">removalPolicy</a></code> | <code>aws-cdk-lib.RemovalPolicy</code> | The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.scaling">scaling</a></code> | <code>aws-cdk-lib.aws_rds.ServerlessScalingOptions</code> | Scaling configuration of an Aurora Serverless database cluster. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.securityGroups">securityGroups</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup[]</code> | Security group. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.storageEncryptionKey">storageEncryptionKey</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | The KMS key for storage encryption. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.subnetGroup">subnetGroup</a></code> | <code>aws-cdk-lib.aws_rds.ISubnetGroup</code> | Existing subnet group for the cluster. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC that this Aurora Serverless cluster has been created in. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides.property.vpcSubnets">vpcSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | Where to place the instances within the VPC. |
+
+---
+
+##### `backupRetention`<sup>Optional</sup> <a name="backupRetention" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.backupRetention"></a>
+
+```typescript
+public readonly backupRetention: Duration;
+```
+
+- *Type:* aws-cdk-lib.Duration
+- *Default:* Duration.days(1)
+
+The number of days during which automatic DB snapshots are retained.
+
+Automatic backup retention cannot be disabled on serverless clusters.
+Must be a value from 1 day to 35 days.
+
+---
+
+##### `clusterIdentifier`<sup>Optional</sup> <a name="clusterIdentifier" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.clusterIdentifier"></a>
+
+```typescript
+public readonly clusterIdentifier: string;
+```
+
+- *Type:* string
+- *Default:* A name is automatically generated.
+
+An optional identifier for the cluster.
+
+---
+
+##### `copyTagsToSnapshot`<sup>Optional</sup> <a name="copyTagsToSnapshot" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.copyTagsToSnapshot"></a>
+
+```typescript
+public readonly copyTagsToSnapshot: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Whether to copy tags to the snapshot when a snapshot is created.
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.credentials"></a>
+
+```typescript
+public readonly credentials: Credentials;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.Credentials
+- *Default:* A username of 'admin' and SecretsManager-generated password
+
+Credentials for the administrative user.
+
+---
+
+##### `defaultDatabaseName`<sup>Optional</sup> <a name="defaultDatabaseName" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.defaultDatabaseName"></a>
+
+```typescript
+public readonly defaultDatabaseName: string;
+```
+
+- *Type:* string
+- *Default:* Database is not created in cluster.
+
+Name of a database which is automatically created inside the cluster.
+
+---
+
+##### `deletionProtection`<sup>Optional</sup> <a name="deletionProtection" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.deletionProtection"></a>
+
+```typescript
+public readonly deletionProtection: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true if removalPolicy is RETAIN, false otherwise
+
+Indicates whether the DB cluster should have deletion protection enabled.
+
+---
+
+##### `enableDataApi`<sup>Optional</sup> <a name="enableDataApi" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.enableDataApi"></a>
+
+```typescript
+public readonly enableDataApi: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Whether to enable the Data API.
+
+---
+
+##### `engine`<sup>Optional</sup> <a name="engine" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.engine"></a>
+
+```typescript
+public readonly engine: IClusterEngine;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.IClusterEngine
+
+What kind of database to start.
+
+---
+
+##### `parameterGroup`<sup>Optional</sup> <a name="parameterGroup" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.parameterGroup"></a>
+
+```typescript
+public readonly parameterGroup: IParameterGroup;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.IParameterGroup
+- *Default:* no parameter group.
+
+Additional parameters to pass to the database engine.
+
+---
+
+##### `removalPolicy`<sup>Optional</sup> <a name="removalPolicy" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.removalPolicy"></a>
+
+```typescript
+public readonly removalPolicy: RemovalPolicy;
+```
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+- *Default:* RemovalPolicy.SNAPSHOT (remove the cluster and instances, but retain a snapshot of the data)
+
+The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update.
+
+---
+
+##### `scaling`<sup>Optional</sup> <a name="scaling" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.scaling"></a>
+
+```typescript
+public readonly scaling: ServerlessScalingOptions;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.ServerlessScalingOptions
+- *Default:* Serverless cluster is automatically paused after 5 minutes of being idle. minimum capacity: 2 ACU maximum capacity: 16 ACU
+
+Scaling configuration of an Aurora Serverless database cluster.
+
+---
+
+##### `securityGroups`<sup>Optional</sup> <a name="securityGroups" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.securityGroups"></a>
+
+```typescript
+public readonly securityGroups: ISecurityGroup[];
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.ISecurityGroup[]
+- *Default:* a new security group is created if `vpc` was provided. If the `vpc` property was not provided, no VPC security groups will be associated with the DB cluster.
+
+Security group.
+
+---
+
+##### `storageEncryptionKey`<sup>Optional</sup> <a name="storageEncryptionKey" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.storageEncryptionKey"></a>
+
+```typescript
+public readonly storageEncryptionKey: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+- *Default:* the default master key will be used for storage encryption
+
+The KMS key for storage encryption.
+
+---
+
+##### `subnetGroup`<sup>Optional</sup> <a name="subnetGroup" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.subnetGroup"></a>
+
+```typescript
+public readonly subnetGroup: ISubnetGroup;
+```
+
+- *Type:* aws-cdk-lib.aws_rds.ISubnetGroup
+- *Default:* a new subnet group is created if `vpc` was provided. If the `vpc` property was not provided, no subnet group will be associated with the DB cluster
+
+Existing subnet group for the cluster.
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="vpc" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.vpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IVpc
+- *Default:* the default VPC in the account and region will be used
+
+The VPC that this Aurora Serverless cluster has been created in.
+
+---
+
+##### `vpcSubnets`<sup>Optional</sup> <a name="vpcSubnets" id="@blimmer/cdk-static-wordpress.DatabaseOverrides.property.vpcSubnets"></a>
+
+```typescript
+public readonly vpcSubnets: SubnetSelection;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.SubnetSelection
+- *Default:* the VPC default strategy if not specified.
+
+Where to place the instances within the VPC.
+
+If provided, the `vpc` property must also be specified.
+
+---
+
+### DistributionOverrides <a name="DistributionOverrides" id="@blimmer/cdk-static-wordpress.DistributionOverrides"></a>
+
+DistributionOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.DistributionOverrides.Initializer"></a>
+
+```typescript
+import { DistributionOverrides } from '@blimmer/cdk-static-wordpress'
+
+const distributionOverrides: DistributionOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.additionalBehaviors">additionalBehaviors</a></code> | <code>{[ key: string ]: aws-cdk-lib.aws_cloudfront.BehaviorOptions}</code> | Additional behaviors for the distribution, mapped by the pathPattern that specifies which requests to apply the behavior to. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.certificate">certificate</a></code> | <code>aws-cdk-lib.aws_certificatemanager.ICertificate</code> | A certificate to associate with the distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.comment">comment</a></code> | <code>string</code> | Any comments you want to include about the distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.defaultRootObject">defaultRootObject</a></code> | <code>string</code> | The object that you want CloudFront to request from your origin (for example, index.html) when a viewer requests the root URL for your distribution. If no default object is set, the request goes to the origin's root (e.g., example.com/). |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.domainNames">domainNames</a></code> | <code>string[]</code> | Alternative domain names for this distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.enabled">enabled</a></code> | <code>boolean</code> | Enable or disable the distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.enableIpv6">enableIpv6</a></code> | <code>boolean</code> | Whether CloudFront will respond to IPv6 DNS requests with an IPv6 address. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.enableLogging">enableLogging</a></code> | <code>boolean</code> | Enable access logging for the distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.errorResponses">errorResponses</a></code> | <code>aws-cdk-lib.aws_cloudfront.ErrorResponse[]</code> | How CloudFront should handle requests that are not successful (e.g., PageNotFound). |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.geoRestriction">geoRestriction</a></code> | <code>aws-cdk-lib.aws_cloudfront.GeoRestriction</code> | Controls the countries in which your content is distributed. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.httpVersion">httpVersion</a></code> | <code>aws-cdk-lib.aws_cloudfront.HttpVersion</code> | Specify the maximum HTTP version that you want viewers to use to communicate with CloudFront. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.logBucket">logBucket</a></code> | <code>aws-cdk-lib.aws_s3.IBucket</code> | The Amazon S3 bucket to store the access logs in. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.logFilePrefix">logFilePrefix</a></code> | <code>string</code> | An optional string that you want CloudFront to prefix to the access log filenames for this distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.logIncludesCookies">logIncludesCookies</a></code> | <code>boolean</code> | Specifies whether you want CloudFront to include cookies in access logs. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.minimumProtocolVersion">minimumProtocolVersion</a></code> | <code>aws-cdk-lib.aws_cloudfront.SecurityPolicyProtocol</code> | The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.priceClass">priceClass</a></code> | <code>aws-cdk-lib.aws_cloudfront.PriceClass</code> | The price class that corresponds with the maximum price that you want to pay for CloudFront service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.sslSupportMethod">sslSupportMethod</a></code> | <code>aws-cdk-lib.aws_cloudfront.SSLMethod</code> | The SSL method CloudFront will use for your distribution. |
+| <code><a href="#@blimmer/cdk-static-wordpress.DistributionOverrides.property.webAclId">webAclId</a></code> | <code>string</code> | Unique identifier that specifies the AWS WAF web ACL to associate with this CloudFront distribution. |
+
+---
+
+##### `additionalBehaviors`<sup>Optional</sup> <a name="additionalBehaviors" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.additionalBehaviors"></a>
+
+```typescript
+public readonly additionalBehaviors: {[ key: string ]: BehaviorOptions};
+```
+
+- *Type:* {[ key: string ]: aws-cdk-lib.aws_cloudfront.BehaviorOptions}
+- *Default:* no additional behaviors are added.
+
+Additional behaviors for the distribution, mapped by the pathPattern that specifies which requests to apply the behavior to.
+
+---
+
+##### `certificate`<sup>Optional</sup> <a name="certificate" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.certificate"></a>
+
+```typescript
+public readonly certificate: ICertificate;
+```
+
+- *Type:* aws-cdk-lib.aws_certificatemanager.ICertificate
+- *Default:* the CloudFront wildcard certificate (*.cloudfront.net) will be used.
+
+A certificate to associate with the distribution.
+
+The certificate must be located in N. Virginia (us-east-1).
+
+---
+
+##### `comment`<sup>Optional</sup> <a name="comment" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.comment"></a>
+
+```typescript
+public readonly comment: string;
+```
+
+- *Type:* string
+- *Default:* no comment
+
+Any comments you want to include about the distribution.
+
+---
+
+##### `defaultRootObject`<sup>Optional</sup> <a name="defaultRootObject" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.defaultRootObject"></a>
+
+```typescript
+public readonly defaultRootObject: string;
+```
+
+- *Type:* string
+- *Default:* no default root object
+
+The object that you want CloudFront to request from your origin (for example, index.html) when a viewer requests the root URL for your distribution. If no default object is set, the request goes to the origin's root (e.g., example.com/).
+
+---
+
+##### `domainNames`<sup>Optional</sup> <a name="domainNames" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.domainNames"></a>
+
+```typescript
+public readonly domainNames: string[];
+```
+
+- *Type:* string[]
+- *Default:* The distribution will only support the default generated name (e.g., d111111abcdef8.cloudfront.net)
+
+Alternative domain names for this distribution.
+
+If you want to use your own domain name, such as www.example.com, instead of the cloudfront.net domain name,
+you can add an alternate domain name to your distribution. If you attach a certificate to the distribution,
+you must add (at least one of) the domain names of the certificate to this list.
+
+---
+
+##### `enabled`<sup>Optional</sup> <a name="enabled" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.enabled"></a>
+
+```typescript
+public readonly enabled: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Enable or disable the distribution.
+
+---
+
+##### `enableIpv6`<sup>Optional</sup> <a name="enableIpv6" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.enableIpv6"></a>
+
+```typescript
+public readonly enableIpv6: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true
+
+Whether CloudFront will respond to IPv6 DNS requests with an IPv6 address.
+
+If you specify false, CloudFront responds to IPv6 DNS requests with the DNS response code NOERROR and with no IP addresses.
+This allows viewers to submit a second request, for an IPv4 address for your distribution.
+
+---
+
+##### `enableLogging`<sup>Optional</sup> <a name="enableLogging" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.enableLogging"></a>
+
+```typescript
+public readonly enableLogging: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false, unless `logBucket` is specified.
+
+Enable access logging for the distribution.
+
+---
+
+##### `errorResponses`<sup>Optional</sup> <a name="errorResponses" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.errorResponses"></a>
+
+```typescript
+public readonly errorResponses: ErrorResponse[];
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.ErrorResponse[]
+- *Default:* No custom error responses.
+
+How CloudFront should handle requests that are not successful (e.g., PageNotFound).
+
+---
+
+##### `geoRestriction`<sup>Optional</sup> <a name="geoRestriction" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.geoRestriction"></a>
+
+```typescript
+public readonly geoRestriction: GeoRestriction;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.GeoRestriction
+- *Default:* No geographic restrictions
+
+Controls the countries in which your content is distributed.
+
+---
+
+##### `httpVersion`<sup>Optional</sup> <a name="httpVersion" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.httpVersion"></a>
+
+```typescript
+public readonly httpVersion: HttpVersion;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.HttpVersion
+- *Default:* HttpVersion.HTTP2
+
+Specify the maximum HTTP version that you want viewers to use to communicate with CloudFront.
+
+For viewers and CloudFront to use HTTP/2, viewers must support TLS 1.2 or later, and must support server name identification (SNI).
+
+---
+
+##### `logBucket`<sup>Optional</sup> <a name="logBucket" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.logBucket"></a>
+
+```typescript
+public readonly logBucket: IBucket;
+```
+
+- *Type:* aws-cdk-lib.aws_s3.IBucket
+- *Default:* A bucket is created if `enableLogging` is true
+
+The Amazon S3 bucket to store the access logs in.
+
+---
+
+##### `logFilePrefix`<sup>Optional</sup> <a name="logFilePrefix" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.logFilePrefix"></a>
+
+```typescript
+public readonly logFilePrefix: string;
+```
+
+- *Type:* string
+- *Default:* no prefix
+
+An optional string that you want CloudFront to prefix to the access log filenames for this distribution.
+
+---
+
+##### `logIncludesCookies`<sup>Optional</sup> <a name="logIncludesCookies" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.logIncludesCookies"></a>
+
+```typescript
+public readonly logIncludesCookies: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Specifies whether you want CloudFront to include cookies in access logs.
+
+---
+
+##### `minimumProtocolVersion`<sup>Optional</sup> <a name="minimumProtocolVersion" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.minimumProtocolVersion"></a>
+
+```typescript
+public readonly minimumProtocolVersion: SecurityPolicyProtocol;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.SecurityPolicyProtocol
+- *Default:* SecurityPolicyProtocol.TLS_V1_2_2021 if the '
+
+The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections.
+
+CloudFront serves your objects only to browsers or devices that support at
+least the SSL version that you specify.
+
+---
+
+##### `priceClass`<sup>Optional</sup> <a name="priceClass" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.priceClass"></a>
 
 ```typescript
 public readonly priceClass: PriceClass;
@@ -667,10 +1838,109 @@ public readonly priceClass: PriceClass;
 - *Type:* aws-cdk-lib.aws_cloudfront.PriceClass
 - *Default:* PriceClass.PRICE_CLASS_ALL
 
-The PriceClass to use for the CloudFront distribution.
+The price class that corresponds with the maximum price that you want to pay for CloudFront service.
 
-See
-https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html
+If you specify PriceClass_All, CloudFront responds to requests for your objects from all CloudFront edge locations.
+If you specify a price class other than PriceClass_All, CloudFront serves your objects from the CloudFront edge location
+that has the lowest latency among the edge locations in your price class.
+
+---
+
+##### `sslSupportMethod`<sup>Optional</sup> <a name="sslSupportMethod" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.sslSupportMethod"></a>
+
+```typescript
+public readonly sslSupportMethod: SSLMethod;
+```
+
+- *Type:* aws-cdk-lib.aws_cloudfront.SSLMethod
+- *Default:* SSLMethod.SNI
+
+The SSL method CloudFront will use for your distribution.
+
+Server Name Indication (SNI) - is an extension to the TLS computer networking protocol by which a client indicates
+which hostname it is attempting to connect to at the start of the handshaking process. This allows a server to present
+multiple certificates on the same IP address and TCP port number and hence allows multiple secure (HTTPS) websites
+(or any other service over TLS) to be served by the same IP address without requiring all those sites to use the same certificate.
+
+CloudFront can use SNI to host multiple distributions on the same IP - which a large majority of clients will support.
+
+If your clients cannot support SNI however - CloudFront can use dedicated IPs for your distribution - but there is a prorated monthly charge for
+using this feature. By default, we use SNI - but you can optionally enable dedicated IPs (VIP).
+
+See the CloudFront SSL for more details about pricing : https://aws.amazon.com/cloudfront/custom-ssl-domains/
+
+---
+
+##### `webAclId`<sup>Optional</sup> <a name="webAclId" id="@blimmer/cdk-static-wordpress.DistributionOverrides.property.webAclId"></a>
+
+```typescript
+public readonly webAclId: string;
+```
+
+- *Type:* string
+- *Default:* No AWS Web Application Firewall web access control list (web ACL).
+
+Unique identifier that specifies the AWS WAF web ACL to associate with this CloudFront distribution.
+
+To specify a web ACL created using the latest version of AWS WAF, use the ACL ARN, for example
+`arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a`.
+To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example `473e64fd-f30b-4765-81a0-62ad96dd167a`.
+
+---
+
+### EcsOverrides <a name="EcsOverrides" id="@blimmer/cdk-static-wordpress.EcsOverrides"></a>
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.EcsOverrides.Initializer"></a>
+
+```typescript
+import { EcsOverrides } from '@blimmer/cdk-static-wordpress'
+
+const ecsOverrides: EcsOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsOverrides.property.containerOverrides">containerOverrides</a></code> | <code>aws-cdk-lib.aws_stepfunctions_tasks.ContainerOverrides</code> | [ADVANCED] Override properties on the Fargate Container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsOverrides.property.serviceOverrides">serviceOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides">ServiceOverrides</a></code> | [ADVANCED] Override properties on the Fargate Service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.EcsOverrides.property.taskDefinitionOverrides">taskDefinitionOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides">TaskDefinitionOverrides</a></code> | [ADVANCED] Override properties on the Fargate Task Definition. |
+
+---
+
+##### `containerOverrides`<sup>Optional</sup> <a name="containerOverrides" id="@blimmer/cdk-static-wordpress.EcsOverrides.property.containerOverrides"></a>
+
+```typescript
+public readonly containerOverrides: ContainerOverrides;
+```
+
+- *Type:* aws-cdk-lib.aws_stepfunctions_tasks.ContainerOverrides
+
+[ADVANCED] Override properties on the Fargate Container.
+
+---
+
+##### `serviceOverrides`<sup>Optional</sup> <a name="serviceOverrides" id="@blimmer/cdk-static-wordpress.EcsOverrides.property.serviceOverrides"></a>
+
+```typescript
+public readonly serviceOverrides: ServiceOverrides;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.ServiceOverrides">ServiceOverrides</a>
+
+[ADVANCED] Override properties on the Fargate Service.
+
+---
+
+##### `taskDefinitionOverrides`<sup>Optional</sup> <a name="taskDefinitionOverrides" id="@blimmer/cdk-static-wordpress.EcsOverrides.property.taskDefinitionOverrides"></a>
+
+```typescript
+public readonly taskDefinitionOverrides: TaskDefinitionOverrides;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides">TaskDefinitionOverrides</a>
+
+[ADVANCED] Override properties on the Fargate Task Definition.
 
 ---
 
@@ -787,6 +2057,310 @@ public readonly wordpressDatabaseProps: WordpressDatabaseProps;
 ```
 
 - *Type:* <a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps">WordpressDatabaseProps</a>
+
+---
+
+### ServiceOverrides <a name="ServiceOverrides" id="@blimmer/cdk-static-wordpress.ServiceOverrides"></a>
+
+ServiceOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.ServiceOverrides.Initializer"></a>
+
+```typescript
+import { ServiceOverrides } from '@blimmer/cdk-static-wordpress'
+
+const serviceOverrides: ServiceOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.assignPublicIp">assignPublicIp</a></code> | <code>boolean</code> | Specifies whether the task's elastic network interface receives a public IP address. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.capacityProviderStrategies">capacityProviderStrategies</a></code> | <code>aws-cdk-lib.aws_ecs.CapacityProviderStrategy[]</code> | A list of Capacity Provider strategies used to place a service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.circuitBreaker">circuitBreaker</a></code> | <code>aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker</code> | Whether to enable the deployment circuit breaker. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.cloudMapOptions">cloudMapOptions</a></code> | <code>aws-cdk-lib.aws_ecs.CloudMapOptions</code> | The options for configuring an Amazon ECS service to use service discovery. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.cluster">cluster</a></code> | <code>aws-cdk-lib.aws_ecs.ICluster</code> | The name of the cluster that hosts the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.deploymentController">deploymentController</a></code> | <code>aws-cdk-lib.aws_ecs.DeploymentController</code> | Specifies which deployment controller to use for the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.desiredCount">desiredCount</a></code> | <code>number</code> | The desired number of instantiations of the task definition to keep running on the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.enableECSManagedTags">enableECSManagedTags</a></code> | <code>boolean</code> | Specifies whether to enable Amazon ECS managed tags for the tasks within the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.enableExecuteCommand">enableExecuteCommand</a></code> | <code>boolean</code> | Whether to enable the ability to execute into a container. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.healthCheckGracePeriod">healthCheckGracePeriod</a></code> | <code>aws-cdk-lib.Duration</code> | The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.maxHealthyPercent">maxHealthyPercent</a></code> | <code>number</code> | The maximum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that can run in a service during a deployment. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.minHealthyPercent">minHealthyPercent</a></code> | <code>number</code> | The minimum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that must continue to run and remain healthy during a deployment. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.platformVersion">platformVersion</a></code> | <code>aws-cdk-lib.aws_ecs.FargatePlatformVersion</code> | The platform version on which to run your service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.propagateTags">propagateTags</a></code> | <code>aws-cdk-lib.aws_ecs.PropagatedTagSource</code> | Specifies whether to propagate the tags from the task definition or the service to the tasks in the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.securityGroups">securityGroups</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup[]</code> | The security groups to associate with the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.serviceConnectConfiguration">serviceConnectConfiguration</a></code> | <code>aws-cdk-lib.aws_ecs.ServiceConnectProps</code> | Configuration for Service Connect. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.serviceName">serviceName</a></code> | <code>string</code> | The name of the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.taskDefinition">taskDefinition</a></code> | <code>aws-cdk-lib.aws_ecs.TaskDefinition</code> | The task definition to use for tasks in the service. |
+| <code><a href="#@blimmer/cdk-static-wordpress.ServiceOverrides.property.vpcSubnets">vpcSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | The subnets to associate with the service. |
+
+---
+
+##### `assignPublicIp`<sup>Optional</sup> <a name="assignPublicIp" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.assignPublicIp"></a>
+
+```typescript
+public readonly assignPublicIp: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Specifies whether the task's elastic network interface receives a public IP address.
+
+If true, each task will receive a public IP address.
+
+---
+
+##### `capacityProviderStrategies`<sup>Optional</sup> <a name="capacityProviderStrategies" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.capacityProviderStrategies"></a>
+
+```typescript
+public readonly capacityProviderStrategies: CapacityProviderStrategy[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.CapacityProviderStrategy[]
+- *Default:* undefined
+
+A list of Capacity Provider strategies used to place a service.
+
+---
+
+##### `circuitBreaker`<sup>Optional</sup> <a name="circuitBreaker" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.circuitBreaker"></a>
+
+```typescript
+public readonly circuitBreaker: DeploymentCircuitBreaker;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.DeploymentCircuitBreaker
+- *Default:* disabled
+
+Whether to enable the deployment circuit breaker.
+
+If this property is defined, circuit breaker will be implicitly
+enabled.
+
+---
+
+##### `cloudMapOptions`<sup>Optional</sup> <a name="cloudMapOptions" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.cloudMapOptions"></a>
+
+```typescript
+public readonly cloudMapOptions: CloudMapOptions;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.CloudMapOptions
+- *Default:* AWS Cloud Map service discovery is not enabled.
+
+The options for configuring an Amazon ECS service to use service discovery.
+
+---
+
+##### `cluster`<sup>Optional</sup> <a name="cluster" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.cluster"></a>
+
+```typescript
+public readonly cluster: ICluster;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ICluster
+
+The name of the cluster that hosts the service.
+
+---
+
+##### `deploymentController`<sup>Optional</sup> <a name="deploymentController" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.deploymentController"></a>
+
+```typescript
+public readonly deploymentController: DeploymentController;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.DeploymentController
+- *Default:* Rolling update (ECS)
+
+Specifies which deployment controller to use for the service.
+
+For more information, see
+[Amazon ECS Deployment Types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
+
+---
+
+##### `desiredCount`<sup>Optional</sup> <a name="desiredCount" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.desiredCount"></a>
+
+```typescript
+public readonly desiredCount: number;
+```
+
+- *Type:* number
+- *Default:* When creating the service, default is 1; when updating the service, default uses the current task number.
+
+The desired number of instantiations of the task definition to keep running on the service.
+
+---
+
+##### `enableECSManagedTags`<sup>Optional</sup> <a name="enableECSManagedTags" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.enableECSManagedTags"></a>
+
+```typescript
+public readonly enableECSManagedTags: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Specifies whether to enable Amazon ECS managed tags for the tasks within the service.
+
+For more information, see
+[Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)
+
+---
+
+##### `enableExecuteCommand`<sup>Optional</sup> <a name="enableExecuteCommand" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.enableExecuteCommand"></a>
+
+```typescript
+public readonly enableExecuteCommand: boolean;
+```
+
+- *Type:* boolean
+- *Default:* undefined
+
+Whether to enable the ability to execute into a container.
+
+---
+
+##### `healthCheckGracePeriod`<sup>Optional</sup> <a name="healthCheckGracePeriod" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.healthCheckGracePeriod"></a>
+
+```typescript
+public readonly healthCheckGracePeriod: Duration;
+```
+
+- *Type:* aws-cdk-lib.Duration
+- *Default:* defaults to 60 seconds if at least one load balancer is in-use and it is not already set
+
+The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started.
+
+---
+
+##### `maxHealthyPercent`<sup>Optional</sup> <a name="maxHealthyPercent" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.maxHealthyPercent"></a>
+
+```typescript
+public readonly maxHealthyPercent: number;
+```
+
+- *Type:* number
+- *Default:* 100 if daemon, otherwise 200
+
+The maximum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that can run in a service during a deployment.
+
+---
+
+##### `minHealthyPercent`<sup>Optional</sup> <a name="minHealthyPercent" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.minHealthyPercent"></a>
+
+```typescript
+public readonly minHealthyPercent: number;
+```
+
+- *Type:* number
+- *Default:* 0 if daemon, otherwise 50
+
+The minimum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that must continue to run and remain healthy during a deployment.
+
+---
+
+##### `platformVersion`<sup>Optional</sup> <a name="platformVersion" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.platformVersion"></a>
+
+```typescript
+public readonly platformVersion: FargatePlatformVersion;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.FargatePlatformVersion
+- *Default:* Latest
+
+The platform version on which to run your service.
+
+If one is not specified, the LATEST platform version is used by default. For more information, see
+[AWS Fargate Platform Versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)
+in the Amazon Elastic Container Service Developer Guide.
+
+---
+
+##### `propagateTags`<sup>Optional</sup> <a name="propagateTags" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.propagateTags"></a>
+
+```typescript
+public readonly propagateTags: PropagatedTagSource;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.PropagatedTagSource
+- *Default:* PropagatedTagSource.NONE
+
+Specifies whether to propagate the tags from the task definition or the service to the tasks in the service.
+
+Valid values are: PropagatedTagSource.SERVICE, PropagatedTagSource.TASK_DEFINITION or PropagatedTagSource.NONE
+
+---
+
+##### `securityGroups`<sup>Optional</sup> <a name="securityGroups" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.securityGroups"></a>
+
+```typescript
+public readonly securityGroups: ISecurityGroup[];
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.ISecurityGroup[]
+- *Default:* A new security group is created.
+
+The security groups to associate with the service.
+
+If you do not specify a security group, a new security group is created.
+
+---
+
+##### `serviceConnectConfiguration`<sup>Optional</sup> <a name="serviceConnectConfiguration" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.serviceConnectConfiguration"></a>
+
+```typescript
+public readonly serviceConnectConfiguration: ServiceConnectProps;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ServiceConnectProps
+- *Default:* No ports are advertised via Service Connect on this service, and the service cannot make requests to other services via Service Connect.
+
+Configuration for Service Connect.
+
+---
+
+##### `serviceName`<sup>Optional</sup> <a name="serviceName" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.serviceName"></a>
+
+```typescript
+public readonly serviceName: string;
+```
+
+- *Type:* string
+- *Default:* CloudFormation-generated name.
+
+The name of the service.
+
+---
+
+##### `taskDefinition`<sup>Optional</sup> <a name="taskDefinition" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.taskDefinition"></a>
+
+```typescript
+public readonly taskDefinition: TaskDefinition;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.TaskDefinition
+
+The task definition to use for tasks in the service.
+
+[disable-awslint:ref-via-interface]
+
+---
+
+##### `vpcSubnets`<sup>Optional</sup> <a name="vpcSubnets" id="@blimmer/cdk-static-wordpress.ServiceOverrides.property.vpcSubnets"></a>
+
+```typescript
+public readonly vpcSubnets: SubnetSelection;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.SubnetSelection
+- *Default:* Public subnets if `assignPublicIp` is set, otherwise the first available one of Private, Isolated, Public, in that order.
+
+The subnets to associate with the service.
 
 ---
 
@@ -994,6 +2568,197 @@ public readonly wordpressDockerImageProps: WordpressDockerImageProps;
 
 ---
 
+### TaskDefinitionOverrides <a name="TaskDefinitionOverrides" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides"></a>
+
+TaskDefinitionOverrides.
+
+#### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.Initializer"></a>
+
+```typescript
+import { TaskDefinitionOverrides } from '@blimmer/cdk-static-wordpress'
+
+const taskDefinitionOverrides: TaskDefinitionOverrides = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.cpu">cpu</a></code> | <code>number</code> | The number of cpu units used by the task. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.ephemeralStorageGiB">ephemeralStorageGiB</a></code> | <code>number</code> | The amount (in GiB) of ephemeral storage to be allocated to the task. The maximum supported value is 200 GiB. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.executionRole">executionRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The name of the IAM task execution role that grants the ECS agent permission to call AWS APIs on your behalf. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.family">family</a></code> | <code>string</code> | The name of a family that this task definition is registered to. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.memoryLimitMiB">memoryLimitMiB</a></code> | <code>number</code> | The amount (in MiB) of memory used by the task. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.proxyConfiguration">proxyConfiguration</a></code> | <code>aws-cdk-lib.aws_ecs.ProxyConfiguration</code> | The configuration details for the App Mesh proxy. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.runtimePlatform">runtimePlatform</a></code> | <code>aws-cdk-lib.aws_ecs.RuntimePlatform</code> | The operating system that your task definitions are running on. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.taskRole">taskRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The name of the IAM role that grants containers in the task permission to call AWS APIs on your behalf. |
+| <code><a href="#@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.volumes">volumes</a></code> | <code>aws-cdk-lib.aws_ecs.Volume[]</code> | The list of volume definitions for the task. |
+
+---
+
+##### `cpu`<sup>Optional</sup> <a name="cpu" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.cpu"></a>
+
+```typescript
+public readonly cpu: number;
+```
+
+- *Type:* number
+- *Default:* 256
+
+The number of cpu units used by the task.
+
+For tasks using the Fargate launch type,
+this field is required and you must use one of the following values,
+which determines your range of valid values for the memory parameter:
+
+256 (.25 vCPU) - Available memory values: 512 (0.5 GB), 1024 (1 GB), 2048 (2 GB)
+
+512 (.5 vCPU) - Available memory values: 1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB)
+
+1024 (1 vCPU) - Available memory values: 2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB)
+
+2048 (2 vCPU) - Available memory values: Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB)
+
+4096 (4 vCPU) - Available memory values: Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB)
+
+8192 (8 vCPU) - Available memory values: Between 16384 (16 GB) and 61440 (60 GB) in increments of 4096 (4 GB)
+
+16384 (16 vCPU) - Available memory values: Between 32768 (32 GB) and 122880 (120 GB) in increments of 8192 (8 GB)
+
+---
+
+##### `ephemeralStorageGiB`<sup>Optional</sup> <a name="ephemeralStorageGiB" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.ephemeralStorageGiB"></a>
+
+```typescript
+public readonly ephemeralStorageGiB: number;
+```
+
+- *Type:* number
+- *Default:* 20
+
+The amount (in GiB) of ephemeral storage to be allocated to the task. The maximum supported value is 200 GiB.
+
+NOTE: This parameter is only supported for tasks hosted on AWS Fargate using platform version 1.4.0 or later.
+
+---
+
+##### `executionRole`<sup>Optional</sup> <a name="executionRole" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.executionRole"></a>
+
+```typescript
+public readonly executionRole: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+- *Default:* An execution role will be automatically created if you use ECR images in your task definition.
+
+The name of the IAM task execution role that grants the ECS agent permission to call AWS APIs on your behalf.
+
+The role will be used to retrieve container images from ECR and create CloudWatch log groups.
+
+---
+
+##### `family`<sup>Optional</sup> <a name="family" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.family"></a>
+
+```typescript
+public readonly family: string;
+```
+
+- *Type:* string
+- *Default:* Automatically generated name.
+
+The name of a family that this task definition is registered to.
+
+A family groups multiple versions of a task definition.
+
+---
+
+##### `memoryLimitMiB`<sup>Optional</sup> <a name="memoryLimitMiB" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.memoryLimitMiB"></a>
+
+```typescript
+public readonly memoryLimitMiB: number;
+```
+
+- *Type:* number
+- *Default:* 512
+
+The amount (in MiB) of memory used by the task.
+
+For tasks using the Fargate launch type,
+this field is required and you must use one of the following values, which determines your range of valid values for the cpu parameter:
+
+512 (0.5 GB), 1024 (1 GB), 2048 (2 GB) - Available cpu values: 256 (.25 vCPU)
+
+1024 (1 GB), 2048 (2 GB), 3072 (3 GB), 4096 (4 GB) - Available cpu values: 512 (.5 vCPU)
+
+2048 (2 GB), 3072 (3 GB), 4096 (4 GB), 5120 (5 GB), 6144 (6 GB), 7168 (7 GB), 8192 (8 GB) - Available cpu values: 1024 (1 vCPU)
+
+Between 4096 (4 GB) and 16384 (16 GB) in increments of 1024 (1 GB) - Available cpu values: 2048 (2 vCPU)
+
+Between 8192 (8 GB) and 30720 (30 GB) in increments of 1024 (1 GB) - Available cpu values: 4096 (4 vCPU)
+
+Between 16384 (16 GB) and 61440 (60 GB) in increments of 4096 (4 GB) - Available cpu values: 8192 (8 vCPU)
+
+Between 32768 (32 GB) and 122880 (120 GB) in increments of 8192 (8 GB) - Available cpu values: 16384 (16 vCPU)
+
+---
+
+##### `proxyConfiguration`<sup>Optional</sup> <a name="proxyConfiguration" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.proxyConfiguration"></a>
+
+```typescript
+public readonly proxyConfiguration: ProxyConfiguration;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.ProxyConfiguration
+- *Default:* No proxy configuration.
+
+The configuration details for the App Mesh proxy.
+
+---
+
+##### `runtimePlatform`<sup>Optional</sup> <a name="runtimePlatform" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.runtimePlatform"></a>
+
+```typescript
+public readonly runtimePlatform: RuntimePlatform;
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.RuntimePlatform
+- *Default:* Undefined.
+
+The operating system that your task definitions are running on.
+
+A runtimePlatform is supported only for tasks using the Fargate launch type.
+
+---
+
+##### `taskRole`<sup>Optional</sup> <a name="taskRole" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.taskRole"></a>
+
+```typescript
+public readonly taskRole: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+- *Default:* A task role is automatically created for you.
+
+The name of the IAM role that grants containers in the task permission to call AWS APIs on your behalf.
+
+---
+
+##### `volumes`<sup>Optional</sup> <a name="volumes" id="@blimmer/cdk-static-wordpress.TaskDefinitionOverrides.property.volumes"></a>
+
+```typescript
+public readonly volumes: Volume[];
+```
+
+- *Type:* aws-cdk-lib.aws_ecs.Volume[]
+- *Default:* No volumes are passed to the Docker daemon on a container instance.
+
+The list of volume definitions for the task.
+
+For more information, see
+[Task Definition Parameter Volumes](https://docs.aws.amazon.com/AmazonECS/latest/developerguide//task_definition_parameters.html#volumes).
+
+---
+
 ### WordpressAdminProps <a name="WordpressAdminProps" id="@blimmer/cdk-static-wordpress.WordpressAdminProps"></a>
 
 #### Initializer <a name="Initializer" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.Initializer"></a>
@@ -1010,7 +2775,7 @@ const wordpressAdminProps: WordpressAdminProps = { ... }
 | --- | --- | --- |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.email">email</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainPrefix">domainPrefix</a></code> | <code>string</code> | The prefix to use for the non-static admin site. |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec">enableEcsExec</a></code> | <code>boolean</code> | Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console. |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.ecsOverrides">ecsOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.EcsOverrides">EcsOverrides</a></code> | [ADVANCED] Override various aspects of the ECS infrastructure. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.run">run</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.username">username</a></code> | <code>string</code> | *No description.* |
@@ -1043,20 +2808,15 @@ foo.example.com and you pass `-admin` here, the admin site will be served at adm
 
 ---
 
-##### `enableEcsExec`<sup>Optional</sup> <a name="enableEcsExec" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.enableEcsExec"></a>
+##### `ecsOverrides`<sup>Optional</sup> <a name="ecsOverrides" id="@blimmer/cdk-static-wordpress.WordpressAdminProps.property.ecsOverrides"></a>
 
 ```typescript
-public readonly enableEcsExec: boolean;
+public readonly ecsOverrides: EcsOverrides;
 ```
 
-- *Type:* boolean
-- *Default:* false
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.EcsOverrides">EcsOverrides</a>
 
-Enables ECS Exec (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html). You can use this to access the container running the Wordpress admin console.
-
-NOTE: If you enable toggle this flag for an already-running WP Admin site, you'll need to manually stop the
-existing task. The ECS service will replace the task with a new one that has ECS Exec enabled. This is a
-CloudFormation limitation.
+[ADVANCED] Override various aspects of the ECS infrastructure.
 
 ---
 
@@ -1110,8 +2870,21 @@ const wordpressDatabaseProps: WordpressDatabaseProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps.property.databaseOverrides">databaseOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides">DatabaseOverrides</a></code> | [ADVANCED] Override properties on the Serverless Database Cluster. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps.property.password">password</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressDatabaseProps.property.username">username</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `databaseOverrides`<sup>Optional</sup> <a name="databaseOverrides" id="@blimmer/cdk-static-wordpress.WordpressDatabaseProps.property.databaseOverrides"></a>
+
+```typescript
+public readonly databaseOverrides: DatabaseOverrides;
+```
+
+- *Type:* <a href="#@blimmer/cdk-static-wordpress.DatabaseOverrides">DatabaseOverrides</a>
+
+[ADVANCED] Override properties on the Serverless Database Cluster.
 
 ---
 

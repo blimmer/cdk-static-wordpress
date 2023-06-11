@@ -69,10 +69,14 @@ export class EcsTask extends Construct {
       password: adminPassword = "changeme",
       domainPrefix = "admin-",
       run: runWpAdmin = true,
-      enableEcsExec = false,
+      ecsOverrides = {},
     } = wordpressAdminProps;
-    const { username: databaseUsername = "wp_master", password: databasePassword = "changeme" } =
-      wordpressDatabaseProps;
+    const {
+      username: databaseUsername = "wp_master",
+      password: databasePassword = "changeme",
+      databaseOverrides = {},
+    } = wordpressDatabaseProps;
+    const { taskDefinitionOverrides = {}, containerOverrides = {}, serviceOverrides = {} } = ecsOverrides;
 
     const fileSystem = new FileSystem(this, "FileSystem", {
       fileSystemName: `${siteId}-fs`,
@@ -110,6 +114,7 @@ export class EcsTask extends Construct {
       },
       vpc,
       vpcSubnets: { subnetType: SubnetType.PRIVATE_ISOLATED },
+      ...databaseOverrides,
     });
 
     const taskDefinition = new FargateTaskDefinition(this, "TaskDefinition", {
@@ -128,6 +133,7 @@ export class EcsTask extends Construct {
           },
         },
       ],
+      ...taskDefinitionOverrides,
     });
 
     const wordpressDomain = `${domainPrefix}${fullyQualifiedSiteName}`;
@@ -164,6 +170,7 @@ export class EcsTask extends Construct {
         streamPrefix: "ecs",
         logRetention: RetentionDays.ONE_MONTH,
       }),
+      ...containerOverrides,
     });
     taskContainer.addMountPoints({
       sourceVolume: "wordpress_persistent",
@@ -201,7 +208,7 @@ export class EcsTask extends Construct {
       capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT", base: 1, weight: 100 }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
-      enableExecuteCommand: enableEcsExec,
+      ...serviceOverrides,
     });
 
     service.connections.allowToDefaultPort(database, "Allow connecting to the database");
