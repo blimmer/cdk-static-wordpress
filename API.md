@@ -79,6 +79,14 @@ you’re done you shut down the Wordpress container and it costs you almost noth
 
 TODO
 
+## Escape Hatches
+
+This construct provides escape hatches, to allow you to customize the underlying infrastructure if you need to. This is
+a big benefit of using CDK over Terraform (where every customizable property must be manually exposed as a variable).
+
+Look for `*Overrides` in [the API docs](/API.md) for customization options. But, be warned, we allow overriding almost
+everything, so you can easily produce invalid infrastructure if you don't know what you're doing.
+
 # API Reference <a name="API Reference" id="api-reference"></a>
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
