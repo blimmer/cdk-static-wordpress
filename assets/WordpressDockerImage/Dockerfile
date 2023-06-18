@@ -47,6 +47,11 @@ FROM --platform=linux/amd64 $BASE_WORDPRESS_IMAGE as wordpress
 
 ARG PHP_INI
 
+ARG wp2static_version
+ENV WP2STATIC_VERSION=$wp2static_version
+ARG wp2static_s3_addon_version
+ENV WP2STATIC_S3_ADDON_VERSION=$wp2static_s3_addon_version
+
 COPY ["wp-cli.phar", "/tmp/"]
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN apt-get update && apt-get install -y sudo jq awscli mariadb-client && chmod +x /usr/local/bin/docker-entrypoint.sh && chmod +x /tmp/wp-cli.phar && mv /tmp/wp-cli.phar /usr/local/bin/wp \
