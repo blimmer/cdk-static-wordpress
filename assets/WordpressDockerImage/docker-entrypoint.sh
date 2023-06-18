@@ -312,10 +312,12 @@ fi
 # List installed plugins to log
 echo "$(sudo -u www-data wp plugin list)"
 # Install WP2Static and S3 Add-on
-if ! sudo -u www-data wp plugin is-installed wp2static; then
+if ! sudo -u www-data wp plugin is-installed wp2static || [ "$(sudo -u www-data wp plugin get wp2static --field=version)" != "$WP2STATIC_VERSION" ]; then
+	echo "Installing or updating WP2Static..."
 	sudo -u www-data wp plugin install /tmp/serverless-wordpress-wp2static.zip --activate --path=/var/www/html || true
 fi
-if ! sudo -u www-data wp plugin is-installed wp2static-addon-s3; then
+if ! sudo -u www-data wp plugin is-installed wp2static-addon-s3 || [ "$(sudo -u www-data wp plugin get wp2static-addon-s3 --field=version)" != "$WP2STATIC_S3_ADDON_VERSION" ]; then
+	echo "Installing or updating WP2Static S3 Add-on..."
 	sudo -u www-data wp plugin install /tmp/serverless-wordpress-s3-addon.zip --activate --path=/var/www/html || true
 fi
 # Update WP_MEMORY_LIMIT
