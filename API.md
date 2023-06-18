@@ -2980,7 +2980,7 @@ public readonly wordpressDockerImageBase: string;
 ```
 
 - *Type:* string
-- *Default:* wordpress:php7.4-apache
+- *Default:* wordpress:php8.2-apache
 
 ---
 

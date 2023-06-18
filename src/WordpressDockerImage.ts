@@ -4,7 +4,7 @@ import { join } from "path";
 
 export interface WordpressDockerImageProps {
   /**
-   * @default - wordpress:php7.4-apache
+   * @default - wordpress:php8.2-apache
    */
   readonly wordpressDockerImageBase?: string;
 
@@ -63,7 +63,7 @@ export class WordpressDockerImage extends Construct {
       wordpressMemoryLimit = "256M",
       containerCpu = 256,
       containerMemory = 512,
-      wordpressDockerImageBase = "wordpress:php7.4-apache",
+      wordpressDockerImageBase = "wordpress:php8.2-apache",
       wp2StaticVersion = "7.2",
       wp2StaticS3AddonVersion = "1.0",
     } = props;
