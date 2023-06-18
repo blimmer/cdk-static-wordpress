@@ -1,8 +1,10 @@
-const { ProjenStruct, Struct } = require("@mrgrain/jsii-struct-builder");
-const { awscdk } = require("projen");
-const { ProseWrap, NpmAccess } = require("projen/lib/javascript");
+import { ProjenStruct, Struct } from "@mrgrain/jsii-struct-builder";
+import { awscdk } from "projen";
+import { NpmAccess, ProseWrap } from "projen/lib/javascript";
 
 const project = new awscdk.AwsCdkConstructLibrary({
+  projenrcTs: true,
+
   author: "Ben Limmer",
   authorAddress: "hello@benlimmer.com",
   cdkVersion: "2.59.0", // First release of 2023
@@ -47,6 +49,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   eslintOptions: {
+    dirs: ["src", "test"],
     ignorePatterns: ["src/generated/*.ts"],
   },
 
