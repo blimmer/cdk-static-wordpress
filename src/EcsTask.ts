@@ -1,5 +1,5 @@
 import { Duration, RemovalPolicy, SecretValue, Stack } from "aws-cdk-lib";
-import { IVpc, Port, SubnetType, Vpc } from "aws-cdk-lib/aws-ec2";
+import { IVpc, Port, SecurityGroup, SubnetType, Vpc } from "aws-cdk-lib/aws-ec2";
 import {
   Cluster,
   ContainerImage,
@@ -199,6 +199,9 @@ export class EcsTask extends Construct {
     taskDefinition.addToTaskRolePolicy(fileSystemMountPolicy);
     taskDefinition.addToExecutionRolePolicy(fileSystemMountPolicy);
 
+    const serviceSg = new SecurityGroup(this, "ServiceSecurityGroup", {
+      vpc,
+    });
     const service = new FargateService(this, "Service", {
       serviceName: siteId,
       cluster: ecsCluster,
@@ -208,6 +211,7 @@ export class EcsTask extends Construct {
       capacityProviderStrategies: [{ capacityProvider: "FARGATE_SPOT", base: 1, weight: 100 }],
       propagateTags: PropagatedTagSource.SERVICE,
       platformVersion: FargatePlatformVersion.LATEST,
+      securityGroups: [serviceSg],
       ...serviceOverrides,
     });
 
@@ -215,7 +219,7 @@ export class EcsTask extends Construct {
     service.connections.allowFromAnyIpv4(Port.tcp(80), "Allow any IP to access the site");
     bucket.grantReadWrite(service.taskDefinition.taskRole);
     distribution.grantCreateInvalidation(service.taskDefinition.taskRole);
-    fileSystem.connections.allowDefaultPortFrom(service);
+    fileSystem.connections.allowDefaultPortFrom(serviceSg); // reference the security group directly to avoid circular dependencies
 
     this.fileSystem = fileSystem;
     this.databaseCluster = database;
