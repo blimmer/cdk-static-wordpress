@@ -8,6 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: "Ben Limmer",
   authorAddress: "hello@benlimmer.com",
   cdkVersion: "2.59.0", // First release of 2023
+  jsiiVersion: "~5.0.0",
   defaultReleaseBranch: "main",
   name: "@blimmer/cdk-static-wordpress",
   description: "Generate a static site from Wordpress (via WP2Static) using AWS CDK",
