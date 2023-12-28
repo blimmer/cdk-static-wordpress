@@ -8,6 +8,11 @@ import { TaskDefinitionOverrides } from "./generated/TaskDefinitionOverrides";
 export interface WordpressAdminProps {
   readonly email: string;
   readonly username?: string;
+  /**
+   * The password to use for the admin user.
+   *
+   * @default - changeme
+   */
   readonly password?: string; // TODO: or secretsmanager secret
 
   /**

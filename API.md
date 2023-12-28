@@ -55,7 +55,8 @@ you’re done you shut down the Wordpress container and it costs you almost noth
 
 1. Deploy with the [`cdk deploy` command](https://docs.aws.amazon.com/cdk/v2/guide/cli.html#cli-deploy)
 1. Once the deployment completes, visit the Wordpress console at `admin-<fullyQualifiedSiteName>`. E.g., if your static
-   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`.
+   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`. The default password for the wordpress user
+   is `changeme` (please change it :smile:).
 1. Customize Wordpress as you see fit, create posts, etc.
 1. When you're ready to deploy your static site, trigger WP2Static.
 
@@ -2784,7 +2785,7 @@ const wordpressAdminProps: WordpressAdminProps = { ... }
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.email">email</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.domainPrefix">domainPrefix</a></code> | <code>string</code> | The prefix to use for the non-static admin site. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.ecsOverrides">ecsOverrides</a></code> | <code><a href="#@blimmer/cdk-static-wordpress.EcsOverrides">EcsOverrides</a></code> | [ADVANCED] Override various aspects of the ECS infrastructure. |
-| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.password">password</a></code> | <code>string</code> | The password to use for the admin user. |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.run">run</a></code> | <code>boolean</code> | Should we run the Wordpress admin console? |
 | <code><a href="#@blimmer/cdk-static-wordpress.WordpressAdminProps.property.username">username</a></code> | <code>string</code> | *No description.* |
 
@@ -2835,6 +2836,9 @@ public readonly password: string;
 ```
 
 - *Type:* string
+- *Default:* changeme
+
+The password to use for the admin user.
 
 ---
 
