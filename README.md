@@ -55,7 +55,8 @@ you’re done you shut down the Wordpress container and it costs you almost noth
 
 1. Deploy with the [`cdk deploy` command](https://docs.aws.amazon.com/cdk/v2/guide/cli.html#cli-deploy)
 1. Once the deployment completes, visit the Wordpress console at `admin-<fullyQualifiedSiteName>`. E.g., if your static
-   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`.
+   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`. The default password for the wordpress user
+   is `changeme` (please change it :smile:).
 1. Customize Wordpress as you see fit, create posts, etc.
 1. When you're ready to deploy your static site, trigger WP2Static.
 

@@ -314,12 +314,24 @@ echo "$(sudo -u www-data wp plugin list)"
 # Install WP2Static and S3 Add-on
 if ! sudo -u www-data wp plugin is-installed wp2static || [ "$(sudo -u www-data wp plugin get wp2static --field=version)" != "$WP2STATIC_VERSION" ]; then
 	echo "Installing or updating WP2Static..."
-	sudo -u www-data wp plugin install /tmp/serverless-wordpress-wp2static.zip --activate --path=/var/www/html || true
+	sudo -u www-data wp plugin install /tmp/serverless-wordpress-wp2static.zip --activate --path=/var/www/html
 fi
+
 if ! sudo -u www-data wp plugin is-installed wp2static-addon-s3 || [ "$(sudo -u www-data wp plugin get wp2static-addon-s3 --field=version)" != "$WP2STATIC_S3_ADDON_VERSION" ]; then
 	echo "Installing or updating WP2Static S3 Add-on..."
-	sudo -u www-data wp plugin install /tmp/serverless-wordpress-s3-addon.zip --activate --path=/var/www/html || true
+	sudo -u www-data wp plugin install /tmp/serverless-wordpress-s3-addon.zip --activate --path=/var/www/html
 fi
+
+if ! sudo -u www-data wp plugin is-active wp2static; then
+  echo "Activating WP2Static..."
+  sudo -u www-data wp plugin activate wp2static
+fi
+
+if ! sudo -u www-data wp plugin is-active wp2static-addon-s3; then
+  echo "Activating WP2Static S3 Add-on..."
+  sudo -u www-data wp plugin activate wp2static-addon-s3
+fi
+
 # Update WP_MEMORY_LIMIT
 sudo -u www-data wp config set WP_MEMORY_LIMIT ${WP_MEMORY_LIMIT}
 # # Update Wordpress options with IP of running container
@@ -328,7 +340,7 @@ sudo -u www-data wp option update home "http://${CONTAINER_DNS}" || true
 
 # If environment variables for S3 static output is set, populate it in the plugin
 if [ "${WPSTATIC_DEST-}" ]; then
-    sudo -u www-data wp wp2static options set deploymentURL $WPSTATIC_DEST || true
+  sudo -u www-data wp wp2static options set deploymentURL $WPSTATIC_DEST || true
 	sudo -u www-data wp db query "UPDATE wp_wp2static_addons SET enabled = 1 WHERE slug = 'wp2static-addon-s3';"
 fi
 if [ "${WPSTATIC_REGION-}" ]; then
