@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -52,7 +51,7 @@ junit.xml
 !/.eslintrc.json
 .jsii
 tsconfig.json
-!/API.md
+!/.projenrc.ts
 !/src/generated/DistributionOverrides.ts
 !/src/generated/BehaviorOverrides.ts
 !/src/generated/DatabaseOverrides.ts

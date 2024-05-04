@@ -12,7 +12,6 @@
     "compat": "npx projen compat",
     "compile": "npx projen compile",
     "default": "npx projen default",
-    "docgen": "npx projen docgen",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
     "package": "npx projen package",
@@ -54,7 +53,6 @@
     "jest-junit": "^15",
     "jsii": "~5.0.0",
     "jsii-diff": "^1.93.0",
-    "jsii-docgen": "^7.2.9",
     "jsii-pacmak": "^1.93.0",
     "jsii-rosetta": "~5.0.0",
     "prettier": "^2.8.8",
@@ -127,7 +125,8 @@
     }
   },
   "types": "lib/index.d.ts",
-  "stability": "stable",
+  "stability": "deprecated",
+  "deprecated": true,
   "jsii": {
     "outdir": "dist",
     "targets": {

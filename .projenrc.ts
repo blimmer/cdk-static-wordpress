@@ -1,5 +1,6 @@
 import { ProjenStruct, Struct } from "@mrgrain/jsii-struct-builder";
 import { awscdk } from "projen";
+import { Stability } from "projen/lib/cdk";
 import { NpmAccess, ProseWrap } from "projen/lib/javascript";
 
 const project = new awscdk.AwsCdkConstructLibrary({
@@ -15,6 +16,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   npmAccess: NpmAccess.PUBLIC,
   repositoryUrl: "https://github.com/blimmer/cdk-static-wordpress.git",
   keywords: ["cdk", "aws-cdk", "aws-cdk-construct", "projen", "wordpress", "static-site", "wp2static"],
+  stability: Stability.DEPRECATED,
 
   publishToNuget: {
     nugetApiKeySecret: "NUGET_TOKEN",
@@ -36,7 +38,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     mavenArtifactId: "cdk-static-wordpress",
   },
 
-  docgen: true,
+  docgen: false,
 
   autoApproveUpgrades: true,
   autoApproveOptions: { allowedUsernames: ["blimmer-bot"] },
