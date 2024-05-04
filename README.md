@@ -27,14 +27,14 @@ manner.
 
 1. [WP2Static](https://wp2static.com/) is quite slow, and [many issues](https://github.com/elementor/wp2static) go
    unaddressed. It seems like they're actively pushing their hosted / paid solution, which is fine, but it means that
-   the OSS version doesn't much attention.
+   the OSS version doesn't receive much attention.
 
 1. I couldn't find a good solution to store images and other media files in a cost-effective manner. Wordpress stores
    uploads in EFS, which is quite expensive for this use case. My primary use case was to host a travel blog with lots
-   of high-quality images, so this was also an annoyance.
+   of high-quality images, so this was a significant cost factor for me.
 
-1. Wordpress is a pain, in general. It's really a beast to maintain. I broke the image several times trying to keep the
-   dependencies up-to-date. I'm not a Wordpress expert, so I found it challenging to debug.
+1. Wordpress is a pain, in general. It's really a beast to maintain. I broke the docker image several times trying to
+   keep the PHP / Apache dependencies up-to-date. I'm not a Wordpress expert, so I found it challenging to debug.
 
 For these reasons, I've decided to no longer maintain this package. If anyone would like to pick up the torch and
 continue maintaining this project, please feel free to fork it!
