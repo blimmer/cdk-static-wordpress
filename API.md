@@ -13,6 +13,60 @@ you’re done you shut down the Wordpress container and it costs you almost noth
 
 [WP2Static](https://wp2static.com/) is used to generate the static site from the Wordpress container.
 
+## Project Status
+
+⚠️ This project is archived and no longer being maintained. ⚠️
+
+This was a fun side project, but recent external changes have made it challenging to run Wordpress in a cost-efficient
+manner.
+
+1. The [deprecation of AWS RDS Serverless v1](https://www.infoq.com/news/2024/01/aurora-serverless-v1-retirement/) means
+   that AWS no longer offers a managed MySQL database instance that can scale to 0 when not in use. I
+   [considered a few ideas](https://github.com/blimmer/cdk-static-wordpress/issues/32) to work around this, but
+   ultimately I decided that the workarounds wouldn't match my personal use case.
+
+1. [WP2Static](https://wp2static.com/) is quite slow, and [many issues](https://github.com/elementor/wp2static) go
+   unaddressed. It seems like they're actively pushing their hosted / paid solution, which is fine, but it means that
+   the OSS version doesn't much attention.
+
+1. I couldn't find a good solution to store images and other media files in a cost-effective manner. Wordpress stores
+   uploads in EFS, which is quite expensive for this use case. My primary use case was to host a travel blog with lots
+   of high-quality images, so this was also an annoyance.
+
+1. Wordpress is a pain, in general. It's really a beast to maintain. I broke the image several times trying to keep the
+   dependencies up-to-date. I'm not a Wordpress expert, so I found it challenging to debug.
+
+For these reasons, I've decided to no longer maintain this package. If anyone would like to pick up the torch and
+continue maintaining this project, please feel free to fork it!
+
+### Alternatives
+
+- If you like the idea of this package, you could keep an eye on
+  [TechToSpeech/terraform-aws-serverless-static-wordpress](https://github.com/TechToSpeech/terraform-aws-serverless-static-wordpress/).
+  That project was the original inspiration for this CDK rewrite. However, that repository still uses Aurora Serverless
+  V1 and hasn't received much attention lately (at time of writing - May 2024, it hasn't been updated in > 2 years).
+
+- Consider a tool designed specifically for static site generation. For me, I migrated my project to use
+  [Astro](https://astro.build). I used
+  [lonekorean/wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown) to export my
+  content from Wordpress to Markdown, and then I manually copied the exported files into my Astro project. It required a
+  bit of manual translation, but it worked great for my use case. Astro is very fast compared to WP2Static (for my use
+  case > 100x faster) and is designed for this use case. You can also use Astro with
+  [many other CMS tools](https://docs.astro.build/en/guides/cms/) if you don't want to write Markdown.
+
+- I've been keeping my eyes on [Webiny](https://www.webiny.com/), a truly serverless CMS tool. This didn't quite work
+  for my use case, but it might work for you.
+
+### Decommissioning your Stack
+
+If you'd like to take a final backup, you can use a tool like
+[Updraft Plus](https://wordpress.org/plugins/updraftplus/). This will create a portable backup you can use to restore
+your Wordpress instance somewhere else (e.g., [Lightsail](https://aws.amazon.com/lightsail/projects/wordpress/), a
+hosted Wordpress provider, etc.).
+
+Then, destroy the resources created CDK Static Wordpress by running `cdk destroy`. This will remove all the resources
+associated with the project.
+
 ## Quick Start
 
 1. Install the construct:
@@ -55,8 +109,8 @@ you’re done you shut down the Wordpress container and it costs you almost noth
 
 1. Deploy with the [`cdk deploy` command](https://docs.aws.amazon.com/cdk/v2/guide/cli.html#cli-deploy)
 1. Once the deployment completes, visit the Wordpress console at `admin-<fullyQualifiedSiteName>`. E.g., if your static
-   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`. The default password for the wordpress user
-   is `changeme` (please change it :smile:).
+   site is `blog.example.com`, visit `admin-blog.example.com/wp-admin`. The default password for the wordpress user is
+   `changeme` (please change it :smile:).
 1. Customize Wordpress as you see fit, create posts, etc.
 1. When you're ready to deploy your static site, trigger WP2Static.
 
