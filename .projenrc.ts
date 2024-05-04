@@ -38,7 +38,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     mavenArtifactId: "cdk-static-wordpress",
   },
 
-  docgen: true,
+  docgen: false,
 
   autoApproveUpgrades: true,
   autoApproveOptions: { allowedUsernames: ["blimmer-bot"] },
